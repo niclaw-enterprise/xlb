@@ -60,7 +60,7 @@ export default function Home() {
               <button
                 key={v}
                 onClick={() => setPlanVariant(v)}
-                className={`px-5 py-3 text-[10px] tracking-[0.2em] transition-colors ${
+                className={`px-3 py-3 text-[10px] tracking-[0.2em] transition-colors ${
                   planVariant === v
                     ? 'text-[#39FF85]'
                     : 'text-[#F0EAD6]/20 hover:text-[#F0EAD6]/40'
@@ -77,7 +77,7 @@ export default function Home() {
               <button
                 key={v}
                 onClick={() => setMenuVariant(v)}
-                className={`px-5 py-3 text-[10px] tracking-[0.2em] transition-colors ${
+                className={`px-3 py-3 text-[10px] tracking-[0.2em] transition-colors ${
                   menuVariant === v
                     ? 'text-[#39FF85]'
                     : 'text-[#F0EAD6]/20 hover:text-[#F0EAD6]/40'
