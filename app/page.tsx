@@ -40,8 +40,8 @@ export default function Home() {
           </div>
 
           <p className="text-[11px] text-[#F0EAD6]/40 leading-relaxed tracking-wide">
-            The merch of a restaurant<br />
-            that doesn&apos;t exist.
+            Manifesting a restaurant<br />
+            one drop at a time.
           </p>
 
           <div className="flex flex-col gap-2">
