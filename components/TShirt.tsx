@@ -6,93 +6,142 @@ export default function TShirt() {
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Engineering grid (blueprint feel) */}
         <defs>
-          <pattern id="grid" width="12" height="12" patternUnits="userSpaceOnUse">
-            <path d="M 12 0 L 0 0 0 12" fill="none" stroke="#1e3a2f" strokeWidth="0.3" opacity="0.6"/>
+          <pattern id="grid-shirt" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#1a2e1a" strokeWidth="0.25" opacity="0.7"/>
           </pattern>
-          <clipPath id="shirt-clip">
-            <path d="M82,42 L32,96 L76,118 L64,308 L256,308 L244,118 L288,96 L238,42 C226,70 196,86 160,86 C124,86 94,70 82,42 Z"/>
+          <pattern id="grid-shirt-major" width="50" height="50" patternUnits="userSpaceOnUse">
+            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#1a2e1a" strokeWidth="0.5" opacity="0.4"/>
+          </pattern>
+          <clipPath id="shirt-clip-v2">
+            <path d="M90,38 L36,92 L74,112 L66,304 L254,304 L246,112 L284,92 L230,38 C222,58 198,72 160,72 C122,72 98,58 90,38 Z"/>
           </clipPath>
+          <marker id="arrow-end" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto">
+            <path d="M0,0 L4,2 L0,4 Z" fill="#39FF85" opacity="0.7"/>
+          </marker>
+          <marker id="arrow-start" markerWidth="4" markerHeight="4" refX="1" refY="2" orient="auto">
+            <path d="M4,0 L0,2 L4,4 Z" fill="#39FF85" opacity="0.7"/>
+          </marker>
+          <marker id="arrow-gold-end" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto">
+            <path d="M0,0 L4,2 L0,4 Z" fill="#B8860B" opacity="0.7"/>
+          </marker>
+          <marker id="arrow-gold-start" markerWidth="4" markerHeight="4" refX="1" refY="2" orient="auto">
+            <path d="M4,0 L0,2 L4,4 Z" fill="#B8860B" opacity="0.7"/>
+          </marker>
         </defs>
 
-        {/* Blueprint grid inside shirt */}
-        <rect x="0" y="0" width="320" height="380" fill="url(#grid)" clipPath="url(#shirt-clip)" opacity="0.5"/>
+        {/* Blueprint grids inside shirt */}
+        <rect width="320" height="380" fill="url(#grid-shirt)" clipPath="url(#shirt-clip-v2)"/>
+        <rect width="320" height="380" fill="url(#grid-shirt-major)" clipPath="url(#shirt-clip-v2)"/>
 
         {/* T-shirt body */}
         <path
-          d="M82,42 L32,96 L76,118 L64,308 L256,308 L244,118 L288,96 L238,42 C226,70 196,86 160,86 C124,86 94,70 82,42 Z"
-          fill="#0e0e0e"
+          d="M90,38 L36,92 L74,112 L66,304 L254,304 L246,112 L284,92 L230,38 C222,58 198,72 160,72 C122,72 98,58 90,38 Z"
+          fill="#0c0c0c"
           stroke="#2a2a2a"
-          strokeWidth="1"
+          strokeWidth="1.2"
         />
 
-        {/* Collar */}
+        {/* Collar — tighter, more realistic */}
         <path
-          d="M82,42 C96,74 122,90 160,90 C198,90 224,74 238,42 C224,37 208,34 192,32 C182,54 168,62 160,62 C152,62 138,54 128,32 C112,34 96,37 82,42 Z"
-          fill="#0a0a0a"
-          stroke="#1f1f1f"
-          strokeWidth="0.5"
+          d="M90,38 C100,58 126,72 160,72 C194,72 220,58 230,38 C218,34 204,31 190,30 C182,46 170,54 160,54 C150,54 138,46 130,30 C116,31 102,34 90,38 Z"
+          fill="#090909"
+          stroke="#1e1e1e"
+          strokeWidth="0.6"
         />
 
-        {/* Technical measurement lines */}
-        {/* Width arrow at bottom */}
-        <line x1="64" y1="320" x2="256" y2="320" stroke="#39FF85" strokeWidth="0.5" opacity="0.6"/>
-        <line x1="64" y1="315" x2="64" y2="325" stroke="#39FF85" strokeWidth="0.5" opacity="0.6"/>
-        <line x1="256" y1="315" x2="256" y2="325" stroke="#39FF85" strokeWidth="0.5" opacity="0.6"/>
-        <text x="160" y="334" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.7" letterSpacing="1">52 CM</text>
+        {/* Seam lines — chest */}
+        <line x1="66" y1="140" x2="254" y2="140" stroke="#1f1f1f" strokeWidth="0.5" strokeDasharray="2,4"/>
+        {/* Side seams */}
+        <line x1="74" y1="112" x2="66" y2="304" stroke="#1d1d1d" strokeWidth="0.4" strokeDasharray="2,4"/>
+        <line x1="246" y1="112" x2="254" y2="304" stroke="#1d1d1d" strokeWidth="0.4" strokeDasharray="2,4"/>
 
-        {/* Height arrow on left */}
-        <line x1="50" y1="118" x2="50" y2="308" stroke="#39FF85" strokeWidth="0.5" opacity="0.6"/>
-        <line x1="45" y1="118" x2="55" y2="118" stroke="#39FF85" strokeWidth="0.5" opacity="0.6"/>
-        <line x1="45" y1="308" x2="55" y2="308" stroke="#39FF85" strokeWidth="0.5" opacity="0.6"/>
-        <text x="36" y="218" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.7" letterSpacing="1" transform="rotate(-90 36 218)">72 CM</text>
+        {/* ── DIMENSION LINES ── */}
 
-        {/* Annotation dot + line — chest right side */}
-        <line x1="210" y1="145" x2="248" y2="118" stroke="#B8860B" strokeWidth="0.5" opacity="0.8" strokeDasharray="3,2"/>
-        <circle cx="210" cy="145" r="1.5" fill="#B8860B" opacity="0.9"/>
-        <text x="250" y="116" fontSize="6.5" fill="#B8860B" fontFamily="monospace" opacity="0.8" letterSpacing="0.5">CHEST EMBROIDERY</text>
+        {/* Width — bottom */}
+        <line x1="66" y1="318" x2="254" y2="318"
+          stroke="#39FF85" strokeWidth="0.6" opacity="0.7"
+          markerStart="url(#arrow-start)" markerEnd="url(#arrow-end)"/>
+        <line x1="66" y1="305" x2="66" y2="322" stroke="#39FF85" strokeWidth="0.4" opacity="0.5"/>
+        <line x1="254" y1="305" x2="254" y2="322" stroke="#39FF85" strokeWidth="0.4" opacity="0.5"/>
+        <text x="160" y="330" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.8" letterSpacing="1">WIDTH · 52CM</text>
+
+        {/* Body length — right side */}
+        <line x1="268" y1="112" x2="268" y2="304"
+          stroke="#39FF85" strokeWidth="0.6" opacity="0.7"
+          markerStart="url(#arrow-start)" markerEnd="url(#arrow-end)"/>
+        <line x1="246" y1="112" x2="272" y2="112" stroke="#39FF85" strokeWidth="0.4" opacity="0.5"/>
+        <line x1="254" y1="304" x2="272" y2="304" stroke="#39FF85" strokeWidth="0.4" opacity="0.5"/>
+        <text x="284" y="211" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.8"
+          transform="rotate(90 284 211)" letterSpacing="1">BODY · 46CM</text>
+
+        {/* Chest width annotation */}
+        <line x1="66" y1="148" x2="254" y2="148"
+          stroke="#39FF85" strokeWidth="0.4" opacity="0.35"
+          markerStart="url(#arrow-start)" markerEnd="url(#arrow-end)"/>
+        <text x="160" y="157" textAnchor="middle" fontSize="6" fill="#39FF85" fontFamily="monospace" opacity="0.5" letterSpacing="0.5">CHEST · 50CM</text>
+
+        {/* Shoulder width */}
+        <line x1="90" y1="26" x2="230" y2="26"
+          stroke="#B8860B" strokeWidth="0.5" opacity="0.6"
+          markerStart="url(#arrow-gold-start)" markerEnd="url(#arrow-gold-end)"/>
+        <line x1="90" y1="22" x2="90" y2="40" stroke="#B8860B" strokeWidth="0.3" opacity="0.4"/>
+        <line x1="230" y1="22" x2="230" y2="40" stroke="#B8860B" strokeWidth="0.3" opacity="0.4"/>
+        <text x="160" y="20" textAnchor="middle" fontSize="6" fill="#B8860B" fontFamily="monospace" opacity="0.7" letterSpacing="0.5">SHOULDER · 44CM</text>
+
+        {/* ── ANNOTATIONS ── */}
 
         {/* Collar annotation */}
-        <line x1="160" y1="68" x2="295" y2="52" stroke="#B8860B" strokeWidth="0.5" opacity="0.8" strokeDasharray="3,2"/>
-        <circle cx="160" cy="68" r="1.5" fill="#B8860B" opacity="0.9"/>
-        <text x="266" y="50" fontSize="6.5" fill="#B8860B" fontFamily="monospace" opacity="0.8" letterSpacing="0.5">CREW NECK</text>
+        <line x1="160" y1="60" x2="305" y2="42" stroke="#B8860B" strokeWidth="0.5" opacity="0.6" strokeDasharray="3,2"/>
+        <circle cx="160" cy="60" r="1.2" fill="#B8860B" opacity="0.8"/>
+        <text x="307" y="40" fontSize="6" fill="#B8860B" fontFamily="monospace" opacity="0.7" letterSpacing="0.5">CREW NECK Ø22CM</text>
 
-        {/* Material annotation */}
-        <text x="68" y="270" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.2" letterSpacing="0.5">MAT: 100% COTTON</text>
-        <text x="68" y="280" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.2" letterSpacing="0.5">GSM: 180</text>
-        <text x="68" y="290" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.2" letterSpacing="0.5">COL: #0E0E0E</text>
+        {/* Chest embroidery annotation */}
+        <line x1="205" y1="150" x2="305" y2="118" stroke="#B8860B" strokeWidth="0.5" opacity="0.6" strokeDasharray="3,2"/>
+        <circle cx="205" cy="150" r="1.2" fill="#B8860B" opacity="0.8"/>
+        <text x="307" y="116" fontSize="6" fill="#B8860B" fontFamily="monospace" opacity="0.7" letterSpacing="0.5">EMBROIDERY · R CHEST</text>
 
-        {/* Version stamp bottom right */}
-        <text x="245" y="298" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.15" letterSpacing="0.5">REV.001</text>
+        {/* Seam annotation */}
+        <line x1="74" y1="178" x2="30" y2="160" stroke="#B8860B" strokeWidth="0.5" opacity="0.4" strokeDasharray="3,2"/>
+        <circle cx="74" cy="178" r="1" fill="#B8860B" opacity="0.6"/>
+        <text x="6" y="158" fontSize="6" fill="#B8860B" fontFamily="monospace" opacity="0.5" letterSpacing="0.5">SIDE SEAM</text>
 
-        {/* Crosshair target on RIGHT chest (pocket position) */}
-        <circle cx="208" cy="148" r="14" fill="none" stroke="#F0EAD6" strokeWidth="0.4" opacity="0.25" strokeDasharray="4,3"/>
-        <line x1="194" y1="148" x2="222" y2="148" stroke="#F0EAD6" strokeWidth="0.3" opacity="0.2"/>
-        <line x1="208" y1="134" x2="208" y2="162" stroke="#F0EAD6" strokeWidth="0.3" opacity="0.2"/>
+        {/* ── SPEC BLOCK ── */}
+        <text x="68" y="250" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">FABRIC · 100% COTTON RING-SPUN</text>
+        <text x="68" y="261" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">WEIGHT · 180 GSM</text>
+        <text x="68" y="272" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">COLOR · #0C0C0C WASHED BLACK</text>
+        <text x="68" y="283" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">FIT · RELAXED UNISEX</text>
+        <text x="68" y="294" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">FINISH · ENZYME WASHED</text>
 
-        {/* Logo on RIGHT chest */}
+        {/* Revision + scale */}
+        <text x="196" y="340" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.12" letterSpacing="0.5">SCALE 1:8 · REV.001-A · XLB STUDIO</text>
+
+        {/* ── RIGHT CHEST LOGO ── */}
+        {/* Crosshair / target */}
+        <circle cx="205" cy="152" r="16" fill="none" stroke="#F0EAD6" strokeWidth="0.35" opacity="0.2" strokeDasharray="3,3"/>
+        <line x1="189" y1="152" x2="221" y2="152" stroke="#F0EAD6" strokeWidth="0.25" opacity="0.15"/>
+        <line x1="205" y1="136" x2="205" y2="168" stroke="#F0EAD6" strokeWidth="0.25" opacity="0.15"/>
+
+        {/* Logo text */}
         <text
-          x="208"
-          y="145"
+          x="205" y="149"
           textAnchor="middle"
-          fontSize="13"
+          fontSize="12"
           fill="#F0EAD6"
           fontFamily="serif"
-          letterSpacing="1"
+          letterSpacing="1.5"
           opacity="0.95"
         >
           小籠包
         </text>
         <text
-          x="208"
-          y="157"
+          x="205" y="161"
           textAnchor="middle"
-          fontSize="5"
+          fontSize="4.5"
           fill="#F0EAD6"
           fontFamily="monospace"
-          letterSpacing="4"
-          opacity="0.5"
+          letterSpacing="5"
+          opacity="0.45"
         >
           XLB
         </text>

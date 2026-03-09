@@ -160,7 +160,7 @@ export default function Home() {
                 <div className="text-[9px] text-[#F0EAD6]/50">HKD · Cash preferred</div>
               </div>
               <div className="mt-auto text-[8px] text-[#F0EAD6]/20 leading-relaxed">
-                Menu is subject to what 老板 decides to make that day.
+                Menu design in progress. Final items TBD.
               </div>
             </div>
           </div>
@@ -171,7 +171,6 @@ export default function Home() {
           <div className="h-full flex items-center justify-center gap-20 px-12">
             <div className="flex flex-col items-center gap-3">
               <TShirt />
-              <span className="text-[9px] text-[#F0EAD6]/20 tracking-[0.3em] uppercase">[ AI Generated ]</span>
             </div>
             <div className="flex flex-col gap-7 max-w-xs">
               <div>
@@ -180,8 +179,8 @@ export default function Home() {
                 <div className="text-xl tracking-[0.5em] text-[#F0EAD6]/40">XLB</div>
               </div>
               <p className="text-[11px] text-[#F0EAD6]/40 leading-relaxed tracking-wide">
-                Manifesting a restaurant<br />
-                one drop at a time.
+                We are designing an imaginary restaurant<br />
+                in Hong Kong. We intend to build it.
               </p>
               <div className="flex flex-col gap-2">
                 <p className="text-[10px] text-[#F0EAD6]/20 tracking-widest uppercase">
