@@ -51,7 +51,8 @@ export default function Home() {
                 : 'text-[#F0EAD6] opacity-40 hover:opacity-60 after:scale-x-0'
             }`}
           >
-            {s}
+            <span className="md:hidden">{s.split(' ')[0]}</span>
+            <span className="hidden md:inline">{s}</span>
           </button>
         ))}
         <div className="flex-1" />
