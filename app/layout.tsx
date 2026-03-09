@@ -9,6 +9,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://xlb.hk'),
   title: 'XLB — 小籠包',
   description: 'The merch of a restaurant that doesn\'t exist. Drop 001. Invite only.',
   openGraph: {
