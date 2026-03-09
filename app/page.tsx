@@ -24,7 +24,7 @@ export default function Home() {
     <main className="bg-[#0A0A0A] text-[#F0EAD6] h-screen overflow-hidden flex flex-col font-mono">
 
       {/* Header */}
-      <header className="flex justify-between items-center px-8 py-4 border-b border-[#F0EAD6]/8 shrink-0">
+      <header className="flex justify-between items-center px-8 pr-6 py-4 border-b border-[#F0EAD6]/8 shrink-0">
         <div className="flex items-baseline gap-6">
           <span className="text-2xl tracking-[0.4em] font-bold">XLB</span>
           <span className="text-xs text-[#F0EAD6]/25 tracking-[0.2em] uppercase">
@@ -38,7 +38,7 @@ export default function Home() {
       </header>
 
       {/* Nav */}
-      <nav className="flex gap-0 border-b border-[#F0EAD6]/8 shrink-0">
+      <nav className="flex gap-0 border-b border-[#F0EAD6]/8 shrink-0 pr-4">
         {sections.map((s) => (
           <button
             key={s}
@@ -102,7 +102,7 @@ export default function Home() {
             </div>
 
             {/* Sidebar */}
-            <div className="w-64 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0">
+            <div className="w-64 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Project</div>
                 <div className="text-[13px] text-[#F0EAD6]/70 leading-relaxed">
@@ -143,7 +143,7 @@ export default function Home() {
                 <MenuDesign variant={menuVariant} />
               </div>
             </div>
-            <div className="w-64 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0">
+            <div className="w-64 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Format</div>
                 <div className="text-[11px] text-[#F0EAD6]/50 leading-relaxed">
