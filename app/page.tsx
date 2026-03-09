@@ -6,7 +6,7 @@ import RunningBuyButton from '@/components/RunningBuyButton'
 import Planimetry from '@/components/Planimetry'
 import MenuDesign from '@/components/MenuDesign'
 
-const sections = ['01 PLANIMETRY', '02 MENU', '03 MERCH', '04 WORKWEAR'] as const
+const sections = ['01 PLANIMETRY', '02 MENU', '03 WORKWEAR'] as const
 type Section = typeof sections[number]
 
 const planVariants = ['A', 'B', 'C'] as const
@@ -166,8 +166,8 @@ export default function Home() {
           </div>
         )}
 
-        {/* 03 MERCH */}
-        {active === '03 MERCH' && (
+        {/* 03 WORKWEAR */}
+        {active === '03 WORKWEAR' && (
           <div className="h-full flex items-center justify-center gap-20 px-12">
             <div className="flex flex-col items-center gap-3">
               <TShirt />
@@ -192,31 +192,7 @@ export default function Home() {
           </div>
         )}
 
-        {/* 04 WORKWEAR */}
-        {active === '04 WORKWEAR' && (
-          <div className="h-full flex items-center justify-center gap-20 px-12">
-            <div className="flex flex-col items-center gap-3">
-              <TShirt />
-            </div>
-            <div className="flex flex-col gap-6 max-w-xs">
-              <div>
-                <div className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] mb-4 uppercase">Uniform Specification · 001</div>
-                <div className="text-5xl mb-3" style={{ fontFamily: 'serif' }}>小籠包</div>
-                <div className="text-xl tracking-[0.5em] text-[#F0EAD6]/40">XLB</div>
-              </div>
-              <div className="border border-[#C0392B]/40 px-5 py-3 inline-block">
-                <span className="text-[11px] tracking-[0.4em] text-[#C0392B] uppercase font-bold">
-                  For Employees Only
-                </span>
-              </div>
-              <div className="space-y-1.5 text-[10px] text-[#F0EAD6]/25 tracking-wide leading-relaxed">
-                <div>Issue date: TBD</div>
-                <div>Staff allocation: 1 per employee</div>
-                <div>Not for resale</div>
-              </div>
-            </div>
-          </div>
-        )}
+
 
       </div>
 
