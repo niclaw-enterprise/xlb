@@ -44,10 +44,10 @@ export default function Home() {
           <button
             key={s}
             onClick={() => setActive(s)}
-            className={`px-8 py-3 text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors ${
+            className={`px-8 py-3 text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#39FF85] after:transition-transform after:origin-left ${
               active === s
-                ? 'bg-[#F0EAD6]/5 text-[#F0EAD6] border-b-2 border-b-[#39FF85]'
-                : 'text-[#F0EAD6] opacity-40 hover:opacity-60'
+                ? 'bg-[#F0EAD6]/5 text-[#F0EAD6] after:scale-x-100'
+                : 'text-[#F0EAD6] opacity-40 hover:opacity-60 after:scale-x-0'
             }`}
           >
             {s}
@@ -58,6 +58,7 @@ export default function Home() {
 
       {/* Content area */}
       <div className="flex-1 min-h-0 relative">
+        <div key={active} className="h-full transition-opacity duration-150" style={{ animation: 'fadeIn 150ms ease-in' }}>
 
         {/* 01 PLANIMETRY */}
         {active === '01 PLANIMETRY' && (
@@ -80,7 +81,7 @@ export default function Home() {
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Status</div>
                 <div className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#39FF85] animate-pulse"/>
+                  <div className="w-2 h-2 rounded-full bg-[#39FF85] animate-pulse"/>
                   <span className="text-xs text-[#39FF85]/80">IN DESIGN</span>
                 </div>
               </div>
@@ -90,7 +91,7 @@ export default function Home() {
                 <div className="space-y-1 text-[11px] text-[#F0EAD6]/40">
                   {planVariants.map((v) => (
                     <button key={v} onClick={() => setPlanVariant(v)}
-                      className={`w-full text-left py-1 transition-colors ${planVariant === v ? 'text-[#39FF85]' : 'hover:text-[#F0EAD6]/60'}`}>
+                      className={`w-full text-left py-1 transition-colors ${planVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'hover:text-[#F0EAD6]/60'}`}>
                       {planVariant === v && '▸ '}{v === 'A' ? 'A — Linear · 6 covers' : v === 'B' ? 'B — Social · round tables' : 'C — Omakase bar · 12 seats'}
                     </button>
                   ))}
@@ -121,7 +122,7 @@ export default function Home() {
                 <div className="flex gap-3 mb-4">
                   {menuVariants.map((v) => (
                     <button key={v} onClick={() => setMenuVariant(v)}
-                      className={`text-[11px] tracking-widest transition-colors ${menuVariant === v ? 'text-[#39FF85]' : 'text-[#F0EAD6]/20 hover:text-[#F0EAD6]/40'}`}>
+                      className={`text-[11px] tracking-widest transition-colors ${menuVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'text-[#F0EAD6]/20 hover:text-[#F0EAD6]/40'}`}>
                       {menuVariant === v && '▸ '}VAR {v}
                     </button>
                   ))}
@@ -191,7 +192,7 @@ export default function Home() {
                 <span className="text-[10px]">HKD </span>
                 <span className="text-3xl font-bold text-[#F0EAD6]">380</span>
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 shimmer-btn">
                 <p className="text-[10px] text-[#F0EAD6]/20 tracking-widest uppercase">
                   Drop 001 · Invite Only · 1000 pcs
                 </p>
@@ -201,8 +202,7 @@ export default function Home() {
           </div>
         )}
 
-
-
+        </div>
       </div>
 
       {/* Footer */}
