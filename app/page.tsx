@@ -25,15 +25,15 @@ export default function Home() {
 
       {/* Header */}
       <header className="flex justify-between items-center px-8 pr-6 py-4 border-b border-[#F0EAD6]/8 shrink-0">
-        <div className="flex items-baseline gap-6">
-          <span className="text-2xl tracking-[0.4em] font-bold">XLB</span>
+        <div className="flex items-baseline gap-6 border-b border-[#F0EAD6]/10 pb-2">
+          <span className="text-3xl tracking-[0.4em] font-bold">XLB</span>
           <span className="text-xs text-[#F0EAD6]/25 tracking-[0.2em] uppercase">
             Restaurant Design Studio
           </span>
         </div>
-        <div className="flex items-center gap-1">
-          <span className="text-[11px] text-[#F0EAD6]/20 tracking-widest mr-3">CONFIDENTIAL · FOR CEO REVIEW</span>
-          <span className="text-[#F0EAD6]/30 text-base pr-1" style={{ fontFamily: 'serif' }}>老板不在</span>
+        <div className="flex flex-col gap-0.5 items-end">
+          <span className="text-[11px] text-[#F0EAD6]/20 tracking-widest">CONFIDENTIAL · FOR CEO REVIEW</span>
+          <span className="text-[#F0EAD6]/30 text-base" style={{ fontFamily: 'serif' }}>老板不在</span>
         </div>
       </header>
 
@@ -45,8 +45,8 @@ export default function Home() {
             onClick={() => setActive(s)}
             className={`px-8 py-3 text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors ${
               active === s
-                ? 'bg-[#F0EAD6]/5 text-[#F0EAD6]'
-                : 'text-[#F0EAD6]/30 hover:text-[#F0EAD6]/60'
+                ? 'bg-[#F0EAD6]/5 text-[#F0EAD6] border-b-2 border-b-[#39FF85]'
+                : 'text-[#F0EAD6] opacity-40 hover:opacity-60'
             }`}
           >
             {s}
@@ -69,32 +69,35 @@ export default function Home() {
             {/* Sidebar */}
             <div className="w-64 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
               <div>
-                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Project</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Project</div>
                 <div className="text-[13px] text-[#F0EAD6]/70 leading-relaxed">
                   老板不在<br/>
                   <span className="text-xs text-[#F0EAD6]/30">Sham Shui Po, KL</span>
                 </div>
               </div>
+              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
               <div>
-                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Status</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Status</div>
                 <div className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#39FF85] animate-pulse"/>
                   <span className="text-xs text-[#39FF85]/80">IN DESIGN</span>
                 </div>
               </div>
+              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
               <div>
-                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Variants</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Variants</div>
                 <div className="space-y-1 text-[11px] text-[#F0EAD6]/40">
                   {planVariants.map((v) => (
                     <button key={v} onClick={() => setPlanVariant(v)}
                       className={`w-full text-left py-1 transition-colors ${planVariant === v ? 'text-[#39FF85]' : 'hover:text-[#F0EAD6]/60'}`}>
-                      {v === 'A' ? 'A — Linear · 6 covers' : v === 'B' ? 'B — Social · round tables' : 'C — Omakase bar · 12 seats'}
+                      {planVariant === v && '▸ '}{v === 'A' ? 'A — Linear · 6 covers' : v === 'B' ? 'B — Social · round tables' : 'C — Omakase bar · 12 seats'}
                     </button>
                   ))}
                 </div>
               </div>
+              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
               <div className="mt-auto">
-                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-2 uppercase">Notes</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-2 uppercase">Notes</div>
                 <div className="text-[10px] text-[#F0EAD6]/20 leading-relaxed break-words">
                   All variants assume ground floor. Natural light from street-facing facade. Shared building WC acceptable for variant C.
                 </div>
@@ -113,33 +116,37 @@ export default function Home() {
             </div>
             <div className="w-64 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
               <div>
-                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-2 uppercase">Variants</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-2 uppercase">Variants</div>
                 <div className="flex gap-3 mb-4">
                   {menuVariants.map((v) => (
                     <button key={v} onClick={() => setMenuVariant(v)}
                       className={`text-[11px] tracking-widest transition-colors ${menuVariant === v ? 'text-[#39FF85]' : 'text-[#F0EAD6]/20 hover:text-[#F0EAD6]/40'}`}>
-                      VAR {v}
+                      {menuVariant === v && '▸ '}VAR {v}
                     </button>
                   ))}
                 </div>
               </div>
+              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
               <div>
-                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Format</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Format</div>
                 <div className="text-[11px] text-[#F0EAD6]/50 leading-relaxed">
                   {menuVariant === 'A'
                     ? 'Traditional laminated card. Offset printed. Single fold.'
                     : 'Single item per card. Omakase style. Thermal print.'}
                 </div>
               </div>
+              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
               <div>
-                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Language</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Language</div>
                 <div className="text-[11px] text-[#F0EAD6]/50">繁體中文 + EN</div>
                 <div className="text-[10px] text-[#F0EAD6]/20 mt-1">Traditional characters only</div>
               </div>
+              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
               <div>
-                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Currency</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Currency</div>
                 <div className="text-[11px] text-[#F0EAD6]/50">HKD · Cash preferred</div>
               </div>
+              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
               <div className="mt-auto text-[10px] text-[#F0EAD6]/20 leading-relaxed break-words">
                 Menu design in progress. Final items TBD.
               </div>
@@ -155,7 +162,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-7 max-w-xs">
               <div>
-                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-4 uppercase">Brand Identity Object · 001</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-4 uppercase">Brand Identity Object · 001</div>
                 <div className="text-5xl mb-3" style={{ fontFamily: 'serif' }}>小籠包</div>
                 <div className="text-xl tracking-[0.5em] text-[#F0EAD6]/40">XLB</div>
               </div>
@@ -178,13 +185,10 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="flex justify-between items-center px-8 py-3 border-t border-[#F0EAD6]/8 shrink-0">
-        <span className="text-[11px] text-[#F0EAD6]/20 tracking-widest">
-          老板不在 · Sham Shui Po, HK · Design Rev.001
-        </span>
-        <span className="text-[11px] text-[#F0EAD6]/15 tracking-widest">
-          xlb.ristorante
-        </span>
+      <footer className="h-7 border-t border-[#F0EAD6]/8 flex justify-between items-center px-8 text-[9px] text-[#F0EAD6]/20 shrink-0">
+        <span>老板不在 · XLB · 2026</span>
+        <span>v0.1.0</span>
+        <span>SHAM SHUI PO · HK</span>
       </footer>
 
     </main>
