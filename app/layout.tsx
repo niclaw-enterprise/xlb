@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'XLB — 小籠包',
     description: 'The merch of a restaurant that doesn\'t exist.',
+    images: ['/opengraph-image.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/opengraph-image.png'],
   },
 }
 

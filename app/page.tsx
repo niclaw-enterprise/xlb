@@ -6,7 +6,7 @@ import RunningBuyButton from '@/components/RunningBuyButton'
 import Planimetry from '@/components/Planimetry'
 import MenuDesign from '@/components/MenuDesign'
 
-const sections = ['01 PLANIMETRY', '02 MENU', '03 WORKWEAR'] as const
+const sections = ['01 PLANIMETRY', '02 MENU', '03 WORKWEAR', '05 CONCEPT'] as const
 type Section = typeof sections[number]
 
 const planVariants = ['A', 'B', 'C'] as const
@@ -201,7 +201,28 @@ export default function Home() {
           </div>
         )}
 
-
+        {/* 05 CONCEPT */}
+        {active === '05 CONCEPT' && (
+          <div className="flex items-center justify-center h-full">
+            <div className="max-w-lg mx-auto text-center">
+              <h2 className="text-6xl text-[#F0EAD6] mb-6" style={{ fontFamily: 'serif' }}>老板不在</h2>
+              <p className="text-xs tracking-[0.5em] text-[#F0EAD6]/30 mb-12">THE BOSS IS NOT HERE</p>
+              <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono mb-6">
+                XLB is a restaurant that does not exist yet. A dim sum counter somewhere in Sham Shui Po, Kowloon. Six tables. Twelve stools. One steam counter.
+              </p>
+              <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono mb-6">
+                老板不在 means the boss is not here. The kitchen runs itself. Service is fast, without ceremony. You eat standing up or you eat slow — the room does not care.
+              </p>
+              <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono mb-6">
+                Drop 001 is the t-shirt. Before the restaurant. Before the address. Before the opening date. The merch precedes the place.
+              </p>
+              <div className="border-b border-[#F0EAD6]/10 w-24 mx-auto my-8" />
+              <p className="text-[9px] tracking-[0.4em] text-[#F0EAD6]/20">
+                EST. TBD · SHAM SHUI PO · KOWLOON · HK
+              </p>
+            </div>
+          </div>
+        )}
 
       </div>
 
