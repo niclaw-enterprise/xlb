@@ -123,7 +123,7 @@ export default function RunningBuyButton() {
         onMouseEnter={handleMouseEnter}
         onClick={handleClick}
         style={buttonStyle}
-        className={`font-mono text-xs tracking-[0.3em] uppercase px-8 py-4 border transition-colors cursor-pointer ${
+        className={`buy-btn-glow font-mono text-xs tracking-[0.3em] uppercase px-8 py-4 border transition-colors cursor-pointer ${
           surrendered
             ? 'border-[#B8860B] text-[#B8860B] bg-transparent pointer-events-none text-base'
             : 'border-[#C0392B] text-[#F0EAD6] bg-[#C0392B] hover:bg-transparent hover:text-[#C0392B]'
