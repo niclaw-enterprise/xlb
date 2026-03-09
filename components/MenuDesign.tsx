@@ -21,21 +21,21 @@ function MenuA() {
         style={{ background: '#0d0d0d' }}
       >
         {/* Corner marks */}
-        <div className="absolute top-1 left-1 w-3 h-3 border-t border-l border-[#B8860B]/40"/>
-        <div className="absolute top-1 right-1 w-3 h-3 border-t border-r border-[#B8860B]/40"/>
-        <div className="absolute bottom-1 left-1 w-3 h-3 border-b border-l border-[#B8860B]/40"/>
-        <div className="absolute bottom-1 right-1 w-3 h-3 border-b border-r border-[#B8860B]/40"/>
+        <div className="absolute top-1 left-1 w-5 h-5 border-t border-l border-[#B8860B]/40"/>
+        <div className="absolute top-1 right-1 w-5 h-5 border-t border-r border-[#B8860B]/40"/>
+        <div className="absolute bottom-1 left-1 w-5 h-5 border-b border-l border-[#B8860B]/40"/>
+        <div className="absolute bottom-1 right-1 w-5 h-5 border-b border-r border-[#B8860B]/40"/>
 
         {/* Header */}
         <div className="text-center mb-4 border-b border-[#F0EAD6]/10 pb-4">
-          <div className="text-2xl mb-1" style={{ fontFamily: 'serif', color: '#F0EAD6' }}>老板不在</div>
+          <div className="text-5xl mb-1" style={{ fontFamily: 'serif', color: '#F0EAD6' }}>老板不在</div>
           <div className="font-mono text-[8px] text-[#F0EAD6]/30 tracking-[0.3em]">SHAM SHUI PO · KOWLOON · HK</div>
           <div className="font-mono text-[7px] text-[#F0EAD6]/20 tracking-[0.2em] mt-1">EST. TBD</div>
         </div>
 
         {/* Menu items */}
         <div className="space-y-3">
-          <div className="font-mono text-[8px] text-[#F0EAD6]/40 tracking-[0.3em] uppercase mb-2">蒸籠 · Steamed</div>
+          <div className="font-mono text-[8px] text-[#F0EAD6]/40 tracking-[0.3em] uppercase mb-2 border-t border-[#F0EAD6]/10 pt-2">蒸籠 · Steamed</div>
           {[
             { cn: '小籠包', en: 'Xiao Long Bao', price: '48' },
             { cn: '蝦餃', en: 'Har Gow', price: '42' },
@@ -46,12 +46,14 @@ function MenuA() {
                 <span style={{ fontFamily: 'serif', color: '#F0EAD6', fontSize: '13px' }}>{item.cn}</span>
                 <span className="font-mono text-[7px] text-[#F0EAD6]/30 ml-2">{item.en}</span>
               </div>
+              <div className="flex-1 border-b border-dotted border-[#F0EAD6]/15 mx-2 self-end mb-1" />
               <span className="font-mono text-[9px] text-[#F0EAD6]/50">{item.price}</span>
+              <span className="text-[7px] text-[#F0EAD6]/20 ml-1">每籠</span>
             </div>
           ))}
 
-          <div className="border-t border-[#F0EAD6]/10 pt-3 mt-3">
-            <div className="font-mono text-[8px] text-[#F0EAD6]/40 tracking-[0.3em] uppercase mb-2">飲品 · Drinks</div>
+          <div className="mt-3">
+            <div className="font-mono text-[8px] text-[#F0EAD6]/40 tracking-[0.3em] uppercase mb-2 border-t border-[#F0EAD6]/10 pt-2">飲品 · Drinks</div>
             {[
               { cn: '鐵觀音', en: 'Ti Kuan Yin', price: '28' },
               { cn: '普洱茶', en: 'Pu-erh', price: '32' },
@@ -61,6 +63,7 @@ function MenuA() {
                   <span style={{ fontFamily: 'serif', color: '#F0EAD6', fontSize: '13px' }}>{item.cn}</span>
                   <span className="font-mono text-[7px] text-[#F0EAD6]/30 ml-2">{item.en}</span>
                 </div>
+                <div className="flex-1 border-b border-dotted border-[#F0EAD6]/15 mx-2 self-end mb-1" />
                 <span className="font-mono text-[9px] text-[#F0EAD6]/50">{item.price}</span>
               </div>
             ))}

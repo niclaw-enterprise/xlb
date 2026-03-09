@@ -19,6 +19,7 @@ export default function Home() {
   const [active, setActive] = useState<Section>('01 PLANIMETRY')
   const [planVariant, setPlanVariant] = useState<PlanVariant>('A')
   const [menuVariant, setMenuVariant] = useState<MenuVariant>('A')
+  const [selectedSize, setSelectedSize] = useState('M')
 
   return (
     <main className="bg-[#0A0A0A] text-[#F0EAD6] h-screen overflow-hidden flex flex-col font-mono">
@@ -170,6 +171,26 @@ export default function Home() {
                 We are designing an imaginary restaurant<br />
                 in Hong Kong. We intend to build it.
               </p>
+              <div className="flex gap-2">
+                {['S', 'M', 'L', 'XL'].map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedSize(size)}
+                    className={`px-3 py-1 text-[10px] tracking-widest font-mono border transition-colors ${
+                      selectedSize === size
+                        ? 'border-[#F0EAD6] text-[#F0EAD6]'
+                        : 'border-[#F0EAD6]/20 text-[#F0EAD6]/30 hover:border-[#F0EAD6]/40'
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+              <div className="font-mono text-[9px] text-[#F0EAD6]/20 tracking-widest">SKU · XLB-TS-001</div>
+              <div className="font-mono text-[#F0EAD6]/50 tracking-widest">
+                <span className="text-[10px]">HKD </span>
+                <span className="text-3xl font-bold text-[#F0EAD6]">380</span>
+              </div>
               <div className="flex flex-col gap-2">
                 <p className="text-[10px] text-[#F0EAD6]/20 tracking-widest uppercase">
                   Drop 001 · Invite Only · 1000 pcs
