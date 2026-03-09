@@ -20,6 +20,7 @@ export default function Home() {
   const [planVariant, setPlanVariant] = useState<PlanVariant>('A')
   const [menuVariant, setMenuVariant] = useState<MenuVariant>('A')
   const [selectedSize, setSelectedSize] = useState('M')
+  const [view, setView] = useState<"front"|"back">("front")
 
   return (
     <main className="bg-[#0A0A0A] text-[#F0EAD6] h-screen overflow-hidden flex flex-col font-mono">
@@ -157,7 +158,19 @@ export default function Home() {
         {active === '03 WORKWEAR' && (
           <div className="h-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 px-6 md:px-12 py-6 md:py-0">
             <div className="flex flex-col items-center gap-3">
-              <TShirt />
+              <div className="flex gap-3 mb-2">
+                {(['front', 'back'] as const).map((v) => (
+                  <button key={v} onClick={() => setView(v)}
+                    className={`text-[10px] tracking-[0.3em] uppercase font-mono transition-colors ${
+                      view === v ? 'text-[#F0EAD6]' : 'text-[#F0EAD6]/30 hover:text-[#F0EAD6]/50'
+                    }`}>
+                    {v}
+                  </button>
+                ))}
+              </div>
+              <div style={view === 'back' ? { transform: 'scaleX(-1)' } : undefined}>
+                <TShirt />
+              </div>
             </div>
             <div className="flex flex-col gap-7 max-w-xs">
               <div>
@@ -194,6 +207,20 @@ export default function Home() {
                   Drop 001 · Invite Only · 1000 pcs
                 </p>
                 <RunningBuyButton />
+              </div>
+              <p className="text-[10px] text-[#F0EAD6]/30 leading-relaxed max-w-[200px]">100% organic cotton. 280gsm heavyweight. Screen printed in Hong Kong. For the restaurant that does not exist yet.</p>
+              <div className="flex flex-col gap-2">
+                <label className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] uppercase font-mono">Notify Me on Drop</label>
+                <div className="flex">
+                  <input
+                    type="email"
+                    placeholder="email"
+                    className="bg-transparent border border-[#F0EAD6]/20 text-[#F0EAD6] text-[10px] tracking-widest px-3 py-1.5 font-mono placeholder:text-[#F0EAD6]/15 focus:outline-none focus:border-[#F0EAD6]/40 flex-1"
+                  />
+                  <button className="border border-l-0 border-[#F0EAD6]/20 px-3 py-1.5 text-[#F0EAD6]/40 hover:text-[#F0EAD6] transition-colors text-xs">
+                    →
+                  </button>
+                </div>
               </div>
             </div>
           </div>
