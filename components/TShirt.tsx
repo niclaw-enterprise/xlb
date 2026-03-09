@@ -89,6 +89,20 @@ export default function TShirt() {
         <line x1="230" y1="22" x2="230" y2="40" stroke="#B8860B" strokeWidth="0.3" opacity="0.4"/>
         <text x="160" y="20" textAnchor="middle" fontSize="6" fill="#B8860B" fontFamily="monospace" opacity="0.7" letterSpacing="0.5">SHOULDER · 44CM</text>
 
+        {/* ── XLB CHEST BADGE ── */}
+        <rect x="85" y="55" width="30" height="18" fill="none" stroke="#F0EAD6" strokeWidth="0.8" opacity="0.4"/>
+        <text x="100" y="67" textAnchor="middle" fontSize="7" fill="#F0EAD6" fontFamily="monospace" opacity="0.4">XLB</text>
+
+        {/* ── STITCH LINES — sleeve/shoulder seams ── */}
+        {/* Left shoulder seam */}
+        <line x1="90" y1="38" x2="36" y2="92" stroke="#F0EAD6" strokeWidth="0.5" strokeDasharray="2,3" opacity="0.2"/>
+        {/* Right shoulder seam */}
+        <line x1="230" y1="38" x2="284" y2="92" stroke="#F0EAD6" strokeWidth="0.5" strokeDasharray="2,3" opacity="0.2"/>
+        {/* Left sleeve hem */}
+        <line x1="36" y1="92" x2="74" y2="112" stroke="#F0EAD6" strokeWidth="0.5" strokeDasharray="2,3" opacity="0.2"/>
+        {/* Right sleeve hem */}
+        <line x1="284" y1="92" x2="246" y2="112" stroke="#F0EAD6" strokeWidth="0.5" strokeDasharray="2,3" opacity="0.2"/>
+
         {/* ── ANNOTATIONS ── */}
 
         {/* Collar annotation */}
