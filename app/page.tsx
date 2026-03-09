@@ -53,41 +53,6 @@ export default function Home() {
           </button>
         ))}
         <div className="flex-1" />
-        {/* Variant switcher */}
-        {active === '01 PLANIMETRY' && (
-          <div className="flex items-center gap-0 border-l border-[#F0EAD6]/8">
-            {planVariants.map((v) => (
-              <button
-                key={v}
-                onClick={() => setPlanVariant(v)}
-                className={`px-3 py-3 text-[10px] tracking-[0.2em] transition-colors ${
-                  planVariant === v
-                    ? 'text-[#39FF85]'
-                    : 'text-[#F0EAD6]/20 hover:text-[#F0EAD6]/40'
-                }`}
-              >
-                VAR {v}
-              </button>
-            ))}
-          </div>
-        )}
-        {active === '02 MENU' && (
-          <div className="flex items-center gap-0 border-l border-[#F0EAD6]/8">
-            {menuVariants.map((v) => (
-              <button
-                key={v}
-                onClick={() => setMenuVariant(v)}
-                className={`px-3 py-3 text-[10px] tracking-[0.2em] transition-colors ${
-                  menuVariant === v
-                    ? 'text-[#39FF85]'
-                    : 'text-[#F0EAD6]/20 hover:text-[#F0EAD6]/40'
-                }`}
-              >
-                VAR {v}
-              </button>
-            ))}
-          </div>
-        )}
       </nav>
 
       {/* Content area */}
@@ -119,10 +84,13 @@ export default function Home() {
               </div>
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Variants</div>
-                <div className="space-y-2 text-[11px] text-[#F0EAD6]/40">
-                  <div className={planVariant === 'A' ? 'text-[#F0EAD6]' : ''}>A — Linear · 6 covers</div>
-                  <div className={planVariant === 'B' ? 'text-[#F0EAD6]' : ''}>B — Social · 6 round tables · 24 covers</div>
-                  <div className={planVariant === 'C' ? 'text-[#F0EAD6]' : ''}>C — Omakase bar · 12 seats</div>
+                <div className="space-y-1 text-[11px] text-[#F0EAD6]/40">
+                  {planVariants.map((v) => (
+                    <button key={v} onClick={() => setPlanVariant(v)}
+                      className={`w-full text-left py-1 transition-colors ${planVariant === v ? 'text-[#39FF85]' : 'hover:text-[#F0EAD6]/60'}`}>
+                      {v === 'A' ? 'A — Linear · 6 covers' : v === 'B' ? 'B — Social · round tables' : 'C — Omakase bar · 12 seats'}
+                    </button>
+                  ))}
                 </div>
               </div>
               <div className="mt-auto">
@@ -144,6 +112,17 @@ export default function Home() {
               </div>
             </div>
             <div className="w-64 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
+              <div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-2 uppercase">Variants</div>
+                <div className="flex gap-3 mb-4">
+                  {menuVariants.map((v) => (
+                    <button key={v} onClick={() => setMenuVariant(v)}
+                      className={`text-[11px] tracking-widest transition-colors ${menuVariant === v ? 'text-[#39FF85]' : 'text-[#F0EAD6]/20 hover:text-[#F0EAD6]/40'}`}>
+                      VAR {v}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Format</div>
                 <div className="text-[11px] text-[#F0EAD6]/50 leading-relaxed">
