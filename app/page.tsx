@@ -26,14 +26,14 @@ export default function Home() {
       {/* Header */}
       <header className="flex justify-between items-center px-8 py-4 border-b border-[#F0EAD6]/8 shrink-0">
         <div className="flex items-baseline gap-6">
-          <span className="text-xl tracking-[0.4em] font-bold">XLB</span>
-          <span className="text-[9px] text-[#F0EAD6]/25 tracking-[0.2em] uppercase">
+          <span className="text-2xl tracking-[0.4em] font-bold">XLB</span>
+          <span className="text-xs text-[#F0EAD6]/25 tracking-[0.2em] uppercase">
             Restaurant Design Studio
           </span>
         </div>
         <div className="flex items-center gap-1">
-          <span className="text-[9px] text-[#F0EAD6]/20 tracking-widest mr-3">CONFIDENTIAL · FOR CEO REVIEW</span>
-          <span className="text-[#F0EAD6]/30 text-sm" style={{ fontFamily: 'serif' }}>老板不在</span>
+          <span className="text-[11px] text-[#F0EAD6]/20 tracking-widest mr-3">CONFIDENTIAL · FOR CEO REVIEW</span>
+          <span className="text-[#F0EAD6]/30 text-base" style={{ fontFamily: 'serif' }}>老板不在</span>
         </div>
       </header>
 
@@ -104,30 +104,30 @@ export default function Home() {
             {/* Sidebar */}
             <div className="w-56 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0">
               <div>
-                <div className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Project</div>
-                <div className="text-[11px] text-[#F0EAD6]/70 leading-relaxed">
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Project</div>
+                <div className="text-[13px] text-[#F0EAD6]/70 leading-relaxed">
                   老板不在<br/>
-                  <span className="text-[9px] text-[#F0EAD6]/30">Sham Shui Po, KL</span>
+                  <span className="text-xs text-[#F0EAD6]/30">Sham Shui Po, KL</span>
                 </div>
               </div>
               <div>
-                <div className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Status</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Status</div>
                 <div className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#39FF85] animate-pulse"/>
-                  <span className="text-[10px] text-[#39FF85]/80">IN DESIGN</span>
+                  <span className="text-xs text-[#39FF85]/80">IN DESIGN</span>
                 </div>
               </div>
               <div>
-                <div className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Variants</div>
-                <div className="space-y-2 text-[9px] text-[#F0EAD6]/40">
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Variants</div>
+                <div className="space-y-2 text-[11px] text-[#F0EAD6]/40">
                   <div className={planVariant === 'A' ? 'text-[#F0EAD6]' : ''}>A — Linear · 6 covers</div>
                   <div className={planVariant === 'B' ? 'text-[#F0EAD6]' : ''}>B — Social · 6 round tables · 24 covers</div>
                   <div className={planVariant === 'C' ? 'text-[#F0EAD6]' : ''}>C — Omakase bar · 12 seats</div>
                 </div>
               </div>
               <div className="mt-auto">
-                <div className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] mb-2 uppercase">Notes</div>
-                <div className="text-[8px] text-[#F0EAD6]/20 leading-relaxed">
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-2 uppercase">Notes</div>
+                <div className="text-[10px] text-[#F0EAD6]/20 leading-relaxed">
                   All variants assume ground floor. Natural light from street-facing facade. Shared building WC acceptable for variant C.
                 </div>
               </div>
@@ -145,23 +145,23 @@ export default function Home() {
             </div>
             <div className="w-56 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0">
               <div>
-                <div className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Format</div>
-                <div className="text-[9px] text-[#F0EAD6]/50 leading-relaxed">
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Format</div>
+                <div className="text-[11px] text-[#F0EAD6]/50 leading-relaxed">
                   {menuVariant === 'A'
                     ? 'Traditional laminated card. Offset printed. Single fold.'
                     : 'Single item per card. Omakase style. Thermal print.'}
                 </div>
               </div>
               <div>
-                <div className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Language</div>
-                <div className="text-[9px] text-[#F0EAD6]/50">繁體中文 + EN</div>
-                <div className="text-[8px] text-[#F0EAD6]/20 mt-1">Traditional characters only</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Language</div>
+                <div className="text-[11px] text-[#F0EAD6]/50">繁體中文 + EN</div>
+                <div className="text-[10px] text-[#F0EAD6]/20 mt-1">Traditional characters only</div>
               </div>
               <div>
-                <div className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Currency</div>
-                <div className="text-[9px] text-[#F0EAD6]/50">HKD · Cash preferred</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Currency</div>
+                <div className="text-[11px] text-[#F0EAD6]/50">HKD · Cash preferred</div>
               </div>
-              <div className="mt-auto text-[8px] text-[#F0EAD6]/20 leading-relaxed">
+              <div className="mt-auto text-[10px] text-[#F0EAD6]/20 leading-relaxed">
                 Menu design in progress. Final items TBD.
               </div>
             </div>
@@ -176,7 +176,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-7 max-w-xs">
               <div>
-                <div className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] mb-4 uppercase">Brand Identity Object · 001</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-4 uppercase">Brand Identity Object · 001</div>
                 <div className="text-5xl mb-3" style={{ fontFamily: 'serif' }}>小籠包</div>
                 <div className="text-xl tracking-[0.5em] text-[#F0EAD6]/40">XLB</div>
               </div>
@@ -200,10 +200,10 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="flex justify-between items-center px-8 py-3 border-t border-[#F0EAD6]/8 shrink-0">
-        <span className="text-[9px] text-[#F0EAD6]/20 tracking-widest">
+        <span className="text-[11px] text-[#F0EAD6]/20 tracking-widest">
           老板不在 · Sham Shui Po, HK · Design Rev.001
         </span>
-        <span className="text-[9px] text-[#F0EAD6]/15 tracking-widest">
+        <span className="text-[11px] text-[#F0EAD6]/15 tracking-widest">
           xlb.ristorante
         </span>
       </footer>
