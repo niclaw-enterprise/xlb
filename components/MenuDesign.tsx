@@ -42,11 +42,15 @@ function MenuA() {
             { cn: '燒賣', en: 'Siu Mai', price: '38' },
           ].map((item) => (
             <div key={item.cn} className="flex items-end gap-1 py-2.5 border-b border-[#F0EAD6]/5 last:border-0">
-              <span style={{fontFamily:"serif",fontSize:"1.5rem",lineHeight:1}} className="text-[#F0EAD6]">{item.cn}</span>
-              <span className="text-[9px] text-[#F0EAD6]/35 font-mono mb-0.5 ml-0.5">{item.en}</span>
-              <span className="flex-1 border-b border-dotted border-[#F0EAD6]/12 mb-1.5 mx-2"/>
-              <span className="font-mono text-base text-[#F0EAD6]/70">{item.price}</span>
-              <span className="text-[8px] text-[#F0EAD6]/25 mb-0.5">HKD</span>
+              <div className="flex flex-col">
+                <span style={{fontFamily:"serif",fontSize:"1.5rem",lineHeight:1.1}} className="text-[#F0EAD6]">{item.cn}</span>
+                <span className="text-[8px] text-[#F0EAD6]/30 font-mono tracking-wider mt-0.5">{item.en}</span>
+              </div>
+              <span className="flex-1 border-b border-dotted border-[#F0EAD6]/12 mb-2 mx-3"/>
+              <div className="flex items-baseline gap-0.5">
+                <span className="font-mono text-base text-[#F0EAD6]/70">{item.price}</span>
+                <span className="text-[8px] text-[#F0EAD6]/25">HKD</span>
+              </div>
             </div>
           ))}
 

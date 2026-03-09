@@ -64,12 +64,12 @@ export default function Home() {
         {active === '01 PLANIMETRY' && (
           <div className="h-full flex flex-col md:flex-row">
             {/* Main plan */}
-            <div className="flex-1 p-4 md:p-8 min-w-0">
+            <div className="flex-1 p-4 md:p-8 min-w-0 min-h-[260px]">
               <Planimetry variant={planVariant} />
             </div>
 
             {/* Sidebar */}
-            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
+            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-3 md:gap-6 shrink-0 min-w-0 overflow-y-auto max-h-[38vh] md:max-h-none">
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Project</div>
                 <div className="text-[13px] text-[#F0EAD6]/70 leading-relaxed">
