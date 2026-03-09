@@ -11,7 +11,7 @@ function MenuA() {
   return (
     <div className="relative">
       {/* Label */}
-      <div className="absolute -top-6 left-0 font-mono text-[9px] text-[#F0EAD6]/40 tracking-[0.2em]">
+      <div className="absolute -top-6 left-0 font-mono text-[9px] text-[#F0EAD6]/40 tracking-[0.2em] whitespace-nowrap">
         VARIANT A — TRADITIONAL OFFSET PRINT
       </div>
 
@@ -81,7 +81,7 @@ function MenuB() {
   return (
     <div className="relative">
       {/* Label */}
-      <div className="absolute -top-6 left-0 font-mono text-[9px] text-[#F0EAD6]/40 tracking-[0.2em]">
+      <div className="absolute -top-6 left-0 font-mono text-[9px] text-[#F0EAD6]/40 tracking-[0.2em] whitespace-nowrap">
         VARIANT B — MINIMAL CARD
       </div>
 
