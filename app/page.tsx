@@ -139,7 +139,9 @@ export default function Home() {
         {active === '02 MENU' && (
           <div className="h-full flex">
             <div className="flex-1 flex items-center justify-center p-8 min-w-0">
-              <MenuDesign variant={menuVariant} />
+              <div style={{ transform: 'scale(1.8)', transformOrigin: 'center center' }}>
+                <MenuDesign variant={menuVariant} />
+              </div>
             </div>
             <div className="w-56 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0">
               <div>

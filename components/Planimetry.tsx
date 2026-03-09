@@ -2,7 +2,7 @@ export default function Planimetry({ variant = 'A' }: { variant?: 'A' | 'B' | 'C
   return (
     <div className="w-full h-full relative">
       <svg
-        viewBox="0 0 500 380"
+        viewBox="0 0 500 400"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
@@ -84,54 +84,50 @@ function VariantA() {
 }
 
 function VariantB() {
-  // Clean rectangular room: 380×220px at 1:50 → ~9.5m × 5.5m
-  // Kitchen + steam counter along back wall (top)
-  // 3 pairs of round tables with central aisle
-  // Entry at front-center
+  // Room: x=40, y=30, width=400, height=280 → bottom wall at y=310
+  // Kitchen: y=30 to y=90 (60px)
+  // Dining: y=90 to y=310 (220px)
+  // Tables r=18, chairs at r=27 → total footprint ≈ 54px per table
+  // 3 rows: y=140, y=200, y=260 — chairs max at y=260+27=287 < 310 ✓
+  // Columns: cx=150, cx=290 — chairs max at x=290+27=317 < 440 ✓
 
   const tables: [number, number][] = [
-    [118, 158], [242, 158],   // row 1
-    [118, 210], [242, 210],   // row 2
-    [118, 262], [242, 262],   // row 3
+    [150, 140], [290, 140],
+    [150, 205], [290, 205],
+    [150, 268], [290, 268],
   ]
+  const chairR = 27
 
   return (
     <>
       {/* Outer walls */}
-      <rect x="40" y="36" width="380" height="230" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.7"/>
+      <rect x="40" y="30" width="400" height="280" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.7"/>
 
-      {/* Kitchen + steam — back wall, full width, divided */}
-      <rect x="40" y="36" width="260" height="60" fill="#111" stroke="#F0EAD6" strokeWidth="1" opacity="0.8"/>
-      <text x="170" y="60" textAnchor="middle" fontSize="8" fill="#F0EAD6" fontFamily="monospace" opacity="0.6" letterSpacing="1">KITCHEN</text>
-      <text x="170" y="72" textAnchor="middle" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.3">OPEN</text>
+      {/* Kitchen — left 2/3 of back wall */}
+      <rect x="40" y="30" width="268" height="60" fill="#111" stroke="#F0EAD6" strokeWidth="1" opacity="0.8"/>
+      <text x="174" y="56" textAnchor="middle" fontSize="8" fill="#F0EAD6" fontFamily="monospace" opacity="0.6" letterSpacing="1">KITCHEN</text>
+      <text x="174" y="68" textAnchor="middle" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.3">OPEN</text>
 
-      <rect x="300" y="36" width="120" height="60" fill="#0d0d0d" stroke="#39FF85" strokeWidth="0.8" opacity="0.9"/>
-      <text x="360" y="62" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.9" letterSpacing="1">STEAM</text>
-      <text x="360" y="72" textAnchor="middle" fontSize="6" fill="#39FF85" fontFamily="monospace" opacity="0.6">COUNTER</text>
+      {/* Steam counter — right 1/3 of back wall */}
+      <rect x="308" y="30" width="132" height="60" fill="#0d0d0d" stroke="#39FF85" strokeWidth="0.8" opacity="0.9"/>
+      <text x="374" y="57" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.9" letterSpacing="1">STEAM</text>
+      <text x="374" y="68" textAnchor="middle" fontSize="6" fill="#39FF85" fontFamily="monospace" opacity="0.6">COUNTER</text>
 
-      {/* Pass-through opening between kitchen and dining */}
-      <line x1="40" y1="96" x2="420" y2="96" stroke="#F0EAD6" strokeWidth="0.5" opacity="0.25" strokeDasharray="4,4"/>
+      {/* Service pass line */}
+      <line x1="40" y1="90" x2="440" y2="90" stroke="#F0EAD6" strokeWidth="0.4" opacity="0.2" strokeDasharray="5,4"/>
 
-      {/* Toilet block — back-right corner */}
-      <rect x="396" y="36" width="24" height="60" fill="#0a0a0a" stroke="#F0EAD6" strokeWidth="0.6" opacity="0.4"/>
-      <text x="408" y="70" textAnchor="middle" fontSize="5" fill="#F0EAD6" fontFamily="monospace" opacity="0.3" transform="rotate(-90 408 70)">WC</text>
-
-      {/* Central aisle — dashed guide */}
-      <line x1="180" y1="100" x2="180" y2="260" stroke="#F0EAD6" strokeWidth="0.3" opacity="0.1" strokeDasharray="6,6"/>
-
-      {/* 6 round tables — 2 columns × 3 rows */}
+      {/* 6 round tables — 2 col × 3 row, all fully inside walls */}
       {tables.map(([cx, cy], i) => (
         <g key={i}>
           <circle cx={cx} cy={cy} r={18} fill="none" stroke="#F0EAD6" strokeWidth="0.8" opacity="0.55"/>
-          {/* 4 chairs */}
           {([0, 90, 180, 270] as number[]).map((deg, j) => {
             const rad = (deg * Math.PI) / 180
             return (
               <rect
                 key={j}
-                x={cx + Math.cos(rad) * 24 - 5}
-                y={cy + Math.sin(rad) * 24 - 4}
-                width={10} height={8}
+                x={cx + Math.cos(rad) * chairR - 6}
+                y={cy + Math.sin(rad) * chairR - 4}
+                width={12} height={8}
                 rx={1}
                 fill="none" stroke="#F0EAD6" strokeWidth="0.5" opacity="0.3"
               />
@@ -143,28 +139,27 @@ function VariantB() {
         </g>
       ))}
 
-      {/* Entry — front wall center */}
-      <line x1="195" y1="266" x2="265" y2="266" stroke="#0A0A0A" strokeWidth="3.5"/>
-      {/* Door swing arc */}
-      <path d="M 195 266 Q 195 296 230 296 Q 265 296 265 266"
-        fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="3,2" opacity="0.45"/>
-      <text x="230" y="285" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.7">ENTRY</text>
+      {/* Entry — bottom wall center gap, well clear of table 06 */}
+      <line x1="195" y1="310" x2="285" y2="310" stroke="#0A0A0A" strokeWidth="4"/>
+      <path d="M 195 310 Q 195 336 240 336 Q 285 336 285 310"
+        fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="3,2" opacity="0.4"/>
+      <text x="240" y="330" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.7">ENTRY</text>
 
-      {/* Dimension lines */}
-      <line x1="40" y1="280" x2="420" y2="280" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
-      <line x1="40" y1="275" x2="40" y2="285" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
-      <line x1="420" y1="275" x2="420" y2="285" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
-      <text x="230" y="293" textAnchor="middle" fontSize="7" fill="#B8860B" fontFamily="monospace" opacity="0.8">9.5 M</text>
+      {/* Dimension: width */}
+      <line x1="40" y1="350" x2="440" y2="350" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
+      <line x1="40" y1="344" x2="40" y2="356" stroke="#B8860B" strokeWidth="0.4" opacity="0.6"/>
+      <line x1="440" y1="344" x2="440" y2="356" stroke="#B8860B" strokeWidth="0.4" opacity="0.6"/>
+      <text x="240" y="364" textAnchor="middle" fontSize="7" fill="#B8860B" fontFamily="monospace" opacity="0.8">10.0 M</text>
 
-      <line x1="432" y1="36" x2="432" y2="266" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
-      <line x1="427" y1="36" x2="437" y2="36" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
-      <line x1="427" y1="266" x2="437" y2="266" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
-      <text x="450" y="154" textAnchor="middle" fontSize="7" fill="#B8860B" fontFamily="monospace" opacity="0.8" transform="rotate(90 450 154)">5.75 M</text>
+      {/* Dimension: height */}
+      <line x1="454" y1="30" x2="454" y2="310" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
+      <line x1="448" y1="30" x2="460" y2="30" stroke="#B8860B" strokeWidth="0.4" opacity="0.6"/>
+      <line x1="448" y1="310" x2="460" y2="310" stroke="#B8860B" strokeWidth="0.4" opacity="0.6"/>
+      <text x="472" y="173" textAnchor="middle" fontSize="7" fill="#B8860B" fontFamily="monospace" opacity="0.8" transform="rotate(90 472 173)">7.0 M</text>
 
-      {/* Labels */}
-      <text x="40" y="26" fontSize="9" fill="#F0EAD6" fontFamily="monospace" opacity="0.8" letterSpacing="2">VARIANT B — SOCIAL</text>
-      <text x="40" y="312" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25">SCALE 1:50 · 6 TABLES · 4 SEATS EACH · 54 SQM</text>
-      <text x="40" y="322" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25">老板不在 · SHAM SHUI PO · HK</text>
+      <text x="40" y="20" fontSize="9" fill="#F0EAD6" fontFamily="monospace" opacity="0.8" letterSpacing="2">VARIANT B — SOCIAL</text>
+      <text x="40" y="378" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25">SCALE 1:50 · 6 TABLES · 4 SEATS EACH · 70 SQM</text>
+      <text x="40" y="388" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25">老板不在 · SHAM SHUI PO · HK</text>
     </>
   )
 }
