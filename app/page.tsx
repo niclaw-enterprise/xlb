@@ -121,7 +121,7 @@ export default function Home() {
                 <div className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Variants</div>
                 <div className="space-y-2 text-[9px] text-[#F0EAD6]/40">
                   <div className={planVariant === 'A' ? 'text-[#F0EAD6]' : ''}>A — Linear · 6 covers</div>
-                  <div className={planVariant === 'B' ? 'text-[#F0EAD6]' : ''}>B — Social · round tables</div>
+                  <div className={planVariant === 'B' ? 'text-[#F0EAD6]' : ''}>B — Social · 6 round tables · 24 covers</div>
                   <div className={planVariant === 'C' ? 'text-[#F0EAD6]' : ''}>C — Omakase bar · 12 seats</div>
                 </div>
               </div>
