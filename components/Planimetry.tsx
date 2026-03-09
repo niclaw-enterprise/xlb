@@ -45,8 +45,9 @@ function VariantA() {
 
       {/* 6 tables — dining area */}
       {[
-        [70, 70], [160, 70], [70, 145], [160, 145],
-        [70, 200], [155, 200]
+        [70, 55],  [160, 55],
+        [70, 128], [160, 128],
+        [70, 200], [160, 200],
       ].map(([x, y], i) => (
         <g key={i}>
           <rect x={x} y={y} width={50} height={35} fill="none" stroke="#F0EAD6" strokeWidth="0.8" opacity="0.5"/>
