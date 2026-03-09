@@ -25,26 +25,26 @@ export default function Home() {
     <main className="bg-[#0A0A0A] text-[#F0EAD6] h-screen overflow-hidden flex flex-col font-mono">
 
       {/* Header */}
-      <header className="flex justify-between items-center px-8 pr-6 py-4 border-b border-[#F0EAD6]/8 shrink-0">
+      <header className="flex flex-col md:flex-row justify-between items-center px-4 md:px-8 pr-6 py-4 gap-2 border-b border-[#F0EAD6]/8 shrink-0">
         <div className="flex items-baseline gap-6 border-b border-[#F0EAD6]/10 pb-2">
-          <span className="text-3xl tracking-[0.4em] font-bold">XLB</span>
+          <span className="text-2xl md:text-3xl tracking-[0.4em] font-bold">XLB</span>
           <span className="text-xs text-[#F0EAD6]/25 tracking-[0.2em] uppercase">
             Restaurant Design Studio
           </span>
         </div>
-        <div className="flex flex-col gap-0.5 items-end">
+        <div className="hidden md:flex flex-col gap-0.5 items-end">
           <span className="text-[11px] text-[#F0EAD6]/20 tracking-widest">CONFIDENTIAL · FOR CEO REVIEW</span>
           <span className="text-[#F0EAD6]/30 text-base" style={{ fontFamily: 'serif' }}>老板不在</span>
         </div>
       </header>
 
       {/* Nav */}
-      <nav className="flex gap-0 border-b border-[#F0EAD6]/8 shrink-0 pr-4">
+      <nav className="flex gap-0 border-b border-[#F0EAD6]/8 shrink-0 pr-4 overflow-x-auto flex-nowrap">
         {sections.map((s) => (
           <button
             key={s}
             onClick={() => setActive(s)}
-            className={`px-8 py-3 text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#39FF85] after:transition-transform after:origin-left ${
+            className={`px-4 md:px-8 py-3 text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
               active === s
                 ? 'bg-[#F0EAD6]/5 text-[#F0EAD6] after:scale-x-100'
                 : 'text-[#F0EAD6] opacity-40 hover:opacity-60 after:scale-x-0'
@@ -57,19 +57,18 @@ export default function Home() {
       </nav>
 
       {/* Content area */}
-      <div className="flex-1 min-h-0 relative">
-        <div key={active} className="h-full transition-opacity duration-150" style={{ animation: 'fadeIn 150ms ease-in' }}>
+      <div className="flex-1 min-h-0 relative overflow-auto">
 
         {/* 01 PLANIMETRY */}
         {active === '01 PLANIMETRY' && (
-          <div className="h-full flex">
+          <div className="h-full flex flex-col md:flex-row">
             {/* Main plan */}
-            <div className="flex-1 p-8 min-w-0">
+            <div className="flex-1 p-4 md:p-8 min-w-0">
               <Planimetry variant={planVariant} />
             </div>
 
             {/* Sidebar */}
-            <div className="w-64 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
+            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Project</div>
                 <div className="text-[13px] text-[#F0EAD6]/70 leading-relaxed">
@@ -110,13 +109,11 @@ export default function Home() {
 
         {/* 02 MENU */}
         {active === '02 MENU' && (
-          <div className="h-full flex">
-            <div className="flex-1 flex items-center justify-center p-8 min-w-0">
-              <div style={{ transform: 'scale(1.8)', transformOrigin: 'center center' }}>
-                <MenuDesign variant={menuVariant} />
-              </div>
+          <div className="h-full flex flex-col md:flex-row">
+            <div className="flex-1 flex items-center justify-center p-4 md:p-8 min-w-0">
+              <MenuDesign variant={menuVariant} />
             </div>
-            <div className="w-64 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
+            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-2 uppercase">Variants</div>
                 <div className="flex gap-3 mb-4">
@@ -158,7 +155,7 @@ export default function Home() {
 
         {/* 03 WORKWEAR */}
         {active === '03 WORKWEAR' && (
-          <div className="h-full flex items-center justify-center gap-20 px-12">
+          <div className="h-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 px-6 md:px-12 py-6 md:py-0">
             <div className="flex flex-col items-center gap-3">
               <TShirt />
             </div>
@@ -206,7 +203,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="h-7 border-t border-[#F0EAD6]/8 flex justify-between items-center px-8 text-[9px] text-[#F0EAD6]/20 shrink-0">
+      <footer className="h-7 border-t border-[#F0EAD6]/8 flex justify-between items-center px-4 md:px-8 text-[8px] md:text-[9px] text-[#F0EAD6]/20 shrink-0">
         <span>老板不在 · XLB · 2026</span>
         <span>v0.1.0</span>
         <span>SHAM SHUI PO · HK</span>
