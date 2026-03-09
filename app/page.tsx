@@ -33,7 +33,7 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-1">
           <span className="text-[11px] text-[#F0EAD6]/20 tracking-widest mr-3">CONFIDENTIAL · FOR CEO REVIEW</span>
-          <span className="text-[#F0EAD6]/30 text-base" style={{ fontFamily: 'serif' }}>老板不在</span>
+          <span className="text-[#F0EAD6]/30 text-base pr-1" style={{ fontFamily: 'serif' }}>老板不在</span>
         </div>
       </header>
 
@@ -102,7 +102,7 @@ export default function Home() {
             </div>
 
             {/* Sidebar */}
-            <div className="w-56 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0">
+            <div className="w-64 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0">
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Project</div>
                 <div className="text-[13px] text-[#F0EAD6]/70 leading-relaxed">
@@ -127,7 +127,7 @@ export default function Home() {
               </div>
               <div className="mt-auto">
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-2 uppercase">Notes</div>
-                <div className="text-[10px] text-[#F0EAD6]/20 leading-relaxed">
+                <div className="text-[10px] text-[#F0EAD6]/20 leading-relaxed break-words">
                   All variants assume ground floor. Natural light from street-facing facade. Shared building WC acceptable for variant C.
                 </div>
               </div>
@@ -143,7 +143,7 @@ export default function Home() {
                 <MenuDesign variant={menuVariant} />
               </div>
             </div>
-            <div className="w-56 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0">
+            <div className="w-64 border-l border-[#F0EAD6]/8 p-6 flex flex-col gap-6 shrink-0">
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Format</div>
                 <div className="text-[11px] text-[#F0EAD6]/50 leading-relaxed">
@@ -161,7 +161,7 @@ export default function Home() {
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-3 uppercase">Currency</div>
                 <div className="text-[11px] text-[#F0EAD6]/50">HKD · Cash preferred</div>
               </div>
-              <div className="mt-auto text-[10px] text-[#F0EAD6]/20 leading-relaxed">
+              <div className="mt-auto text-[10px] text-[#F0EAD6]/20 leading-relaxed break-words">
                 Menu design in progress. Final items TBD.
               </div>
             </div>
