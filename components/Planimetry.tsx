@@ -182,36 +182,71 @@ function VariantB() {
 }
 
 function VariantC() {
+  const stoolXs = [83,110,137,164,191,218,245,272,299,326,353,380]
+
   return (
     <>
-      {/* Counter-only space, like a dim sum bar */}
-      <rect x="40" y="60" width="340" height="200" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.7"/>
+      {/* Outer walls */}
+      <rect x="40" y="30" width="420" height="260" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.7"/>
 
-      {/* Long counter */}
-      <rect x="60" y="100" width="300" height="40" fill="#111" stroke="#39FF85" strokeWidth="1" opacity="0.9"/>
-      <text x="210" y="123" textAnchor="middle" fontSize="8" fill="#39FF85" fontFamily="monospace" opacity="0.9" letterSpacing="2">COUNTER — 12 SEATS</text>
+      {/* Kitchen / back-of-house */}
+      <rect x="40" y="30" width="420" height="65" fill="#111" stroke="#F0EAD6" strokeWidth="1" opacity="0.8"/>
+      <text x="250" y="58" textAnchor="middle" fontSize="8" fill="#F0EAD6" fontFamily="monospace" opacity="0.6" letterSpacing="2">KITCHEN</text>
+      <text x="250" y="70" textAnchor="middle" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.3" letterSpacing="2">CHEF WINDOW</text>
 
-      {/* Stools above counter */}
-      {Array.from({ length: 12 }, (_, i) => (
-        <circle key={i} cx={76 + i * 25} cy={87} r={8} fill="none" stroke="#F0EAD6" strokeWidth="0.6" opacity="0.4"/>
+      {/* Chef stations — 3 work surfaces */}
+      <rect x="80" y="38" width="80" height="42" fill="none" stroke="#F0EAD6" strokeWidth="0.6" opacity="0.35"/>
+      <text x="120" y="63" textAnchor="middle" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.4" letterSpacing="2">PREP</text>
+
+      <rect x="200" y="38" width="80" height="42" fill="none" stroke="#F0EAD6" strokeWidth="0.6" opacity="0.35"/>
+      <text x="240" y="63" textAnchor="middle" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.4" letterSpacing="2">STEAM</text>
+
+      <rect x="320" y="38" width="80" height="42" fill="none" stroke="#F0EAD6" strokeWidth="0.6" opacity="0.35"/>
+      <text x="360" y="63" textAnchor="middle" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.4" letterSpacing="2">PLATE</text>
+
+      {/* Service pass line */}
+      <line x1="40" y1="95" x2="460" y2="95" stroke="#F0EAD6" strokeWidth="0.4" opacity="0.15" strokeDasharray="5,4"/>
+
+      {/* Long counter bar */}
+      <rect x="70" y="120" width="330" height="28" fill="none" stroke="#F0EAD6" strokeWidth="1" opacity="0.6"/>
+      <text x="235" y="138" textAnchor="middle" fontSize="7" fill="#F0EAD6" fontFamily="monospace" opacity="0.5" letterSpacing="2">COUNTER</text>
+
+      {/* 12 stools facing counter */}
+      {stoolXs.map((cx, i) => (
+        <g key={i}>
+          <circle cx={cx} cy={170} r={11} fill="none" stroke="#F0EAD6" strokeWidth="0.7" opacity="0.45"/>
+          {i % 2 === 0 && (
+            <text x={cx} y={173} textAnchor="middle" fontSize="5" fill="#F0EAD6" fontFamily="monospace" opacity="0.3" letterSpacing="1">
+              {String(i + 1).padStart(2, '0')}
+            </text>
+          )}
+        </g>
       ))}
 
-      {/* Kitchen behind */}
-      <rect x="60" y="140" width="300" height="100" fill="#0d0d0d" stroke="#F0EAD6" strokeWidth="0.8" opacity="0.5"/>
-      <text x="210" y="185" textAnchor="middle" fontSize="8" fill="#F0EAD6" fontFamily="monospace" opacity="0.5" letterSpacing="1">KITCHEN VISIBLE</text>
-      <text x="210" y="198" textAnchor="middle" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.3">OPEN CONCEPT — STEAM STATIONS × 4</text>
+      {/* Entry — bottom wall center gap with arc */}
+      <line x1="195" y1="290" x2="295" y2="290" stroke="#0A0A0A" strokeWidth="3"/>
+      <path d="M 195 290 Q 195 310 245 310 Q 295 310 295 290"
+        fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="3,2" opacity="0.4"/>
+      <text x="245" y="306" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.7" letterSpacing="2">ENTRY</text>
 
-      {/* Entrance */}
-      <line x1="175" y1="260" x2="245" y2="260" stroke="#0A0A0A" strokeWidth="3"/>
-      <path d="M 175 260 Q 175 280 210 280 Q 245 280 245 260" fill="none" stroke="#F0EAD6" strokeWidth="0.8" strokeDasharray="3,2" opacity="0.5"/>
+      {/* Dimension: width */}
+      <line x1="40" y1="330" x2="460" y2="330" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
+      <line x1="40" y1="324" x2="40" y2="336" stroke="#B8860B" strokeWidth="0.4" opacity="0.6"/>
+      <line x1="460" y1="324" x2="460" y2="336" stroke="#B8860B" strokeWidth="0.4" opacity="0.6"/>
+      <text x="250" y="344" textAnchor="middle" fontSize="7" fill="#B8860B" fontFamily="monospace" opacity="0.8" letterSpacing="2">10.5 M</text>
 
-      {/* North arrow */}
-      <text x="370" y="80" fontSize="14" fill="#F0EAD6" fontFamily="monospace" opacity="0.3">↑</text>
-      <text x="373" y="92" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.3">N</text>
+      {/* Dimension: height */}
+      <line x1="474" y1="30" x2="474" y2="290" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
+      <line x1="468" y1="30" x2="480" y2="30" stroke="#B8860B" strokeWidth="0.4" opacity="0.6"/>
+      <line x1="468" y1="290" x2="480" y2="290" stroke="#B8860B" strokeWidth="0.4" opacity="0.6"/>
+      <text x="488" y="163" textAnchor="middle" fontSize="7" fill="#B8860B" fontFamily="monospace" opacity="0.8" transform="rotate(90 488 163)" letterSpacing="2">6.5 M</text>
 
-      <text x="40" y="48" fontSize="9" fill="#F0EAD6" fontFamily="monospace" opacity="0.8" letterSpacing="2">VARIANT C — OMAKASE BAR</text>
-      <text x="40" y="305" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25">SCALE 1:50 · 12 SEATS · COUNTER ONLY · 38 SQM</text>
-      <text x="40" y="315" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25">老板不在 · SHAM SHUI PO · HK</text>
+      {/* Title */}
+      <text x="40" y="20" fontSize="9" fill="#F0EAD6" fontFamily="monospace" opacity="0.8" letterSpacing="2">VARIANT C — OMAKASE</text>
+
+      {/* Footer */}
+      <text x="40" y="366" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25" letterSpacing="2">SCALE 1:50 · 12 SEATS · COUNTER SERVICE · 42 SQM</text>
+      <text x="40" y="376" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25" letterSpacing="2">老板不在 · SHAM SHUI PO · HK</text>
     </>
   )
 }
