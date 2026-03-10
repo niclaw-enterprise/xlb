@@ -85,10 +85,12 @@ export default function Home() {
         </nav>
         {/* Scroll fade overlays — fixed to the wrapper, not inside the scrollable nav */}
         {navScrolled && (
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 z-10 md:hidden bg-gradient-to-r from-[#0A0A0A] to-transparent" />
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 z-10 md:hidden bg-gradient-to-r from-[#0A0A0A] to-transparent" />
         )}
         {!navAtEnd && (
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 z-10 md:hidden bg-gradient-to-l from-[#0A0A0A] to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-14 z-10 md:hidden flex items-center justify-end pr-1 bg-gradient-to-l from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent">
+            <span className="text-[#F0EAD6]/40 text-[10px] select-none">›</span>
+          </div>
         )}
       </div>
 
@@ -289,7 +291,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="h-7 border-t border-[#F0EAD6]/8 flex justify-between items-center px-4 md:px-8 text-[8px] md:text-[9px] text-[#F0EAD6]/20 shrink-0">
+      <footer className="h-7 border-t border-[#F0EAD6]/8 flex justify-between items-center px-4 md:px-8 text-[8px] md:text-[9px] text-[#F0EAD6]/30 shrink-0">
         <span>老板不在 · XLB · 2026</span>
         <span>v0.1.0</span>
         <span>SHAM SHUI PO · HK</span>
