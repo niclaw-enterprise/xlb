@@ -73,8 +73,8 @@ function MenuA() {
           </div>
         </div>
 
-        {/* Header */}
-        <div className="text-center mb-5 border-b border-[#F0EAD6]/10 pb-4">
+        {/* Header — pr-16 reserves space for the absolute stamp overlay */}
+        <div className="text-center mb-5 border-b border-[#F0EAD6]/10 pb-4 pr-16">
           <div
             className="mb-1 leading-none"
             style={{
