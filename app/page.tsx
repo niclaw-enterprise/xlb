@@ -81,7 +81,8 @@ export default function Home() {
               {s}
             </button>
           ))}
-          <div className="flex-1" />
+          {/* Trailing spacer so right fade overlay never clips tab text */}
+          <div className="w-16 shrink-0 md:flex-1" />
         </nav>
         {/* Scroll fade overlays — fixed to the wrapper, not inside the scrollable nav */}
         {navScrolled && (
