@@ -91,11 +91,11 @@ export default function Home() {
       </div>
 
       {/* Content area */}
-      <div className="flex-1 min-h-0 relative overflow-auto">
+      <div className="flex-1 min-h-0 relative overflow-auto flex flex-col">
 
         {/* 01 PLANIMETRY */}
         {active === '01 PLANIMETRY' && (
-          <div className="tab-content min-h-full flex flex-col md:flex-row">
+          <div className="tab-content flex-1 flex flex-col md:flex-row">
             {/* Main plan */}
             <div className="md:flex-1 p-4 md:p-8 min-w-0 md:min-h-[320px] md:flex md:flex-col md:justify-center">
               <Planimetry variant={planVariant} />
@@ -143,11 +143,11 @@ export default function Home() {
 
         {/* 02 MENU */}
         {active === '02 MENU' && (
-          <div className="tab-content min-h-full flex flex-col md:flex-row">
+          <div className="tab-content flex-1 flex flex-col md:flex-row">
             <div className="flex-1 flex items-center justify-center p-4 md:p-8 min-w-0">
               <MenuDesign variant={menuVariant} />
             </div>
-            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
+            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-y-auto">
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-2 uppercase">Variants</div>
                 <div className="flex gap-3 mb-4">
@@ -189,7 +189,7 @@ export default function Home() {
 
         {/* 03 WORKWEAR */}
         {active === '03 WORKWEAR' && (
-          <div className="tab-content min-h-full flex flex-col items-center md:flex-row md:items-center md:justify-center gap-8 md:gap-20 px-4 md:px-12 py-6 md:py-0">
+          <div className="tab-content flex-1 flex flex-col items-center md:flex-row md:items-center md:justify-center gap-8 md:gap-20 px-4 md:px-12 py-6 md:py-0">
             <div className="flex flex-col items-center gap-3">
               <div className="flex gap-3 mb-2">
                 {(['front', 'back'] as const).map((v) => (
@@ -261,7 +261,7 @@ export default function Home() {
 
         {/* 04 CONCEPT */}
         {active === '04 CONCEPT' && (
-          <div className="tab-content flex items-center justify-center min-h-full px-4">
+          <div className="tab-content flex-1 flex items-center justify-center px-4">
             <div className="max-w-lg mx-auto py-8">
               <div className="text-center mb-12">
                 <h2 className="text-6xl text-[#F0EAD6] mb-6" style={{ fontFamily: 'serif' }}>老板不在</h2>
