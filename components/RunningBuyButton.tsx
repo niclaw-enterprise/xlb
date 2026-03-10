@@ -132,8 +132,8 @@ export default function RunningBuyButton() {
         {text}
       </button>
 
-      {/* Escape counter */}
-      {!showForm && (
+      {/* Escape counter — only shown after first interaction */}
+      {!showForm && escapeCount > 0 && (
         <div className="fixed bottom-4 right-5 font-mono text-[9px] text-[#F0EAD6]/15 tracking-widest pointer-events-none">
           {escapeCount}/{MAX_ESCAPES}
         </div>
