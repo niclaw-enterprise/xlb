@@ -93,7 +93,7 @@ export default function Home() {
         )}
         {!navAtEnd && (
           <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 z-10 md:hidden flex items-center justify-end pr-2 bg-gradient-to-l from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent">
-            <span className="text-[#F0EAD6]/65 text-sm select-none">›</span>
+            <span className="text-[#F0EAD6]/90 text-sm select-none">›</span>
           </div>
         )}
       </div>
@@ -137,7 +137,7 @@ export default function Home() {
             </div>
 
             {/* Sidebar */}
-            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-3 md:gap-6 shrink-0 min-w-0 overflow-y-auto max-h-[38vh] md:max-h-none">
+            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 pb-8 md:pb-6 flex flex-col gap-3 md:gap-6 shrink-0 min-w-0 overflow-y-auto max-h-[48vh] md:max-h-none">
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Project</div>
                 <div className="text-[13px] text-[#F0EAD6]/70 leading-relaxed">
