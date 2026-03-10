@@ -75,7 +75,7 @@ export default function Home() {
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Project</div>
                 <div className="text-[13px] text-[#F0EAD6]/70 leading-relaxed">
                   老板不在<br/>
-                  <span className="text-xs text-[#F0EAD6]/30">Sham Shui Po, KL</span>
+                  <span className="text-xs text-[#F0EAD6]/30">Sham Shui Po, Kowloon · HK</span>
                 </div>
               </div>
               <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
