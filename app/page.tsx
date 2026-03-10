@@ -249,7 +249,7 @@ export default function Home() {
                 <div className="flex">
                   <input
                     type="email"
-                    placeholder="email"
+                    placeholder="EMAIL"
                     className="bg-transparent border border-[#F0EAD6]/20 text-[#F0EAD6] text-[10px] tracking-widest px-3 py-1.5 font-mono placeholder:text-[#F0EAD6]/30 focus:outline-none focus:border-[#F0EAD6]/40 flex-1"
                   />
                   <button className="border border-l border-[#F0EAD6]/20 border-l-[#F0EAD6]/10 px-3 py-1.5 text-[#F0EAD6]/50 hover:text-[#F0EAD6] transition-colors text-xs bg-[#F0EAD6]/[0.03]">
