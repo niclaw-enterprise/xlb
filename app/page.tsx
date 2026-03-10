@@ -66,7 +66,7 @@ export default function Home() {
         {active === '01 PLANIMETRY' && (
           <div className="tab-content min-h-full flex flex-col md:flex-row">
             {/* Main plan */}
-            <div className="md:flex-1 p-4 md:p-8 min-w-0 min-h-[320px]">
+            <div className="md:flex-1 p-4 md:p-8 min-w-0 md:min-h-[320px]">
               <Planimetry variant={planVariant} />
             </div>
 
