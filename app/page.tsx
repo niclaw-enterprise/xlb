@@ -33,10 +33,12 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    const nav = navRef.current
-    if (!nav) return
-    // Check initial state — if no overflow, mark as at-end (no right fade needed)
-    setNavAtEnd(nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4)
+    // Use rAF to ensure the browser has computed layout before reading scrollWidth
+    requestAnimationFrame(() => {
+      const nav = navRef.current
+      if (!nav) return
+      setNavAtEnd(nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4)
+    })
   }, [])
 
   return (
@@ -189,7 +191,7 @@ export default function Home() {
 
         {/* 03 WORKWEAR */}
         {active === '03 WORKWEAR' && (
-          <div className="tab-content flex-1 flex flex-col items-center md:flex-row md:items-center md:justify-center gap-8 md:gap-20 px-4 md:px-12 py-6 md:py-0">
+          <div className="tab-content flex-1 flex flex-col items-center md:flex-row md:items-center md:justify-center gap-5 md:gap-20 px-4 md:px-12 py-3 md:py-0">
             <div className="flex flex-col items-center gap-3">
               <div className="flex gap-3 mb-2">
                 {(['front', 'back'] as const).map((v) => (
