@@ -207,7 +207,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-7 max-w-xs">
               <div>
-                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-4 uppercase">Brand Identity Object · 001</div>
+                <div className="text-xs text-[#F0EAD6]/30 tracking-[0.3em] mb-4 uppercase whitespace-nowrap">Brand Identity Object · 001</div>
                 <div className="text-5xl mb-3" style={{ fontFamily: 'serif' }}>小籠包</div>
                 <div className="text-xl tracking-[0.5em] text-[#F0EAD6]/40">XLB</div>
               </div>

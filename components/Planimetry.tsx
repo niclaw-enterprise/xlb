@@ -1,8 +1,11 @@
+const VIEWBOX_HEIGHT: Record<string, number> = { A: 328, B: 400, C: 390 }
+
 export default function Planimetry({ variant = 'A' }: { variant?: 'A' | 'B' | 'C' }) {
+  const vbH = VIEWBOX_HEIGHT[variant] ?? 400
   return (
     <div className="w-full relative">
       <svg
-        viewBox="0 0 500 400"
+        viewBox={`0 0 500 ${vbH}`}
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-auto"
         preserveAspectRatio="xMidYMid meet"
