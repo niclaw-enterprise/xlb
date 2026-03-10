@@ -267,8 +267,8 @@ export default function Home() {
                   </button>
                 ))}
               </div>
-              <div style={view === 'back' ? { transform: 'scaleX(-1)' } : undefined}>
-                <TShirt />
+              <div>
+                <TShirt view={view} />
               </div>
             </div>
             <div className="flex flex-col gap-7 max-w-xs">
