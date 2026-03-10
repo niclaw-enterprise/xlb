@@ -23,7 +23,7 @@ export default function Home() {
   const [view, setView] = useState<"front"|"back">("front")
 
   return (
-    <main className="bg-[#0A0A0A] text-[#F0EAD6] h-screen overflow-hidden flex flex-col font-mono page-entrance">
+    <main className="bg-[#0A0A0A] text-[#F0EAD6] h-screen overflow-hidden flex flex-col font-mono">
 
       {/* Header */}
       <header className="flex flex-col md:flex-row justify-between items-center px-4 md:px-8 pr-6 py-4 gap-2 border-b border-[#F0EAD6]/8 shrink-0">
@@ -45,10 +45,10 @@ export default function Home() {
           <button
             key={s}
             onClick={() => setActive(s)}
-            className={`nav-tab px-4 md:px-8 py-3 text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-all duration-200 whitespace-nowrap ${
+            className={`px-4 md:px-8 py-3 text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
               active === s
-                ? 'active bg-[#F0EAD6]/5 text-[#F0EAD6]'
-                : 'text-[#F0EAD6] opacity-40 hover:opacity-60 hover:bg-[#F0EAD6]/3'
+                ? 'bg-[#F0EAD6]/5 text-[#F0EAD6] after:scale-x-100'
+                : 'text-[#F0EAD6] opacity-40 hover:opacity-60 after:scale-x-0'
             }`}
           >
             <span className="md:hidden">{s.split(' ')[0]}</span>
@@ -58,17 +58,15 @@ export default function Home() {
         <div className="flex-1" />
       </nav>
 
-      {/* Content area — key forces remount + tabFadeIn on each tab change */}
-      <div key={active} className="tab-content flex-1 min-h-0 relative overflow-auto">
+      {/* Content area */}
+      <div className="flex-1 min-h-0 relative overflow-auto">
 
         {/* 01 PLANIMETRY */}
         {active === '01 PLANIMETRY' && (
-          <div className="h-full flex flex-col md:flex-row">
-            {/* Main plan — key triggers variant-fade crossfade */}
+          <div className="min-h-full flex flex-col md:flex-row">
+            {/* Main plan */}
             <div className="flex-1 p-4 md:p-8 min-w-0 min-h-[260px]">
-              <div key={planVariant} className="variant-fade h-full">
-                <Planimetry variant={planVariant} />
-              </div>
+              <Planimetry variant={planVariant} />
             </div>
 
             {/* Sidebar */}
@@ -77,7 +75,7 @@ export default function Home() {
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Project</div>
                 <div className="text-[13px] text-[#F0EAD6]/70 leading-relaxed">
                   老板不在<br/>
-                  <span className="text-xs text-[#F0EAD6]/30">Sham Shui Po, Kowloon · HK</span>
+                  <span className="text-xs text-[#F0EAD6]/30">Sham Shui Po, KL</span>
                 </div>
               </div>
               <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
@@ -94,7 +92,7 @@ export default function Home() {
                 <div className="space-y-1 text-[11px] text-[#F0EAD6]/40">
                   {planVariants.map((v) => (
                     <button key={v} onClick={() => setPlanVariant(v)}
-                      className={`w-full text-left py-1 transition-all duration-200 ${planVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'hover:text-[#F0EAD6]/60 border-l-2 border-transparent pl-1.5'}`}>
+                      className={`w-full text-left py-1 transition-colors ${planVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'hover:text-[#F0EAD6]/60'}`}>
                       {planVariant === v && '▸ '}{v === 'A' ? 'A — Linear · 6 covers' : v === 'B' ? 'B — Social · round tables' : 'C — Omakase bar · 12 seats'}
                     </button>
                   ))}
@@ -113,11 +111,9 @@ export default function Home() {
 
         {/* 02 MENU */}
         {active === '02 MENU' && (
-          <div className="h-full flex flex-col md:flex-row">
+          <div className="min-h-full flex flex-col md:flex-row">
             <div className="flex-1 flex items-center justify-center p-4 md:p-8 min-w-0">
-              <div key={menuVariant} className="variant-fade">
-                <MenuDesign variant={menuVariant} />
-              </div>
+              <MenuDesign variant={menuVariant} />
             </div>
             <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-hidden">
               <div>
@@ -125,7 +121,7 @@ export default function Home() {
                 <div className="flex gap-3 mb-4">
                   {menuVariants.map((v) => (
                     <button key={v} onClick={() => setMenuVariant(v)}
-                      className={`text-[11px] tracking-widest transition-all duration-200 ${menuVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'text-[#F0EAD6]/20 hover:text-[#F0EAD6]/40 border-l-2 border-transparent pl-1.5'}`}>
+                      className={`text-[11px] tracking-widest transition-colors ${menuVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'text-[#F0EAD6]/20 hover:text-[#F0EAD6]/40'}`}>
                       {menuVariant === v && '▸ '}VAR {v}
                     </button>
                   ))}
@@ -161,23 +157,19 @@ export default function Home() {
 
         {/* 03 WORKWEAR */}
         {active === '03 WORKWEAR' && (
-          <div className="h-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 px-6 md:px-12 py-6 md:py-0">
+          <div className="min-h-full flex flex-col items-center md:flex-row md:justify-center gap-8 md:gap-20 px-4 md:px-12 py-6 md:py-0">
             <div className="flex flex-col items-center gap-3">
               <div className="flex gap-3 mb-2">
                 {(['front', 'back'] as const).map((v) => (
                   <button key={v} onClick={() => setView(v)}
-                    className={`text-[10px] tracking-[0.3em] uppercase font-mono transition-all duration-200 ${
+                    className={`text-[10px] tracking-[0.3em] uppercase font-mono transition-colors ${
                       view === v ? 'text-[#F0EAD6]' : 'text-[#F0EAD6]/30 hover:text-[#F0EAD6]/50'
                     }`}>
                     {v}
                   </button>
                 ))}
               </div>
-              <div
-                key={view}
-                className="variant-fade"
-                style={view === 'back' ? { transform: 'scaleX(-1)' } : undefined}
-              >
+              <div style={view === 'back' ? { transform: 'scaleX(-1)' } : undefined}>
                 <TShirt />
               </div>
             </div>
@@ -196,7 +188,7 @@ export default function Home() {
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-3 py-1 text-[10px] tracking-widest font-mono border transition-all duration-200 ${
+                    className={`px-3 py-1 text-[10px] tracking-widest font-mono border transition-colors ${
                       selectedSize === size
                         ? 'border-[#F0EAD6] text-[#F0EAD6]'
                         : 'border-[#F0EAD6]/20 text-[#F0EAD6]/30 hover:border-[#F0EAD6]/40'
@@ -237,8 +229,8 @@ export default function Home() {
 
         {/* 05 CONCEPT */}
         {active === '05 CONCEPT' && (
-          <div className="flex items-center justify-center h-full">
-            <div className="max-w-lg mx-auto text-center">
+          <div className="flex items-center justify-center min-h-full px-4">
+            <div className="max-w-lg mx-auto text-center py-8">
               <h2 className="text-6xl text-[#F0EAD6] mb-6" style={{ fontFamily: 'serif' }}>老板不在</h2>
               <p className="text-xs tracking-[0.5em] text-[#F0EAD6]/30 mb-12">THE BOSS IS NOT HERE</p>
               <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono mb-6">

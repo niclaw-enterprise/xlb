@@ -1,10 +1,11 @@
 export default function Planimetry({ variant = 'A' }: { variant?: 'A' | 'B' | 'C' }) {
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full relative">
       <svg
         viewBox="0 0 500 400"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full"
+        className="w-full h-auto"
+        preserveAspectRatio="xMidYMid meet"
       >
         <defs>
           <pattern id="floor-grid" width="20" height="20" patternUnits="userSpaceOnUse">
