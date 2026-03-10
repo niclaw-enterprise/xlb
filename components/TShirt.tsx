@@ -1,164 +1,304 @@
-export default function TShirt() {
+interface TShirtProps {
+  view?: 'front' | 'back'
+}
+
+export default function TShirt({ view = 'front' }: TShirtProps) {
   return (
-    <div className="w-full max-w-[210px] sm:max-w-[288px] md:max-w-[320px] aspect-[320/380] relative select-none">
+    <div className="w-72 h-80 relative select-none" style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8))' }}>
       <svg
-        viewBox="0 0 320 380"
+        viewBox="0 0 300 340"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
         <defs>
-          <pattern id="grid-shirt" width="10" height="10" patternUnits="userSpaceOnUse">
-            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#1a2e1a" strokeWidth="0.25" opacity="0.7"/>
-          </pattern>
-          <pattern id="grid-shirt-major" width="50" height="50" patternUnits="userSpaceOnUse">
-            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#1a2e1a" strokeWidth="0.5" opacity="0.4"/>
-          </pattern>
-          <clipPath id="shirt-clip-v2">
-            <path d="M90,38 L36,92 L74,112 L66,304 L254,304 L246,112 L284,92 L230,38 C222,58 198,72 160,72 C122,72 98,58 90,38 Z"/>
+          {/* Fabric gradient — light from top-left */}
+          <radialGradient id="fabric-main" cx="40%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#1c1c1c" />
+            <stop offset="60%" stopColor="#111111" />
+            <stop offset="100%" stopColor="#0a0a0a" />
+          </radialGradient>
+          {/* Sleeve gradients */}
+          <linearGradient id="sleeve-left" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#161616" />
+            <stop offset="100%" stopColor="#090909" />
+          </linearGradient>
+          <linearGradient id="sleeve-right" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#161616" />
+            <stop offset="100%" stopColor="#090909" />
+          </linearGradient>
+          {/* Collar inner shadow */}
+          <radialGradient id="collar-inner" cx="50%" cy="0%" r="100%">
+            <stop offset="0%" stopColor="#080808" />
+            <stop offset="100%" stopColor="#141414" />
+          </radialGradient>
+          {/* Embroidery glow */}
+          <filter id="embroidery-glow">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          {/* Subtle fabric noise */}
+          <filter id="fabric-texture">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" />
+            <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise" />
+            <feBlend in="SourceGraphic" in2="grayNoise" mode="overlay" result="blend" />
+            <feComposite in="blend" in2="SourceGraphic" operator="in" />
+          </filter>
+          <clipPath id="shirt-clip">
+            <path d="M74,38 L28,86 L68,106 L62,292 L238,292 L232,106 L272,86 L226,38 C216,62 186,80 150,80 C114,80 84,62 74,38 Z" />
           </clipPath>
-          <marker id="arrow-end" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto">
-            <path d="M0,0 L4,2 L0,4 Z" fill="#39FF85" opacity="0.7"/>
-          </marker>
-          <marker id="arrow-start" markerWidth="4" markerHeight="4" refX="1" refY="2" orient="auto">
-            <path d="M4,0 L0,2 L4,4 Z" fill="#39FF85" opacity="0.7"/>
-          </marker>
-          <marker id="arrow-gold-end" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto">
-            <path d="M0,0 L4,2 L0,4 Z" fill="#B8860B" opacity="0.7"/>
-          </marker>
-          <marker id="arrow-gold-start" markerWidth="4" markerHeight="4" refX="1" refY="2" orient="auto">
-            <path d="M4,0 L0,2 L4,4 Z" fill="#B8860B" opacity="0.7"/>
-          </marker>
         </defs>
 
-        {/* Blueprint grids inside shirt */}
-        <rect width="320" height="380" fill="url(#grid-shirt)" clipPath="url(#shirt-clip-v2)"/>
-        <rect width="320" height="380" fill="url(#grid-shirt-major)" clipPath="url(#shirt-clip-v2)"/>
+        {/* ── SHIRT BODY ── */}
+        <g>
+          {/* Left sleeve */}
+          <path
+            d="M74,38 L28,86 L68,106 L80,80 Z"
+            fill="url(#sleeve-left)"
+            stroke="#1e1e1e"
+            strokeWidth="0.5"
+          />
+          {/* Right sleeve */}
+          <path
+            d="M226,38 L272,86 L232,106 L220,80 Z"
+            fill="url(#sleeve-right)"
+            stroke="#1e1e1e"
+            strokeWidth="0.5"
+          />
+          {/* Main body */}
+          <path
+            d="M74,38 L28,86 L68,106 L62,292 L238,292 L232,106 L272,86 L226,38 C216,62 186,80 150,80 C114,80 84,62 74,38 Z"
+            fill="url(#fabric-main)"
+            stroke="#1e1e1e"
+            strokeWidth="0.8"
+          />
+          {/* Fabric texture overlay */}
+          <path
+            d="M74,38 L28,86 L68,106 L62,292 L238,292 L232,106 L272,86 L226,38 C216,62 186,80 150,80 C114,80 84,62 74,38 Z"
+            fill="url(#fabric-main)"
+            filter="url(#fabric-texture)"
+            opacity="0.15"
+          />
+          {/* Seam lines */}
+          <line x1="68" y1="106" x2="62" y2="292" stroke="#1a1a1a" strokeWidth="0.8" />
+          <line x1="232" y1="106" x2="238" y2="292" stroke="#1a1a1a" strokeWidth="0.8" />
+          {/* Shoulder seams */}
+          <path d="M74,38 L80,80" stroke="#1a1a1a" strokeWidth="0.8" fill="none" />
+          <path d="M226,38 L220,80" stroke="#1a1a1a" strokeWidth="0.8" fill="none" />
+          {/* Hem stitching */}
+          <path
+            d="M62,288 L238,288"
+            stroke="#1d1d1d"
+            strokeWidth="0.5"
+            strokeDasharray="3,2"
+          />
+          {/* Collar */}
+          <path
+            d="M74,38 C88,68 116,84 150,84 C184,84 212,68 226,38 C215,34 200,31 185,29 C174,50 161,58 150,58 C139,58 126,50 115,29 C100,31 85,34 74,38 Z"
+            fill="url(#collar-inner)"
+            stroke="#1a1a1a"
+            strokeWidth="0.6"
+          />
+          {/* Collar rib texture */}
+          {[0, 4, 8, 12, 16].map((i) => (
+            <line
+              key={i}
+              x1={115 + i * 3.5}
+              y1={29 + i * 0.5}
+              x2={115 + i * 3.5}
+              y2={35 + i * 0.5}
+              stroke="#1f1f1f"
+              strokeWidth="0.8"
+            />
+          ))}
+        </g>
 
-        {/* T-shirt body */}
-        <path
-          d="M90,38 L36,92 L74,112 L66,304 L254,304 L246,112 L284,92 L230,38 C222,58 198,72 160,72 C122,72 98,58 90,38 Z"
-          fill="#0c0c0c"
-          stroke="#2a2a2a"
-          strokeWidth="1.2"
-        />
+        {/* ── FRONT ARTWORK ── */}
+        {view === 'front' && (
+          <g>
+            {/* Embroidery base — slightly raised effect */}
+            <text
+              x="150"
+              y="168"
+              textAnchor="middle"
+              fontSize="38"
+              fill="#1a1a1a"
+              fontFamily="serif"
+              letterSpacing="3"
+              dy="2"
+              dx="1.5"
+            >
+              小籠包
+            </text>
+            {/* Main embroidery text */}
+            <text
+              x="150"
+              y="168"
+              textAnchor="middle"
+              fontSize="38"
+              fill="#E8E0C8"
+              fontFamily="serif"
+              letterSpacing="3"
+              filter="url(#embroidery-glow)"
+              style={{ textShadow: 'none' }}
+            >
+              小籠包
+            </text>
+            {/* Embroidery thread texture overlay (fine cross-hatching effect via opacity) */}
+            <text
+              x="150"
+              y="168"
+              textAnchor="middle"
+              fontSize="38"
+              fill="none"
+              fontFamily="serif"
+              letterSpacing="3"
+              stroke="#C8C0A8"
+              strokeWidth="0.3"
+              opacity="0.4"
+            >
+              小籠包
+            </text>
 
-        {/* Collar — tighter, more realistic */}
-        <path
-          d="M90,38 C100,58 126,72 160,72 C194,72 220,58 230,38 C218,34 204,31 190,30 C182,46 170,54 160,54 C150,54 138,46 130,30 C116,31 102,34 90,38 Z"
-          fill="#090909"
-          stroke="#1e1e1e"
-          strokeWidth="0.6"
-        />
+            {/* XLB brand line */}
+            <text
+              x="150"
+              y="192"
+              textAnchor="middle"
+              fontSize="10"
+              fill="#B0A888"
+              fontFamily="monospace"
+              letterSpacing="9"
+              opacity="0.75"
+            >
+              XLB
+            </text>
 
-        {/* Seam lines — chest */}
-        <line x1="66" y1="140" x2="254" y2="140" stroke="#1f1f1f" strokeWidth="0.5" strokeDasharray="2,4"/>
-        {/* Side seams */}
-        <line x1="74" y1="112" x2="66" y2="304" stroke="#1d1d1d" strokeWidth="0.4" strokeDasharray="2,4"/>
-        <line x1="246" y1="112" x2="254" y2="304" stroke="#1d1d1d" strokeWidth="0.4" strokeDasharray="2,4"/>
+            {/* Small left chest emblem */}
+            <text
+              x="90"
+              y="128"
+              textAnchor="middle"
+              fontSize="9"
+              fill="#303030"
+              fontFamily="monospace"
+              letterSpacing="1"
+            >
+              老板不在
+            </text>
+          </g>
+        )}
 
-        {/* ── DIMENSION LINES ── */}
+        {/* ── BACK ARTWORK ── */}
+        {view === 'back' && (
+          <g>
+            {/* Restaurant name — large */}
+            <text
+              x="150"
+              y="2"
+              textAnchor="middle"
+              fontSize="10"
+              fill="#303030"
+              fontFamily="monospace"
+              letterSpacing="3"
+            >
+              ─────────────────
+            </text>
 
-        {/* Width — bottom */}
-        <line x1="66" y1="318" x2="254" y2="318"
-          stroke="#39FF85" strokeWidth="0.6" opacity="0.7"
-          markerStart="url(#arrow-start)" markerEnd="url(#arrow-end)"/>
-        <line x1="66" y1="305" x2="66" y2="322" stroke="#39FF85" strokeWidth="0.4" opacity="0.5"/>
-        <line x1="254" y1="305" x2="254" y2="322" stroke="#39FF85" strokeWidth="0.4" opacity="0.5"/>
-        <text x="160" y="330" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.8" letterSpacing="1">WIDTH · 52CM</text>
+            {/* Main back text */}
+            <text
+              x="150"
+              y="148"
+              textAnchor="middle"
+              fontSize="28"
+              fill="#1a1a1a"
+              fontFamily="serif"
+              letterSpacing="2"
+              dy="2"
+              dx="1"
+            >
+              老板不在
+            </text>
+            <text
+              x="150"
+              y="148"
+              textAnchor="middle"
+              fontSize="28"
+              fill="#D8D0B8"
+              fontFamily="serif"
+              letterSpacing="2"
+              filter="url(#embroidery-glow)"
+            >
+              老板不在
+            </text>
 
-        {/* Body length — right side */}
-        <line x1="268" y1="112" x2="268" y2="304"
-          stroke="#39FF85" strokeWidth="0.6" opacity="0.7"
-          markerStart="url(#arrow-start)" markerEnd="url(#arrow-end)"/>
-        <line x1="246" y1="112" x2="272" y2="112" stroke="#39FF85" strokeWidth="0.4" opacity="0.5"/>
-        <line x1="254" y1="304" x2="272" y2="304" stroke="#39FF85" strokeWidth="0.4" opacity="0.5"/>
-        <text x="284" y="211" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.8"
-          transform="rotate(90 284 211)" letterSpacing="1">BODY · 46CM</text>
+            {/* Subtitle */}
+            <text
+              x="150"
+              y="170"
+              textAnchor="middle"
+              fontSize="7.5"
+              fill="#888070"
+              fontFamily="monospace"
+              letterSpacing="5"
+              opacity="0.8"
+            >
+              THE BOSS IS NOT HERE
+            </text>
 
-        {/* Chest width annotation */}
-        <line x1="66" y1="148" x2="254" y2="148"
-          stroke="#39FF85" strokeWidth="0.4" opacity="0.35"
-          markerStart="url(#arrow-start)" markerEnd="url(#arrow-end)"/>
-        <text x="160" y="157" textAnchor="middle" fontSize="6" fill="#39FF85" fontFamily="monospace" opacity="0.5" letterSpacing="0.5">CHEST · 50CM</text>
+            {/* Divider */}
+            <line x1="100" y1="180" x2="200" y2="180" stroke="#282820" strokeWidth="0.5" />
 
-        {/* Shoulder width */}
-        <line x1="90" y1="26" x2="230" y2="26"
-          stroke="#B8860B" strokeWidth="0.5" opacity="0.6"
-          markerStart="url(#arrow-gold-start)" markerEnd="url(#arrow-gold-end)"/>
-        <line x1="90" y1="22" x2="90" y2="40" stroke="#B8860B" strokeWidth="0.3" opacity="0.4"/>
-        <line x1="230" y1="22" x2="230" y2="40" stroke="#B8860B" strokeWidth="0.3" opacity="0.4"/>
-        <text x="160" y="20" textAnchor="middle" fontSize="6" fill="#B8860B" fontFamily="monospace" opacity="0.7" letterSpacing="0.5">SHOULDER · 44CM</text>
+            {/* Hong Kong skyline — minimal line art */}
+            <g opacity="0.25" transform="translate(82, 188)">
+              {/* Simple HK skyline abstraction */}
+              <rect x="0"  y="30" width="8"  height="22" fill="#C8C0A8" />
+              <rect x="10" y="20" width="6"  height="32" fill="#C8C0A8" />
+              <rect x="18" y="10" width="10" height="42" fill="#C8C0A8" />
+              <rect x="30" y="24" width="5"  height="28" fill="#C8C0A8" />
+              <rect x="37" y="16" width="8"  height="36" fill="#C8C0A8" />
+              <rect x="47" y="22" width="6"  height="30" fill="#C8C0A8" />
+              <rect x="55" y="8"  width="12" height="44" fill="#C8C0A8" />
+              <rect x="69" y="18" width="7"  height="34" fill="#C8C0A8" />
+              <rect x="78" y="26" width="5"  height="26" fill="#C8C0A8" />
+              <rect x="85" y="14" width="9"  height="38" fill="#C8C0A8" />
+              <rect x="96" y="28" width="6"  height="24" fill="#C8C0A8" />
+              <rect x="104" y="20" width="7" height="32" fill="#C8C0A8" />
+              <rect x="113" y="6"  width="9" height="46" fill="#C8C0A8" />
+              <rect x="124" y="22" width="6" height="30" fill="#C8C0A8" />
+              {/* Water line */}
+              <line x1="0" y1="52" x2="136" y2="52" stroke="#C8C0A8" strokeWidth="0.8" opacity="0.6" />
+            </g>
 
-        {/* ── XLB CHEST BADGE ── */}
-        <rect x="85" y="55" width="30" height="18" fill="none" stroke="#F0EAD6" strokeWidth="0.8" opacity="0.4"/>
-        <text x="100" y="67" textAnchor="middle" fontSize="7" fill="#F0EAD6" fontFamily="monospace" opacity="0.4">XLB</text>
+            {/* Address */}
+            <text
+              x="150"
+              y="256"
+              textAnchor="middle"
+              fontSize="7"
+              fill="#484038"
+              fontFamily="monospace"
+              letterSpacing="3"
+            >
+              SHAM SHUI PO · KOWLOON · HK
+            </text>
 
-        {/* ── STITCH LINES — sleeve/shoulder seams ── */}
-        {/* Left shoulder seam */}
-        <line x1="90" y1="38" x2="36" y2="92" stroke="#F0EAD6" strokeWidth="0.5" strokeDasharray="2,3" opacity="0.2"/>
-        {/* Right shoulder seam */}
-        <line x1="230" y1="38" x2="284" y2="92" stroke="#F0EAD6" strokeWidth="0.5" strokeDasharray="2,3" opacity="0.2"/>
-        {/* Left sleeve hem */}
-        <line x1="36" y1="92" x2="74" y2="112" stroke="#F0EAD6" strokeWidth="0.5" strokeDasharray="2,3" opacity="0.2"/>
-        {/* Right sleeve hem */}
-        <line x1="284" y1="92" x2="246" y2="112" stroke="#F0EAD6" strokeWidth="0.5" strokeDasharray="2,3" opacity="0.2"/>
-
-        {/* ── ANNOTATIONS ── */}
-
-        {/* Collar annotation */}
-        <line x1="160" y1="60" x2="305" y2="42" stroke="#B8860B" strokeWidth="0.5" opacity="0.6" strokeDasharray="3,2"/>
-        <circle cx="160" cy="60" r="1.2" fill="#B8860B" opacity="0.8"/>
-        <text x="307" y="40" fontSize="6" fill="#B8860B" fontFamily="monospace" opacity="0.7" letterSpacing="0.5">CREW NECK Ø22CM</text>
-
-        {/* Chest embroidery annotation */}
-        <line x1="205" y1="150" x2="305" y2="118" stroke="#B8860B" strokeWidth="0.5" opacity="0.6" strokeDasharray="3,2"/>
-        <circle cx="205" cy="150" r="1.2" fill="#B8860B" opacity="0.8"/>
-        <text x="307" y="116" fontSize="6" fill="#B8860B" fontFamily="monospace" opacity="0.7" letterSpacing="0.5">EMBROIDERY · R CHEST</text>
-
-        {/* Seam annotation */}
-        <line x1="74" y1="178" x2="30" y2="160" stroke="#B8860B" strokeWidth="0.5" opacity="0.4" strokeDasharray="3,2"/>
-        <circle cx="74" cy="178" r="1" fill="#B8860B" opacity="0.6"/>
-        <text x="6" y="158" fontSize="6" fill="#B8860B" fontFamily="monospace" opacity="0.5" letterSpacing="0.5">SIDE SEAM</text>
-
-        {/* ── SPEC BLOCK ── */}
-        <text x="68" y="250" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">FABRIC · 100% COTTON RING-SPUN</text>
-        <text x="68" y="261" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">WEIGHT · 280 GSM</text>
-        <text x="68" y="272" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">COLOR · #0C0C0C WASHED BLACK</text>
-        <text x="68" y="283" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">FIT · RELAXED UNISEX</text>
-        <text x="68" y="294" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">FINISH · ENZYME WASHED</text>
-
-        {/* Revision + scale */}
-        <text x="196" y="340" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.12" letterSpacing="0.5">SCALE 1:8 · REV.001-A · XLB STUDIO</text>
-
-        {/* ── RIGHT CHEST LOGO ── */}
-        {/* Crosshair / target */}
-        <circle cx="205" cy="152" r="16" fill="none" stroke="#F0EAD6" strokeWidth="0.35" opacity="0.2" strokeDasharray="3,3"/>
-        <line x1="189" y1="152" x2="221" y2="152" stroke="#F0EAD6" strokeWidth="0.25" opacity="0.15"/>
-        <line x1="205" y1="136" x2="205" y2="168" stroke="#F0EAD6" strokeWidth="0.25" opacity="0.15"/>
-
-        {/* Logo text */}
-        <text
-          x="205" y="149"
-          textAnchor="middle"
-          fontSize="12"
-          fill="#F0EAD6"
-          fontFamily="serif"
-          letterSpacing="1.5"
-          opacity="0.95"
-        >
-          小籠包
-        </text>
-        <text
-          x="205" y="161"
-          textAnchor="middle"
-          fontSize="4.5"
-          fill="#F0EAD6"
-          fontFamily="monospace"
-          letterSpacing="5"
-          opacity="0.45"
-        >
-          XLB
-        </text>
+            {/* Bottom logo */}
+            <text
+              x="150"
+              y="274"
+              textAnchor="middle"
+              fontSize="7"
+              fill="#302820"
+              fontFamily="monospace"
+              letterSpacing="6"
+            >
+              XLB
+            </text>
+          </g>
+        )}
       </svg>
     </div>
   )
