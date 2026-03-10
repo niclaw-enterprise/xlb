@@ -31,8 +31,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          DEPLOY_ENV: gh-pages
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
