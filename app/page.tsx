@@ -40,21 +40,23 @@ export default function Home() {
       </header>
 
       {/* Nav */}
-      <nav className="flex gap-0 border-b border-[#F0EAD6]/8 shrink-0 pr-4 overflow-x-auto flex-nowrap">
+      <nav className="relative flex gap-0 border-b border-[#F0EAD6]/8 shrink-0 overflow-x-auto flex-nowrap">
         {sections.map((s) => (
           <button
             key={s}
             onClick={() => setActive(s)}
-            className={`px-4 md:px-8 py-3 text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
+            className={`nav-tab px-4 md:px-8 py-3 text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
               active === s
-                ? 'bg-[#F0EAD6]/5 text-[#F0EAD6] after:scale-x-100'
-                : 'text-[#F0EAD6] opacity-40 hover:opacity-60 after:scale-x-0'
+                ? 'active bg-[#F0EAD6]/5 text-[#F0EAD6]'
+                : 'text-[#F0EAD6] opacity-40 hover:opacity-60'
             }`}
           >
             {s}
           </button>
         ))}
         <div className="flex-1" />
+        {/* Scroll fade indicator — only visible on mobile when nav overflows */}
+        <div className="pointer-events-none sticky right-0 w-8 shrink-0 md:hidden bg-gradient-to-l from-[#0A0A0A] to-transparent" />
       </nav>
 
       {/* Content area */}
@@ -62,7 +64,7 @@ export default function Home() {
 
         {/* 01 PLANIMETRY */}
         {active === '01 PLANIMETRY' && (
-          <div className="min-h-full flex flex-col md:flex-row">
+          <div className="tab-content min-h-full flex flex-col md:flex-row">
             {/* Main plan */}
             <div className="md:flex-1 p-4 md:p-8 min-w-0 min-h-[260px]">
               <Planimetry variant={planVariant} />
@@ -110,7 +112,7 @@ export default function Home() {
 
         {/* 02 MENU */}
         {active === '02 MENU' && (
-          <div className="min-h-full flex flex-col md:flex-row">
+          <div className="tab-content min-h-full flex flex-col md:flex-row">
             <div className="flex-1 flex items-center justify-center p-4 md:p-8 min-w-0">
               <MenuDesign variant={menuVariant} />
             </div>
@@ -156,7 +158,7 @@ export default function Home() {
 
         {/* 03 WORKWEAR */}
         {active === '03 WORKWEAR' && (
-          <div className="min-h-full flex flex-col items-center md:flex-row md:justify-center gap-8 md:gap-20 px-4 md:px-12 py-6 md:py-0">
+          <div className="tab-content min-h-full flex flex-col items-center md:flex-row md:justify-center gap-8 md:gap-20 px-4 md:px-12 py-6 md:py-0">
             <div className="flex flex-col items-center gap-3">
               <div className="flex gap-3 mb-2">
                 {(['front', 'back'] as const).map((v) => (
@@ -228,7 +230,7 @@ export default function Home() {
 
         {/* 04 CONCEPT */}
         {active === '04 CONCEPT' && (
-          <div className="flex items-center justify-center min-h-full px-4">
+          <div className="tab-content flex items-center justify-center min-h-full px-4">
             <div className="max-w-lg mx-auto text-center py-8">
               <h2 className="text-6xl text-[#F0EAD6] mb-6" style={{ fontFamily: 'serif' }}>老板不在</h2>
               <p className="text-xs tracking-[0.5em] text-[#F0EAD6]/30 mb-12">THE BOSS IS NOT HERE</p>

@@ -122,7 +122,7 @@ export default function TShirt() {
 
         {/* ── SPEC BLOCK ── */}
         <text x="68" y="250" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">FABRIC · 100% COTTON RING-SPUN</text>
-        <text x="68" y="261" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">WEIGHT · 180 GSM</text>
+        <text x="68" y="261" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">WEIGHT · 280 GSM</text>
         <text x="68" y="272" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">COLOR · #0C0C0C WASHED BLACK</text>
         <text x="68" y="283" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">FIT · RELAXED UNISEX</text>
         <text x="68" y="294" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.18" letterSpacing="0.5">FINISH · ENZYME WASHED</text>
