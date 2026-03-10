@@ -56,7 +56,7 @@ export default function Home() {
         ))}
         <div className="flex-1" />
         {/* Scroll fade indicator — only visible on mobile when nav overflows */}
-        <div className="pointer-events-none sticky right-0 w-8 shrink-0 md:hidden bg-gradient-to-l from-[#0A0A0A] to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 z-10 md:hidden bg-gradient-to-l from-[#0A0A0A] to-transparent" />
       </nav>
 
       {/* Content area */}
