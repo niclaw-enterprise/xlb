@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* NOTE: Do NOT add `* { margin: 0; padding: 0 }` here.
+   In Tailwind v4, unlayered CSS beats @layer utilities, which would
+   wipe out all Tailwind padding/margin classes (px-4, py-3, gap-*, etc).
+   Tailwind's @layer base already includes the necessary resets. */
 
 html,
 body {

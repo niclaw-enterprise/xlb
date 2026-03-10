@@ -1,6 +1,6 @@
 export default function TShirt() {
   return (
-    <div className="w-80 h-96 relative select-none">
+    <div className="w-full max-w-[288px] sm:max-w-[320px] aspect-[320/380] relative select-none">
       <svg
         viewBox="0 0 320 380"
         xmlns="http://www.w3.org/2000/svg"
