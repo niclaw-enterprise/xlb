@@ -21,6 +21,7 @@ export default function Home() {
   const [menuVariant, setMenuVariant] = useState<MenuVariant>('A')
   const [selectedSize, setSelectedSize] = useState('M')
   const [view, setView] = useState<"front"|"back">("front")
+  const [planZoom, setPlanZoom] = useState(false)
   const navRef = useRef<HTMLElement>(null)
   const [navScrolled, setNavScrolled] = useState(false)
   const [navAtEnd, setNavAtEnd] = useState(false)
@@ -100,12 +101,39 @@ export default function Home() {
       {/* Content area */}
       <div className="flex-1 min-h-0 relative overflow-auto flex flex-col">
 
+        {/* Planimetry zoom modal — mobile */}
+        {planZoom && (
+          <div
+            className="fixed inset-0 z-50 bg-[#0A0A0A]/98 flex flex-col md:hidden"
+            onClick={() => setPlanZoom(false)}
+          >
+            <div className="flex justify-between items-center px-4 py-3 border-b border-[#F0EAD6]/10 shrink-0">
+              <span className="text-[10px] tracking-[0.3em] text-[#F0EAD6]/40 font-mono uppercase">VARIANT {planVariant}</span>
+              <button className="text-[#F0EAD6]/50 text-xl leading-none" onClick={() => setPlanZoom(false)}>✕</button>
+            </div>
+            <div className="flex-1 flex items-center justify-center p-4 overflow-auto">
+              <div className="w-full max-w-[600px]" onClick={e => e.stopPropagation()}>
+                <Planimetry variant={planVariant} />
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* 01 PLANIMETRY */}
         {active === '01 PLANIMETRY' && (
           <div className="tab-content flex-1 flex flex-col md:flex-row">
             {/* Main plan */}
-            <div className="md:flex-1 p-4 md:p-8 min-w-0 md:min-h-[320px] md:flex md:flex-col md:justify-center">
-              <Planimetry variant={planVariant} />
+            <div className="md:flex-1 p-4 md:p-8 min-w-0 md:min-h-[320px] md:flex md:flex-col md:justify-center relative">
+              {/* Tap to enlarge — mobile only */}
+              <button
+                className="md:hidden absolute top-5 right-5 z-10 text-[9px] tracking-[0.25em] text-[#F0EAD6]/35 font-mono uppercase border border-[#F0EAD6]/15 px-2 py-1 bg-[#0A0A0A]/70"
+                onClick={() => setPlanZoom(true)}
+              >
+                ⊕ ENLARGE
+              </button>
+              <div className="md:cursor-default cursor-zoom-in" onClick={() => { if (window.innerWidth < 768) setPlanZoom(true) }}>
+                <Planimetry variant={planVariant} />
+              </div>
             </div>
 
             {/* Sidebar */}
@@ -196,7 +224,7 @@ export default function Home() {
 
         {/* 03 WORKWEAR */}
         {active === '03 WORKWEAR' && (
-          <div className="tab-content flex-1 flex flex-col items-center md:flex-row md:items-center md:justify-center gap-3 md:gap-20 px-4 md:px-12 py-4 pb-10 md:py-0 md:pb-0 overflow-y-auto md:overflow-visible">
+          <div className="tab-content flex-1 flex flex-col items-center md:flex-row md:items-start md:justify-center gap-3 md:gap-20 px-4 md:px-12 py-4 pb-10 md:py-8 md:pb-0 overflow-y-auto md:overflow-visible">
             <div className="flex flex-col items-center gap-3">
               <div className="flex gap-3 mb-2">
                 {(['front', 'back'] as const).map((v) => (
