@@ -66,7 +66,7 @@ export default function Home() {
         {active === '01 PLANIMETRY' && (
           <div className="tab-content min-h-full flex flex-col md:flex-row">
             {/* Main plan */}
-            <div className="md:flex-1 p-4 md:p-8 min-w-0 min-h-[260px]">
+            <div className="md:flex-1 p-4 md:p-8 min-w-0 min-h-[320px]">
               <Planimetry variant={planVariant} />
             </div>
 
@@ -164,7 +164,7 @@ export default function Home() {
                 {(['front', 'back'] as const).map((v) => (
                   <button key={v} onClick={() => setView(v)}
                     className={`text-[10px] tracking-[0.3em] uppercase font-mono transition-colors ${
-                      view === v ? 'text-[#F0EAD6]' : 'text-[#F0EAD6]/30 hover:text-[#F0EAD6]/50'
+                      view === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'text-[#F0EAD6]/30 hover:text-[#F0EAD6]/50'
                     }`}>
                     {v}
                   </button>
@@ -217,9 +217,9 @@ export default function Home() {
                   <input
                     type="email"
                     placeholder="email"
-                    className="bg-transparent border border-[#F0EAD6]/20 text-[#F0EAD6] text-[10px] tracking-widest px-3 py-1.5 font-mono placeholder:text-[#F0EAD6]/15 focus:outline-none focus:border-[#F0EAD6]/40 flex-1"
+                    className="bg-transparent border border-[#F0EAD6]/20 text-[#F0EAD6] text-[10px] tracking-widest px-3 py-1.5 font-mono placeholder:text-[#F0EAD6]/30 focus:outline-none focus:border-[#F0EAD6]/40 flex-1"
                   />
-                  <button className="border border-l-0 border-[#F0EAD6]/20 px-3 py-1.5 text-[#F0EAD6]/40 hover:text-[#F0EAD6] transition-colors text-xs">
+                  <button className="border border-l border-[#F0EAD6]/20 border-l-[#F0EAD6]/10 px-3 py-1.5 text-[#F0EAD6]/50 hover:text-[#F0EAD6] transition-colors text-xs bg-[#F0EAD6]/[0.03]">
                     →
                   </button>
                 </div>
