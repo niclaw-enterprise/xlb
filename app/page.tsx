@@ -33,13 +33,15 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    // Use rAF to ensure the browser has computed layout before reading scrollWidth
     requestAnimationFrame(() => {
       const nav = navRef.current
       if (!nav) return
       setNavAtEnd(nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4)
+      // Auto-scroll active tab into view
+      const activeBtn = nav.querySelector('.active') as HTMLElement
+      if (activeBtn) activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
     })
-  }, [])
+  }, [active])
 
   return (
     <main className="bg-[#0A0A0A] text-[#F0EAD6] h-screen overflow-hidden flex flex-col font-mono">
@@ -72,7 +74,7 @@ export default function Home() {
                 setActive(s)
                 e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
               }}
-              className={`nav-tab px-4 md:px-8 py-3 min-h-[44px] md:min-h-0 flex items-center text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
+              className={`nav-tab px-3 md:px-8 py-3 min-h-[44px] md:min-h-0 flex items-center text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
                 active === s
                   ? 'active bg-[#F0EAD6]/5 text-[#F0EAD6]'
                   : 'text-[#F0EAD6] opacity-40 hover:opacity-60'
@@ -89,7 +91,7 @@ export default function Home() {
           <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 z-10 md:hidden bg-gradient-to-r from-[#0A0A0A] to-transparent" />
         )}
         {!navAtEnd && (
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 z-10 md:hidden flex items-center justify-end pr-2 bg-gradient-to-l from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent">
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 z-10 md:hidden flex items-center justify-end pr-2 bg-gradient-to-l from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent">
             <span className="text-[#F0EAD6]/65 text-sm select-none">›</span>
           </div>
         )}
@@ -194,7 +196,7 @@ export default function Home() {
 
         {/* 03 WORKWEAR */}
         {active === '03 WORKWEAR' && (
-          <div className="tab-content flex-1 flex flex-col items-center md:flex-row md:items-center md:justify-center gap-3 md:gap-20 px-4 md:px-12 py-1 md:py-0">
+          <div className="tab-content flex-1 flex flex-col items-center md:flex-row md:items-center md:justify-center gap-3 md:gap-20 px-4 md:px-12 py-4 pb-10 md:py-0 md:pb-0 overflow-y-auto md:overflow-visible">
             <div className="flex flex-col items-center gap-3">
               <div className="flex gap-3 mb-2">
                 {(['front', 'back'] as const).map((v) => (
@@ -225,7 +227,7 @@ export default function Home() {
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-3 py-1 text-[10px] tracking-widest font-mono border transition-colors ${
+                    className={`min-w-[44px] min-h-[44px] px-3 py-2 text-[10px] tracking-widest font-mono border transition-colors flex items-center justify-center ${
                       selectedSize === size
                         ? 'border-[#F0EAD6] text-[#F0EAD6]'
                         : 'border-[#F0EAD6]/20 text-[#F0EAD6]/30 hover:border-[#F0EAD6]/40'
