@@ -88,8 +88,8 @@ export default function Home() {
           <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 z-10 md:hidden bg-gradient-to-r from-[#0A0A0A] to-transparent" />
         )}
         {!navAtEnd && (
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-14 z-10 md:hidden flex items-center justify-end pr-1 bg-gradient-to-l from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent">
-            <span className="text-[#F0EAD6]/40 text-[10px] select-none">›</span>
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 z-10 md:hidden flex items-center justify-end pr-2 bg-gradient-to-l from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent">
+            <span className="text-[#F0EAD6]/65 text-sm select-none">›</span>
           </div>
         )}
       </div>
