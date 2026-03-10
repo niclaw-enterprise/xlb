@@ -281,7 +281,7 @@ export default function Home() {
                 Drop 001 is the t-shirt. Before the restaurant. Before the address. Before the opening date. The merch precedes the place.
               </p>
               <div className="border-b border-[#F0EAD6]/10 w-24 my-8" />
-              <p className="text-[9px] tracking-[0.4em] text-[#F0EAD6]/20">
+              <p className="text-[9px] tracking-[0.4em] text-[#F0EAD6]/30">
                 EST. TBD · SHAM SHUI PO · KOWLOON · HK
               </p>
             </div>
