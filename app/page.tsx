@@ -6,7 +6,7 @@ import RunningBuyButton from '@/components/RunningBuyButton'
 import Planimetry from '@/components/Planimetry'
 import MenuDesign from '@/components/MenuDesign'
 
-const sections = ['01 PLANIMETRY', '02 MENU', '03 WORKWEAR', '05 CONCEPT'] as const
+const sections = ['01 PLANIMETRY', '02 MENU', '03 WORKWEAR', '04 CONCEPT'] as const
 type Section = typeof sections[number]
 
 const planVariants = ['A', 'B', 'C'] as const
@@ -75,7 +75,7 @@ export default function Home() {
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Project</div>
                 <div className="text-[13px] text-[#F0EAD6]/70 leading-relaxed">
                   老板不在<br/>
-                  <span className="text-xs text-[#F0EAD6]/30">Sham Shui Po, KL</span>
+                  <span className="text-xs text-[#F0EAD6]/30">Sham Shui Po, HK</span>
                 </div>
               </div>
               <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
@@ -227,8 +227,8 @@ export default function Home() {
           </div>
         )}
 
-        {/* 05 CONCEPT */}
-        {active === '05 CONCEPT' && (
+        {/* 04 CONCEPT */}
+        {active === '04 CONCEPT' && (
           <div className="flex items-center justify-center h-full">
             <div className="max-w-lg mx-auto text-center">
               <h2 className="text-6xl text-[#F0EAD6] mb-6" style={{ fontFamily: 'serif' }}>老板不在</h2>
