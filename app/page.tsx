@@ -148,7 +148,7 @@ export default function Home() {
         {/* 02 MENU */}
         {active === '02 MENU' && (
           <div className="tab-content flex-1 flex flex-col md:flex-row">
-            <div className="flex-1 flex items-center justify-center p-4 md:p-8 min-w-0">
+            <div className="md:flex-1 flex items-center justify-center p-4 md:p-8 min-w-0">
               <MenuDesign variant={menuVariant} />
             </div>
             <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-y-auto">
