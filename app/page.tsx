@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import TShirt from '@/components/TShirt'
 import RunningBuyButton from '@/components/RunningBuyButton'
 import Planimetry from '@/components/Planimetry'
@@ -23,9 +23,20 @@ export default function Home() {
   const [view, setView] = useState<"front"|"back">("front")
   const navRef = useRef<HTMLElement>(null)
   const [navScrolled, setNavScrolled] = useState(false)
+  const [navAtEnd, setNavAtEnd] = useState(false)
 
   const handleNavScroll = useCallback(() => {
-    setNavScrolled((navRef.current?.scrollLeft ?? 0) > 4)
+    const nav = navRef.current
+    if (!nav) return
+    setNavScrolled(nav.scrollLeft > 4)
+    setNavAtEnd(nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4)
+  }, [])
+
+  useEffect(() => {
+    const nav = navRef.current
+    if (!nav) return
+    // Check initial state — if no overflow, mark as at-end (no right fade needed)
+    setNavAtEnd(nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4)
   }, [])
 
   return (
@@ -74,7 +85,9 @@ export default function Home() {
         {navScrolled && (
           <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 z-10 md:hidden bg-gradient-to-r from-[#0A0A0A] to-transparent" />
         )}
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 z-10 md:hidden bg-gradient-to-l from-[#0A0A0A] to-transparent" />
+        {!navAtEnd && (
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 z-10 md:hidden bg-gradient-to-l from-[#0A0A0A] to-transparent" />
+        )}
       </div>
 
       {/* Content area */}
@@ -120,7 +133,7 @@ export default function Home() {
               <hr className="border-[#F0EAD6]/8" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-2 uppercase">Notes</div>
-                <div className="text-[10px] text-[#F0EAD6]/20 leading-relaxed break-words">
+                <div className="text-[10px] text-[#F0EAD6]/35 leading-relaxed break-words">
                   All variants assume ground floor. Natural light from street-facing facade. Shared building WC acceptable for variant C.
                 </div>
               </div>
@@ -167,7 +180,7 @@ export default function Home() {
                 <div className="text-[11px] text-[#F0EAD6]/50">HKD · Cash preferred</div>
               </div>
               <hr className="border-[#F0EAD6]/8" />
-              <div className="text-[10px] text-[#F0EAD6]/20 leading-relaxed break-words">
+              <div className="text-[10px] text-[#F0EAD6]/35 leading-relaxed break-words">
                 Menu design in progress. Final items TBD.
               </div>
             </div>
