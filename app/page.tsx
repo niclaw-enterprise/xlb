@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import TShirt from '@/components/TShirt'
 import RunningBuyButton from '@/components/RunningBuyButton'
 import Planimetry from '@/components/Planimetry'
@@ -21,6 +21,12 @@ export default function Home() {
   const [menuVariant, setMenuVariant] = useState<MenuVariant>('A')
   const [selectedSize, setSelectedSize] = useState('M')
   const [view, setView] = useState<"front"|"back">("front")
+  const navRef = useRef<HTMLElement>(null)
+  const [navScrolled, setNavScrolled] = useState(false)
+
+  const handleNavScroll = useCallback(() => {
+    setNavScrolled((navRef.current?.scrollLeft ?? 0) > 4)
+  }, [])
 
   return (
     <main className="bg-[#0A0A0A] text-[#F0EAD6] h-screen overflow-hidden flex flex-col font-mono">
@@ -40,11 +46,18 @@ export default function Home() {
       </header>
 
       {/* Nav */}
-      <nav className="relative flex gap-0 border-b border-[#F0EAD6]/8 shrink-0 overflow-x-auto flex-nowrap">
+      <nav
+        ref={navRef}
+        onScroll={handleNavScroll}
+        className="relative flex gap-0 border-b border-[#F0EAD6]/8 shrink-0 overflow-x-auto flex-nowrap"
+      >
         {sections.map((s) => (
           <button
             key={s}
-            onClick={() => setActive(s)}
+            onClick={(e) => {
+              setActive(s)
+              e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
+            }}
             className={`nav-tab px-4 md:px-8 py-3 min-h-[44px] md:min-h-0 flex items-center text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
               active === s
                 ? 'active bg-[#F0EAD6]/5 text-[#F0EAD6]'
@@ -55,7 +68,10 @@ export default function Home() {
           </button>
         ))}
         <div className="flex-1" />
-        {/* Scroll fade indicator — only visible on mobile when nav overflows */}
+        {/* Scroll fade indicators — only visible on mobile when nav overflows */}
+        {navScrolled && (
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 z-10 md:hidden bg-gradient-to-r from-[#0A0A0A] to-transparent" />
+        )}
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 z-10 md:hidden bg-gradient-to-l from-[#0A0A0A] to-transparent" />
       </nav>
 
