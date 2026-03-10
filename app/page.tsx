@@ -15,6 +15,21 @@ type PlanVariant = typeof planVariants[number]
 const menuVariants = ['A', 'B'] as const
 type MenuVariant = typeof menuVariants[number]
 
+// Hash ↔ Section mapping
+const sectionToHash: Record<Section, string> = {
+  '01 PLANIMETRY': 'planimetry',
+  '02 MENU': 'menu',
+  '03 WORKWEAR': 'workwear',
+  '04 CONCEPT': 'concept',
+}
+const hashToSection: Record<string, Section> = Object.fromEntries(
+  Object.entries(sectionToHash).map(([k, v]) => [v, k as Section])
+)
+function hashToTab(hash: string): Section {
+  const key = hash.replace('#', '').toLowerCase()
+  return hashToSection[key] ?? '01 PLANIMETRY'
+}
+
 export default function Home() {
   const [active, setActive] = useState<Section>('01 PLANIMETRY')
   const [planVariant, setPlanVariant] = useState<PlanVariant>('A')
@@ -25,6 +40,22 @@ export default function Home() {
   const navRef = useRef<HTMLElement>(null)
   const [navScrolled, setNavScrolled] = useState(false)
   const [navAtEnd, setNavAtEnd] = useState(false)
+
+  // Read hash on mount and sync active tab
+  useEffect(() => {
+    const tab = hashToTab(window.location.hash)
+    setActive(tab)
+    const onPopState = () => setActive(hashToTab(window.location.hash))
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
+
+  // When active tab changes, push to history
+  const navigate = useCallback((section: Section) => {
+    const hash = sectionToHash[section]
+    window.history.pushState(null, '', `#${hash}`)
+    setActive(section)
+  }, [])
 
   const handleNavScroll = useCallback(() => {
     const nav = navRef.current
@@ -72,7 +103,7 @@ export default function Home() {
             <button
               key={s}
               onClick={(e) => {
-                setActive(s)
+                navigate(s)
                 e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
               }}
               className={`nav-tab px-3 md:px-8 py-3 min-h-[44px] md:min-h-0 flex items-center text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
