@@ -125,10 +125,10 @@ export default function Home() {
               <hr className="border-[#F0EAD6]/8" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Variants</div>
-                <div className="space-y-1 text-[11px] text-[#F0EAD6]/40">
+                <div className="space-y-1 text-[11px] text-[#F0EAD6]/50">
                   {planVariants.map((v) => (
                     <button key={v} onClick={() => setPlanVariant(v)}
-                      className={`w-full text-left py-1 transition-colors ${planVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'hover:text-[#F0EAD6]/60'}`}>
+                      className={`w-full text-left py-1 transition-colors ${planVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'hover:text-[#F0EAD6]/70'}`}>
                       {planVariant === v && '▸ '}{v === 'A' ? 'A — Linear · 6 covers' : v === 'B' ? 'B — Social · round tables' : 'C — Omakase bar · 12 seats'}
                     </button>
                   ))}
@@ -137,7 +137,7 @@ export default function Home() {
               <hr className="border-[#F0EAD6]/8" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-2 uppercase">Notes</div>
-                <div className="text-[10px] text-[#F0EAD6]/35 leading-relaxed break-words">
+                <div className="text-[10px] text-[#F0EAD6]/50 leading-relaxed break-words">
                   All variants assume ground floor. Natural light from street-facing facade. Shared building WC acceptable for variant C.
                 </div>
               </div>
