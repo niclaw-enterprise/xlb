@@ -51,8 +51,7 @@ export default function Home() {
                 : 'text-[#F0EAD6] opacity-40 hover:opacity-60 after:scale-x-0'
             }`}
           >
-            <span className="md:hidden">{s.split(' ')[0]}</span>
-            <span className="hidden md:inline">{s}</span>
+            {s}
           </button>
         ))}
         <div className="flex-1" />
@@ -65,7 +64,7 @@ export default function Home() {
         {active === '01 PLANIMETRY' && (
           <div className="min-h-full flex flex-col md:flex-row">
             {/* Main plan */}
-            <div className="flex-1 p-4 md:p-8 min-w-0 min-h-[260px]">
+            <div className="md:flex-1 p-4 md:p-8 min-w-0 min-h-[260px]">
               <Planimetry variant={planVariant} />
             </div>
 
