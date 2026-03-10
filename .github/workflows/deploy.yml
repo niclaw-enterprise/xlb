@@ -31,8 +31,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          DEPLOY_ENV: gh-pages
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
