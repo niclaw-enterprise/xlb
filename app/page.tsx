@@ -157,21 +157,21 @@ export default function Home() {
 
         {/* 03 WORKWEAR */}
         {active === '03 WORKWEAR' && (
-          <div className="h-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20 px-6 md:px-12 py-6 md:py-0">
+          <div className="h-full flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center gap-8 md:gap-20 px-6 md:px-12 py-6 overflow-y-auto">
             <div className="flex flex-col items-center gap-3">
-              <div className="flex gap-3 mb-2">
+              <div className="flex gap-1 mb-2 border border-[#F0EAD6]/10">
                 {(['front', 'back'] as const).map((v) => (
                   <button key={v} onClick={() => setView(v)}
-                    className={`text-[10px] tracking-[0.3em] uppercase font-mono transition-colors ${
-                      view === v ? 'text-[#F0EAD6]' : 'text-[#F0EAD6]/30 hover:text-[#F0EAD6]/50'
+                    className={`px-4 py-1.5 text-[10px] tracking-[0.3em] uppercase font-mono transition-colors ${
+                      view === v
+                        ? 'bg-[#F0EAD6]/8 text-[#F0EAD6] border-b border-[#39FF85]'
+                        : 'text-[#F0EAD6]/30 hover:text-[#F0EAD6]/60'
                     }`}>
                     {v}
                   </button>
                 ))}
               </div>
-              <div style={view === 'back' ? { transform: 'scaleX(-1)' } : undefined}>
-                <TShirt />
-              </div>
+              <TShirt side={view} />
             </div>
             <div className="flex flex-col gap-7 max-w-xs">
               <div>
@@ -198,7 +198,7 @@ export default function Home() {
                   </button>
                 ))}
               </div>
-              <div className="font-mono text-[9px] text-[#F0EAD6]/20 tracking-widest">SKU · XLB-TS-001</div>
+              <div className="font-mono text-[9px] text-[#F0EAD6]/20 tracking-widest">REF: XLB-WW-001 / FW26</div>
               <div className="font-mono text-[#F0EAD6]/50 tracking-widest">
                 <span className="text-[10px]">HKD </span>
                 <span className="text-3xl font-bold text-[#F0EAD6]">380</span>
@@ -209,7 +209,7 @@ export default function Home() {
                 </p>
                 <RunningBuyButton />
               </div>
-              <p className="text-[10px] text-[#F0EAD6]/30 leading-relaxed max-w-[200px]">100% organic cotton. 280gsm heavyweight. Screen printed in Hong Kong. For the restaurant that does not exist yet.</p>
+              <p className="text-[10px] text-[#F0EAD6]/30 leading-relaxed max-w-[200px]">Heavyweight cotton. Blueprint print. Limited run. Made in Portugal.</p>
               <div className="flex flex-col gap-2">
                 <label className="text-[9px] text-[#F0EAD6]/30 tracking-[0.3em] uppercase font-mono">Notify Me on Drop</label>
                 <div className="flex">
@@ -218,8 +218,8 @@ export default function Home() {
                     placeholder="email"
                     className="bg-transparent border border-[#F0EAD6]/20 text-[#F0EAD6] text-[10px] tracking-widest px-3 py-1.5 font-mono placeholder:text-[#F0EAD6]/15 focus:outline-none focus:border-[#F0EAD6]/40 flex-1"
                   />
-                  <button className="border border-l-0 border-[#F0EAD6]/20 px-3 py-1.5 text-[#F0EAD6]/40 hover:text-[#F0EAD6] transition-colors text-xs">
-                    →
+                  <button className="border border-l-0 border-[#F0EAD6]/20 px-3 py-1.5 text-[#F0EAD6]/40 hover:text-[#F0EAD6] transition-colors text-[9px] font-mono tracking-widest uppercase whitespace-nowrap">
+                    NOTIFY ME
                   </button>
                 </div>
               </div>
