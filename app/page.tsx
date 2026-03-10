@@ -158,7 +158,7 @@ export default function Home() {
                 <div className="flex gap-3 mb-4">
                   {menuVariants.map((v) => (
                     <button key={v} onClick={() => setMenuVariant(v)}
-                      className={`text-[11px] tracking-widest transition-colors ${menuVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'text-[#F0EAD6]/20 hover:text-[#F0EAD6]/40'}`}>
+                      className={`text-[11px] tracking-widest transition-colors ${menuVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'text-[#F0EAD6]/35 hover:text-[#F0EAD6]/60'}`}>
                       {menuVariant === v && '▸ '}VAR {v}
                     </button>
                   ))}
