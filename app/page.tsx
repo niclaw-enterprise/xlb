@@ -45,7 +45,7 @@ export default function Home() {
           <button
             key={s}
             onClick={() => setActive(s)}
-            className={`nav-tab px-4 md:px-8 py-3 text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
+            className={`nav-tab px-4 md:px-8 py-3 min-h-[44px] md:min-h-0 flex items-center text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
               active === s
                 ? 'active bg-[#F0EAD6]/5 text-[#F0EAD6]'
                 : 'text-[#F0EAD6] opacity-40 hover:opacity-60'
@@ -79,7 +79,7 @@ export default function Home() {
                   <span className="text-xs text-[#F0EAD6]/30">Sham Shui Po, HK</span>
                 </div>
               </div>
-              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
+              <hr className="border-[#F0EAD6]/8" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Status</div>
                 <div className="flex items-center gap-2">
@@ -87,7 +87,7 @@ export default function Home() {
                   <span className="text-xs text-[#39FF85]/80">IN DESIGN</span>
                 </div>
               </div>
-              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
+              <hr className="border-[#F0EAD6]/8" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Variants</div>
                 <div className="space-y-1 text-[11px] text-[#F0EAD6]/40">
@@ -99,8 +99,8 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
-              <div className="mt-auto">
+              <hr className="border-[#F0EAD6]/8" />
+              <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-2 uppercase">Notes</div>
                 <div className="text-[10px] text-[#F0EAD6]/20 leading-relaxed break-words">
                   All variants assume ground floor. Natural light from street-facing facade. Shared building WC acceptable for variant C.
@@ -128,7 +128,7 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
+              <hr className="border-[#F0EAD6]/8" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Format</div>
                 <div className="text-[11px] text-[#F0EAD6]/50 leading-relaxed">
@@ -137,19 +137,19 @@ export default function Home() {
                     : 'Single item per card. Omakase style. Thermal print.'}
                 </div>
               </div>
-              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
+              <hr className="border-[#F0EAD6]/8" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Language</div>
                 <div className="text-[11px] text-[#F0EAD6]/50">繁體中文 + EN</div>
                 <div className="text-[10px] text-[#F0EAD6]/20 mt-1">Traditional characters only</div>
               </div>
-              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
+              <hr className="border-[#F0EAD6]/8" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Currency</div>
                 <div className="text-[11px] text-[#F0EAD6]/50">HKD · Cash preferred</div>
               </div>
-              <div className="text-[#F0EAD6]/10 text-center text-xs">·</div>
-              <div className="mt-auto text-[10px] text-[#F0EAD6]/20 leading-relaxed break-words">
+              <hr className="border-[#F0EAD6]/8" />
+              <div className="text-[10px] text-[#F0EAD6]/20 leading-relaxed break-words">
                 Menu design in progress. Final items TBD.
               </div>
             </div>
@@ -231,9 +231,11 @@ export default function Home() {
         {/* 04 CONCEPT */}
         {active === '04 CONCEPT' && (
           <div className="tab-content flex items-center justify-center min-h-full px-4">
-            <div className="max-w-lg mx-auto text-center py-8">
-              <h2 className="text-6xl text-[#F0EAD6] mb-6" style={{ fontFamily: 'serif' }}>老板不在</h2>
-              <p className="text-xs tracking-[0.5em] text-[#F0EAD6]/30 mb-12">THE BOSS IS NOT HERE</p>
+            <div className="max-w-lg mx-auto py-8">
+              <div className="text-center mb-12">
+                <h2 className="text-6xl text-[#F0EAD6] mb-6" style={{ fontFamily: 'serif' }}>老板不在</h2>
+                <p className="text-xs tracking-[0.5em] text-[#F0EAD6]/30">THE BOSS IS NOT HERE</p>
+              </div>
               <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono mb-6">
                 XLB is a restaurant that does not exist yet. A dim sum counter somewhere in Sham Shui Po, Kowloon. Six tables. Twelve stools. One steam counter.
               </p>
@@ -243,7 +245,7 @@ export default function Home() {
               <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono mb-6">
                 Drop 001 is the t-shirt. Before the restaurant. Before the address. Before the opening date. The merch precedes the place.
               </p>
-              <div className="border-b border-[#F0EAD6]/10 w-24 mx-auto my-8" />
+              <div className="border-b border-[#F0EAD6]/10 w-24 my-8" />
               <p className="text-[9px] tracking-[0.4em] text-[#F0EAD6]/20">
                 EST. TBD · SHAM SHUI PO · KOWLOON · HK
               </p>
