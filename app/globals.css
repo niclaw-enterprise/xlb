@@ -197,3 +197,81 @@ body {
     transition: none !important;
   }
 }
+
+/* ─────────────────────────────────────────
+   PRINT — floor plan export
+   @media print targets any window.print() call
+   Optimized for A4/Letter, landscape
+───────────────────────────────────────── */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 12mm;
+  }
+
+  /* Reset full-height layout constraints */
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+    background: #0A0A0A !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  main {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Hide chrome: header nav-bar, sidebar controls, footer, buy button */
+  header,
+  nav,
+  footer,
+  .shimmer-btn,
+  [aria-label="decrease quantity"],
+  [aria-label="increase quantity"],
+  button.buy-btn-glow {
+    display: none !important;
+  }
+
+  /* Show planimetry content full-width */
+  .tab-content {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    height: auto !important;
+    animation: none !important;
+  }
+
+  /* SVG takes most of the page */
+  .tab-content > div:first-child {
+    flex: 1 !important;
+    padding: 0 !important;
+  }
+
+  /* Sidebar: compact, right column */
+  .tab-content > div:last-child {
+    width: 140px !important;
+    max-height: none !important;
+    overflow: visible !important;
+    font-size: 8pt !important;
+    padding: 0 0 0 8pt !important;
+    border-left: 0.5pt solid rgba(240,234,214,0.3) !important;
+    border-top: none !important;
+  }
+
+  /* Zoom modal: never print */
+  .fixed { display: none !important; }
+
+  /* Print title in page margin */
+  body::before {
+    content: 'XLB — 老板不在 · SHAM SHUI PO · KOWLOON · HK';
+    display: block;
+    font-family: monospace;
+    font-size: 7pt;
+    color: rgba(240,234,214,0.5);
+    letter-spacing: 0.2em;
+    text-align: center;
+    margin-bottom: 6mm;
+  }
+}

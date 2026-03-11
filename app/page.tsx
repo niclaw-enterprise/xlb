@@ -227,6 +227,15 @@ export default function Home() {
                   All variants assume ground floor. Natural light from street-facing facade. Shared building WC acceptable for variant C.
                 </div>
               </div>
+              <div className="border-t border-dashed border-[#F0EAD6]/15" />
+              <button
+                onClick={() => window.print()}
+                className="flex items-center gap-2 text-[9px] font-mono tracking-[0.3em] text-[#F0EAD6]/30 hover:text-[#F0EAD6]/60 transition-colors uppercase"
+                title="Print floor plan (A4 landscape)"
+              >
+                <span>⊙</span>
+                <span>Export PDF</span>
+              </button>
             </div>
           </div>
         )}
