@@ -120,11 +120,15 @@ export default function Home() {
         <nav
           ref={navRef}
           onScroll={handleNavScroll}
+          role="tablist"
+          aria-label="Site sections"
           className="flex gap-0 overflow-x-auto flex-nowrap"
         >
           {sections.map((s) => (
             <button
               key={s}
+              role="tab"
+              aria-selected={active === s}
               onClick={(e) => {
                 navigate(s)
                 e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
@@ -153,7 +157,7 @@ export default function Home() {
       </div>
 
       {/* Content area */}
-      <div className="flex-1 min-h-0 relative overflow-auto flex flex-col">
+      <div role="tabpanel" aria-label={active} className="flex-1 min-h-0 relative overflow-auto flex flex-col">
 
         {/* Planimetry zoom modal — mobile */}
         {planZoom && (
@@ -182,6 +186,7 @@ export default function Home() {
               <button
                 className="md:hidden absolute top-5 right-5 z-10 text-[9px] tracking-[0.25em] text-[#F0EAD6]/35 font-mono uppercase border border-[#F0EAD6]/15 px-2 py-1 bg-[#0A0A0A]/70"
                 onClick={() => setPlanZoom(true)}
+                aria-label="Enlarge floor plan"
               >
                 ⊕ ENLARGE
               </button>
