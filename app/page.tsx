@@ -35,6 +35,7 @@ export default function Home() {
   const [planVariant, setPlanVariant] = useState<PlanVariant>('A')
   const [menuVariant, setMenuVariant] = useState<MenuVariant>('A')
   const [selectedSize, setSelectedSize] = useState('M')
+  const [qty, setQty] = useState(1)
   const [view, setView] = useState<"front"|"back">("front")
   const [planZoom, setPlanZoom] = useState(false)
   const navRef = useRef<HTMLElement>(null)
@@ -300,6 +301,23 @@ export default function Home() {
                     {size}
                   </button>
                 ))}
+              </div>
+              {/* Quantity counter */}
+              <div className="flex items-center gap-0">
+                <button
+                  onClick={() => setQty(q => Math.max(1, q - 1))}
+                  className="w-8 h-8 border border-[#F0EAD6]/20 text-[#F0EAD6]/50 hover:text-[#F0EAD6] hover:border-[#F0EAD6]/40 transition-colors font-mono text-sm flex items-center justify-center"
+                  aria-label="decrease quantity"
+                >−</button>
+                <div className="w-10 h-8 border-t border-b border-[#F0EAD6]/20 flex items-center justify-center font-mono text-[11px] text-[#F0EAD6]/70 tracking-widest">
+                  {String(qty).padStart(2, '0')}
+                </div>
+                <button
+                  onClick={() => setQty(q => Math.min(9, q + 1))}
+                  className="w-8 h-8 border border-[#F0EAD6]/20 text-[#F0EAD6]/50 hover:text-[#F0EAD6] hover:border-[#F0EAD6]/40 transition-colors font-mono text-sm flex items-center justify-center"
+                  aria-label="increase quantity"
+                >+</button>
+                <span className="ml-3 text-[9px] text-[#F0EAD6]/20 tracking-widest font-mono uppercase">QTY</span>
               </div>
               <div className="font-mono text-[9px] text-[#F0EAD6]/20 tracking-widest">SKU · XLB-TS-001</div>
               <div className="font-mono text-[#F0EAD6]/50 tracking-widest">

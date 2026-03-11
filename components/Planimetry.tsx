@@ -51,11 +51,18 @@ function VariantA() {
       {/* Outer walls */}
       <rect x="40" y="30" width="320" height="220" fill="none" stroke="#F0EAD6" strokeWidth="2" opacity="0.7"/>
 
-      {/* Entry */}
-      <line x1="160" y1="250" x2="240" y2="250" stroke="#0A0A0A" strokeWidth="3"/>
-      <path d="M 160 250 Q 160 270 200 270 Q 240 270 240 250" fill="none" stroke="#F0EAD6" strokeWidth="0.8" strokeDasharray="3,2" opacity="0.5"/>
-      <line x1="240" y1="250" x2="200" y2="270" stroke="#F0EAD6" strokeWidth="0.8" opacity="0.5"/>
-      <text x="200" y="265" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.8" letterSpacing="2">ENTRY</text>
+      {/* Entry — bottom wall gap with proper door leaf + swing arc */}
+      {/* Wall gap eraser */}
+      <line x1="160" y1="250" x2="240" y2="250" stroke="#0A0A0A" strokeWidth="4"/>
+      {/* Jamb tick marks */}
+      <line x1="160" y1="245" x2="160" y2="255" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      <line x1="240" y1="245" x2="240" y2="255" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      {/* Door leaf — hinged at left jamb, open 90° inward */}
+      <line x1="160" y1="250" x2="160" y2="170" stroke="#F0EAD6" strokeWidth="1.3" opacity="0.75"/>
+      {/* Swing arc from free end (240,250) to leaf tip (160,170) */}
+      <path d="M 240 250 A 80 80 0 0 0 160 170" fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="4,3" opacity="0.45"/>
+      {/* ENTRY label — exterior side */}
+      <text x="200" y="268" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.8" letterSpacing="2">ENTRY</text>
 
       {/* Kitchen (back) */}
       <rect x="220" y="30" width="140" height="90" fill="#111" stroke="#F0EAD6" strokeWidth="1" opacity="0.8"/>
@@ -179,11 +186,14 @@ function VariantB() {
         </g>
       ))}
 
-      {/* Entry — bottom wall center gap, well clear of table 06 */}
+      {/* Entry — bottom wall gap with proper door leaf + swing arc */}
       <line x1="195" y1="310" x2="285" y2="310" stroke="#0A0A0A" strokeWidth="4"/>
-      <path d="M 195 310 Q 195 336 240 336 Q 285 336 285 310"
-        fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="3,2" opacity="0.4"/>
-      <text x="240" y="330" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.7" letterSpacing="2">ENTRY</text>
+      <line x1="195" y1="305" x2="195" y2="315" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      <line x1="285" y1="305" x2="285" y2="315" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      {/* Door leaf hinged at left jamb, open 90° inward */}
+      <line x1="195" y1="310" x2="195" y2="220" stroke="#F0EAD6" strokeWidth="1.3" opacity="0.75"/>
+      <path d="M 285 310 A 90 90 0 0 0 195 220" fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="4,3" opacity="0.45"/>
+      <text x="240" y="328" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.7" letterSpacing="2">ENTRY</text>
 
       {/* Dimension: width */}
       <line x1="40" y1="350" x2="440" y2="350" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
@@ -276,10 +286,13 @@ function VariantC() {
       {/* Guest seating label */}
       <text x="235" y="218" textAnchor="middle" fontSize="5.5" fill="#F0EAD6" fontFamily="monospace" opacity="0.2" letterSpacing="3">GUEST SEATING · 12 COVERS</text>
 
-      {/* Entry — bottom wall center gap with door swing arc */}
-      <line x1="195" y1="290" x2="295" y2="290" stroke="#0A0A0A" strokeWidth="3"/>
-      <path d="M 195 290 Q 195 312 245 312 Q 295 312 295 290"
-        fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="3,2" opacity="0.4"/>
+      {/* Entry — bottom wall gap with proper door leaf + swing arc */}
+      <line x1="195" y1="290" x2="295" y2="290" stroke="#0A0A0A" strokeWidth="4"/>
+      <line x1="195" y1="285" x2="195" y2="295" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      <line x1="295" y1="285" x2="295" y2="295" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      {/* Door leaf hinged at left jamb, open 90° inward */}
+      <line x1="195" y1="290" x2="195" y2="190" stroke="#F0EAD6" strokeWidth="1.3" opacity="0.75"/>
+      <path d="M 295 290 A 100 100 0 0 0 195 190" fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="4,3" opacity="0.4"/>
       <text x="245" y="308" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.7" letterSpacing="2">ENTRY</text>
 
       {/* XLB cartouche / title block stamp — bottom-right of plan field */}
