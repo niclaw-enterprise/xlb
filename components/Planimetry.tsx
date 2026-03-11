@@ -48,8 +48,14 @@ export default function Planimetry({ variant = 'A' }: { variant?: 'A' | 'B' | 'C
 function VariantA() {
   return (
     <>
-      {/* Outer walls */}
-      <rect x="40" y="30" width="320" height="220" fill="none" stroke="#F0EAD6" strokeWidth="2" opacity="0.7"/>
+      {/* Outer walls — cut section hatching (evenodd clips to wall zone only) */}
+      <defs>
+        <clipPath id="wall-clip-a">
+          <path clipRule="evenodd" d="M36,26h328v228h-328z M44,34h312v212h-312z"/>
+        </clipPath>
+      </defs>
+      <rect x="36" y="26" width="328" height="228" fill="url(#wall-hatch)" clipPath="url(#wall-clip-a)" opacity="0.6"/>
+      <rect x="40" y="30" width="320" height="220" fill="none" stroke="#F0EAD6" strokeWidth="2" opacity="0.8"/>
 
       {/* Entry — bottom wall gap with proper door leaf + swing arc */}
       {/* Wall gap eraser */}
@@ -141,10 +147,18 @@ function VariantB() {
   return (
     <>
       {/* Outer walls */}
-      <rect x="40" y="30" width="400" height="280" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.7"/>
+      {/* Outer walls — cut section hatching (evenodd clips to wall zone only) */}
+      <defs>
+        <clipPath id="wall-clip-b">
+          <path clipRule="evenodd" d="M36,26h408v288h-408z M44,34h392v272h-392z"/>
+        </clipPath>
+      </defs>
+      <rect x="36" y="26" width="408" height="288" fill="url(#wall-hatch)" clipPath="url(#wall-clip-b)" opacity="0.6"/>
+      <rect x="40" y="30" width="400" height="280" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.8"/>
 
       {/* Kitchen — left 2/3 of back wall */}
       <rect x="40" y="30" width="268" height="60" fill="#111" stroke="#F0EAD6" strokeWidth="1" opacity="0.8"/>
+      <rect x="40" y="30" width="268" height="60" fill="url(#cross-hatch)"/>
       <text x="174" y="56" textAnchor="middle" fontSize="8" fill="#F0EAD6" fontFamily="monospace" opacity="0.6" letterSpacing="2">KITCHEN</text>
       <text x="174" y="68" textAnchor="middle" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.3" letterSpacing="2">OPEN</text>
 
@@ -226,10 +240,18 @@ function VariantC() {
   return (
     <>
       {/* Outer walls */}
-      <rect x="40" y="30" width="420" height="260" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.7"/>
+      {/* Outer walls — cut section hatching (evenodd clips to wall zone only) */}
+      <defs>
+        <clipPath id="wall-clip-c">
+          <path clipRule="evenodd" d="M36,26h428v268h-428z M44,34h412v252h-412z"/>
+        </clipPath>
+      </defs>
+      <rect x="36" y="26" width="428" height="268" fill="url(#wall-hatch)" clipPath="url(#wall-clip-c)" opacity="0.6"/>
+      <rect x="40" y="30" width="420" height="260" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.8"/>
 
       {/* Kitchen / back-of-house zone background */}
       <rect x="40" y="30" width="420" height="70" fill="#0d150d" stroke="none"/>
+      <rect x="40" y="30" width="420" height="70" fill="url(#cross-hatch)"/>
       <rect x="40" y="30" width="420" height="70" fill="none" stroke="#F0EAD6" strokeWidth="1" opacity="0.5"/>
 
       {/* ── Station 1: COLD STATION ── */}
