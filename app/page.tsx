@@ -76,20 +76,28 @@ export default function Home() {
     })
   }, [active])
 
-  // Keyboard nav: arrow keys cycle through tabs
-  const handleNavKeyDown = useCallback((e: React.KeyboardEvent) => {
-    const idx = sections.indexOf(active)
-    if (e.key === 'ArrowRight') {
-      e.preventDefault()
-      navigate(sections[(idx + 1) % sections.length])
-    } else if (e.key === 'ArrowLeft') {
-      e.preventDefault()
-      navigate(sections[(idx - 1 + sections.length) % sections.length])
+  // Keyboard nav: arrow keys cycle through tabs (global listener — works without focus)
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      // Skip if typing in an input/textarea
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+      const idx = sections.indexOf(active)
+      if (e.key === 'ArrowRight') {
+        e.preventDefault()
+        navigate(sections[(idx + 1) % sections.length])
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        navigate(sections[(idx - 1 + sections.length) % sections.length])
+      } else if (e.key === 'Escape') {
+        setPlanZoom(false)
+      }
     }
-  }, [active, navigate])
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [active, navigate, setPlanZoom])
 
   return (
-    <main className="bg-[#0A0A0A] text-[#F0EAD6] h-[100dvh] overflow-hidden flex flex-col font-mono" onKeyDown={handleNavKeyDown} tabIndex={-1}>
+    <main className="bg-[#0A0A0A] text-[#F0EAD6] h-[100dvh] overflow-hidden flex flex-col font-mono">
 
       {/* Header */}
       <header className="flex flex-col md:flex-row justify-between items-center px-4 md:px-8 pr-6 py-4 gap-2 border-b border-[#F0EAD6]/8 shrink-0">
@@ -121,10 +129,10 @@ export default function Home() {
                 navigate(s)
                 e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
               }}
-              className={`nav-tab px-3 md:px-8 py-3 min-h-[44px] md:min-h-0 flex items-center text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap border-b-2 ${
+              className={`nav-tab px-3 md:px-8 py-3 min-h-[44px] md:min-h-0 flex items-center text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
                 active === s
-                  ? 'active bg-[#F0EAD6]/5 text-[#F0EAD6] border-b-[#39FF85]'
-                  : 'text-[#F0EAD6] opacity-40 hover:opacity-60 border-b-transparent'
+                  ? 'active bg-[#F0EAD6]/5 text-[#F0EAD6]'
+                  : 'text-[#F0EAD6] opacity-40 hover:opacity-60'
               }`}
             >
               {s}
@@ -264,7 +272,7 @@ export default function Home() {
               </div>
               <div className="border-t border-dashed border-[#F0EAD6]/15" />
               <div className="text-[10px] text-[#F0EAD6]/35 leading-relaxed break-words">
-                Menu design in progress. Final items TBD.
+                Menu in development. Items and pricing subject to change before opening.
               </div>
             </div>
           </div>
