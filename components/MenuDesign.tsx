@@ -79,7 +79,7 @@ function MenuA() {
             className="mb-1 leading-none"
             style={{
               fontFamily: 'serif',
-              fontSize: '3.25rem',
+              fontSize: '4rem',
               color: '#F0EAD6',
               letterSpacing: '0.05em',
             }}

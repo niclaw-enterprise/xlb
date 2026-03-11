@@ -14,6 +14,18 @@ export default function Planimetry({ variant = 'A' }: { variant?: 'A' | 'B' | 'C
           <pattern id="floor-grid" width="20" height="20" patternUnits="userSpaceOnUse">
             <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1a2a1a" strokeWidth="0.4"/>
           </pattern>
+          {/* Cross-hatch pattern for kitchen zones */}
+          <pattern id="cross-hatch" width="8" height="8" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="0" x2="8" y2="8" stroke="#39FF85" strokeWidth="0.4" opacity="0.25"/>
+            <line x1="8" y1="0" x2="0" y2="8" stroke="#39FF85" strokeWidth="0.4" opacity="0.25"/>
+          </pattern>
+          {/* Wall section hatching */}
+          <pattern id="wall-hatch" width="6" height="6" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="6" x2="6" y2="0" stroke="#F0EAD6" strokeWidth="0.5" opacity="0.35"/>
+          </pattern>
+          <marker id="arrow-head" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L6,3 z" fill="#B8860B" opacity="0.7"/>
+          </marker>
         </defs>
 
         {/* Grid background */}
@@ -22,6 +34,12 @@ export default function Planimetry({ variant = 'A' }: { variant?: 'A' | 'B' | 'C
         {variant === 'A' && <VariantA />}
         {variant === 'B' && <VariantB />}
         {variant === 'C' && <VariantC />}
+
+        {/* North arrow — top-right, all variants */}
+        <NorthArrow x={460} y={45} />
+
+        {/* Scale bar — bottom-right, adapts to variant height */}
+        <ScaleBar x={390} y={vbH - 18} />
       </svg>
     </div>
   )
@@ -41,6 +59,7 @@ function VariantA() {
 
       {/* Kitchen (back) */}
       <rect x="220" y="30" width="140" height="90" fill="#111" stroke="#F0EAD6" strokeWidth="1" opacity="0.8"/>
+      <rect x="220" y="30" width="140" height="90" fill="url(#cross-hatch)"/>
       <text x="290" y="72" textAnchor="middle" fontSize="8" fill="#F0EAD6" fontFamily="monospace" opacity="0.6" letterSpacing="2">KITCHEN</text>
       <text x="290" y="83" textAnchor="middle" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.3" letterSpacing="2">OPEN</text>
 
@@ -294,5 +313,45 @@ function VariantC() {
       <text x="40" y="366" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25" letterSpacing="2">SCALE 1:50 · 12 SEATS · COUNTER SERVICE · 42 SQM</text>
       <text x="40" y="376" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25" letterSpacing="2">老板不在 · SHAM SHUI PO · HK</text>
     </>
+  )
+}
+
+// ─── Shared architectural overlays ───────────────────────────────────────────
+
+function NorthArrow({ x, y }: { x: number; y: number }) {
+  return (
+    <g transform={`translate(${x}, ${y})`} opacity="0.75">
+      {/* Circle */}
+      <circle cx="0" cy="0" r="13" fill="none" stroke="#F0EAD6" strokeWidth="0.8" opacity="0.4"/>
+      {/* N half (filled) */}
+      <path d="M0,-12 L5,6 L0,2 L-5,6 Z" fill="#F0EAD6" opacity="0.8"/>
+      {/* S half (outline) */}
+      <path d="M0,12 L5,-6 L0,-2 L-5,-6 Z" fill="none" stroke="#F0EAD6" strokeWidth="0.8" opacity="0.4"/>
+      {/* N label */}
+      <text x="0" y="-16" textAnchor="middle" fontSize="7" fill="#F0EAD6" fontFamily="monospace" opacity="0.7" letterSpacing="1">N</text>
+    </g>
+  )
+}
+
+function ScaleBar({ x, y }: { x: number; y: number }) {
+  // 1:50 scale → 40px = 2m, 80px = 4m
+  const unit = 40 // px = 2m
+  return (
+    <g transform={`translate(${x}, ${y})`} opacity="0.6">
+      {/* Outer bar */}
+      <rect x="0" y="-5" width={unit * 2} height="5" fill="none" stroke="#B8860B" strokeWidth="0.8"/>
+      {/* Left half filled */}
+      <rect x="0" y="-5" width={unit} height="5" fill="#B8860B" opacity="0.5"/>
+      {/* Tick marks */}
+      <line x1="0" y1="-8" x2="0" y2="0" stroke="#B8860B" strokeWidth="0.7"/>
+      <line x1={unit} y1="-8" x2={unit} y2="0" stroke="#B8860B" strokeWidth="0.7"/>
+      <line x1={unit * 2} y1="-8" x2={unit * 2} y2="0" stroke="#B8860B" strokeWidth="0.7"/>
+      {/* Labels */}
+      <text x="0" y="-10" textAnchor="middle" fontSize="5.5" fill="#B8860B" fontFamily="monospace" letterSpacing="0">0</text>
+      <text x={unit} y="-10" textAnchor="middle" fontSize="5.5" fill="#B8860B" fontFamily="monospace" letterSpacing="0">2m</text>
+      <text x={unit * 2} y="-10" textAnchor="middle" fontSize="5.5" fill="#B8860B" fontFamily="monospace" letterSpacing="0">4m</text>
+      {/* Scale note */}
+      <text x={unit} y="8" textAnchor="middle" fontSize="5" fill="#B8860B" fontFamily="monospace" opacity="0.7" letterSpacing="1">1:50</text>
+    </g>
   )
 }
