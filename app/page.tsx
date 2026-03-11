@@ -111,7 +111,7 @@ export default function Home() {
           <div className="border border-[#C0392B]/50 px-2 py-0.5 rotate-[-1.5deg] origin-right">
             <span className="text-[9px] text-[#C0392B]/70 tracking-[0.25em] uppercase font-bold">Confidential · CEO Review</span>
           </div>
-          <span className="text-[#F0EAD6]/25 text-base" style={{ fontFamily: 'serif' }}>老板不在</span>
+          <span className="text-[#F0EAD6]/25 text-base" lang="zh-HK" style={{ fontFamily: 'serif' }}>老板不在</span>
         </div>
       </header>
 
@@ -371,25 +371,41 @@ export default function Home() {
 
         {/* 04 CONCEPT */}
         {active === '04 CONCEPT' && (
-          <div className="tab-content flex-1 flex items-center justify-center px-4">
-            <div className="max-w-lg mx-auto py-8">
-              <div className="text-center mb-12">
-                <h2 className="text-6xl text-[#F0EAD6] mb-6" style={{ fontFamily: 'serif' }}>老板不在</h2>
-                <p className="text-xs tracking-[0.5em] text-[#F0EAD6]/30">THE BOSS IS NOT HERE</p>
+          <div className="tab-content flex-1 flex items-center justify-center px-4 overflow-y-auto">
+            <div className="max-w-md mx-auto py-8 w-full">
+              {/* Section marker */}
+              <div className="flex items-center gap-3 mb-10">
+                <span className="text-[9px] font-mono text-[#F0EAD6]/20 tracking-[0.4em]">§ 04</span>
+                <div className="flex-1 border-t border-dashed border-[#F0EAD6]/10"/>
+                <span className="text-[9px] font-mono text-[#F0EAD6]/20 tracking-[0.3em]">CONCEPT</span>
               </div>
-              <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono mb-6">
+
+              <div className="text-center mb-10">
+                <h2 className="text-6xl text-[#F0EAD6] mb-4" lang="zh-HK" style={{ fontFamily: 'serif' }}>老板不在</h2>
+                <p className="text-[10px] tracking-[0.5em] text-[#F0EAD6]/25 uppercase">The Boss Is Not Here</p>
+              </div>
+
+              <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono mb-5">
                 XLB is a restaurant that does not exist yet. A dim sum counter somewhere in Sham Shui Po, Kowloon. Six tables. Twelve stools. One steam counter.
               </p>
-              <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono mb-6">
-                老板不在 means the boss is not here. The kitchen runs itself. Service is fast, without ceremony. You eat standing up or you eat slow — the room does not care.
+              <div className="border-t border-dashed border-[#F0EAD6]/8 mb-5"/>
+              <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono mb-5">
+                <span lang="zh-HK">老板不在</span> means the boss is not here. The kitchen runs itself. Service is fast, without ceremony. You eat standing up or you eat slow — the room does not care.
               </p>
-              <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono mb-6">
+              <div className="border-t border-dashed border-[#F0EAD6]/8 mb-5"/>
+              <p className="text-[11px] text-[#F0EAD6]/50 leading-[2] font-mono">
                 Drop 001 is the t-shirt. Before the restaurant. Before the address. Before the opening date. The merch precedes the place.
               </p>
-              <div className="border-b border-[#F0EAD6]/10 w-24 my-8" />
-              <p className="text-[9px] tracking-[0.4em] text-[#F0EAD6]/30">
-                EST. TBD · SHAM SHUI PO · KOWLOON · HK
-              </p>
+
+              <div className="mt-10 pt-6 border-t border-[#F0EAD6]/8 flex justify-between items-end">
+                <div>
+                  <p className="text-[9px] tracking-[0.3em] text-[#F0EAD6]/25 uppercase font-mono">Est. TBD</p>
+                  <p className="text-[9px] tracking-[0.2em] text-[#F0EAD6]/20 font-mono mt-0.5">Sham Shui Po · Kowloon · HK</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-[9px] text-[#F0EAD6]/15 font-mono tracking-widest">22°19′N 114°09′E</p>
+                </div>
+              </div>
             </div>
           </div>
         )}
