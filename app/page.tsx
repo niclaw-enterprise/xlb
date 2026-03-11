@@ -76,8 +76,20 @@ export default function Home() {
     })
   }, [active])
 
+  // Keyboard nav: arrow keys cycle through tabs
+  const handleNavKeyDown = useCallback((e: React.KeyboardEvent) => {
+    const idx = sections.indexOf(active)
+    if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      navigate(sections[(idx + 1) % sections.length])
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      navigate(sections[(idx - 1 + sections.length) % sections.length])
+    }
+  }, [active, navigate])
+
   return (
-    <main className="bg-[#0A0A0A] text-[#F0EAD6] h-[100dvh] overflow-hidden flex flex-col font-mono">
+    <main className="bg-[#0A0A0A] text-[#F0EAD6] h-[100dvh] overflow-hidden flex flex-col font-mono" onKeyDown={handleNavKeyDown} tabIndex={-1}>
 
       {/* Header */}
       <header className="flex flex-col md:flex-row justify-between items-center px-4 md:px-8 pr-6 py-4 gap-2 border-b border-[#F0EAD6]/8 shrink-0">
