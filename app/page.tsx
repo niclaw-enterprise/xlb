@@ -31,7 +31,9 @@ function hashToTab(hash: string): Section {
 }
 
 export default function Home() {
-  const [active, setActive] = useState<Section>('01 PLANIMETRY')
+  const [active, setActive] = useState<Section>(() =>
+    typeof window !== 'undefined' ? hashToTab(window.location.hash) : '01 PLANIMETRY'
+  )
   const [planVariant, setPlanVariant] = useState<PlanVariant>('A')
   const [menuVariant, setMenuVariant] = useState<MenuVariant>('A')
   const [selectedSize, setSelectedSize] = useState('M')
@@ -42,10 +44,8 @@ export default function Home() {
   const [navScrolled, setNavScrolled] = useState(false)
   const [navAtEnd, setNavAtEnd] = useState(false)
 
-  // Read hash on mount and sync active tab
+  // Sync active tab on browser back/forward
   useEffect(() => {
-    const tab = hashToTab(window.location.hash)
-    setActive(tab)
     const onPopState = () => setActive(hashToTab(window.location.hash))
     window.addEventListener('popstate', onPopState)
     return () => window.removeEventListener('popstate', onPopState)

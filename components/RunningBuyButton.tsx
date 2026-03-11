@@ -5,6 +5,7 @@ import { useState, useRef, useCallback } from 'react'
 export default function RunningBuyButton() {
   const [escapeCount, setEscapeCount] = useState(0)
   const [pos, setPos] = useState<{ x: number; y: number } | null>(null)
+  const [transDuration, setTransDuration] = useState(0.2)
   const [text, setText] = useState('Buy')
   const [surrendered, setSurrendered] = useState(false)
   const [showForm, setShowForm] = useState(false)
@@ -67,6 +68,7 @@ export default function RunningBuyButton() {
     const vw = window.innerWidth - btnW - 32
     const vh = window.innerHeight - btnH - 32
 
+    setTransDuration(0.15 + Math.random() * 0.15)
     setPos({
       x: Math.max(16, Math.random() * vw),
       y: Math.max(16, Math.random() * vh),
@@ -97,7 +99,7 @@ export default function RunningBuyButton() {
         transition:
           escapeCount === 4
             ? 'all 0.45s ease-out'
-            : `all ${0.15 + Math.random() * 0.15}s ease-out`,
+            : `all ${transDuration}s ease-out`,
         zIndex: 9999,
       }
     : {}
@@ -119,9 +121,9 @@ export default function RunningBuyButton() {
               /* Success state */
               <div className="text-center">
                 <div className="text-4xl mb-4" style={{ fontFamily: 'serif', color: '#39FF85' }}>你進來了</div>
-                <p className="font-mono text-[#39FF85]/60 text-xs tracking-[0.3em] mb-2">YOU'RE IN</p>
+                <p className="font-mono text-[#39FF85]/60 text-xs tracking-[0.3em] mb-2">YOU&apos;RE IN</p>
                 <p className="font-mono text-[#F0EAD6]/30 text-[10px] tracking-widest mt-6 leading-relaxed">
-                  Drop 001 notification sent.<br/>We'll find you when the time comes.
+                  Drop 001 notification sent.<br/>We&apos;ll find you when the time comes.
                 </p>
               </div>
             ) : (
