@@ -379,7 +379,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="h-7 border-t border-[#F0EAD6]/8 flex justify-between items-center px-4 md:px-8 text-[8px] md:text-[9px] text-[#F0EAD6]/30 shrink-0">
         <span>老板不在 · XLB · 2026</span>
-        <span>v0.1.0</span>
+        <span>v0.2.0</span>
         <span>SHAM SHUI PO · HK</span>
       </footer>
 
