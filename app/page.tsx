@@ -77,13 +77,13 @@ export default function Home() {
   }, [active])
 
   return (
-    <main className="bg-[#0A0A0A] text-[#F0EAD6] h-screen overflow-hidden flex flex-col font-mono">
+    <main className="bg-[#0A0A0A] text-[#F0EAD6] h-[100dvh] overflow-hidden flex flex-col font-mono">
 
       {/* Header */}
       <header className="flex flex-col md:flex-row justify-between items-center px-4 md:px-8 pr-6 py-4 gap-2 border-b border-[#F0EAD6]/8 shrink-0">
         <div className="flex items-baseline gap-6 border-b border-[#F0EAD6]/10 pb-2">
           <span className="text-3xl md:text-4xl tracking-[0.5em] font-bold">XLB</span>
-          <span className="text-xs text-[#F0EAD6]/25 tracking-[0.2em] uppercase">
+          <span className="text-[10px] text-[#F0EAD6]/25 tracking-[0.1em] md:tracking-[0.2em] uppercase">
             Restaurant Design Studio
           </span>
         </div>
@@ -217,7 +217,7 @@ export default function Home() {
             <div className="md:flex-1 flex items-center justify-center p-4 md:p-8 min-w-0">
               <MenuDesign variant={menuVariant} />
             </div>
-            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-y-auto">
+            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-y-auto max-h-[45vh] md:max-h-none">
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-2 uppercase">Variants</div>
                 <div className="flex gap-3 mb-4">

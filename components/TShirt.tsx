@@ -4,7 +4,7 @@ interface TShirtProps {
 
 export default function TShirt({ view = 'front' }: TShirtProps) {
   return (
-    <div className="w-72 h-80 relative select-none" style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8))' }}>
+    <div className="w-56 h-64 sm:w-72 sm:h-80 relative select-none" style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.8))' }}>
       <svg
         viewBox="0 0 300 340"
         xmlns="http://www.w3.org/2000/svg"
