@@ -35,6 +35,7 @@ export default function Home() {
   const [planVariant, setPlanVariant] = useState<PlanVariant>('A')
   const [menuVariant, setMenuVariant] = useState<MenuVariant>('A')
   const [selectedSize, setSelectedSize] = useState('M')
+  const [qty, setQty] = useState(1)
   const [view, setView] = useState<"front"|"back">("front")
   const [planZoom, setPlanZoom] = useState(false)
   const navRef = useRef<HTMLElement>(null)
@@ -76,19 +77,21 @@ export default function Home() {
   }, [active])
 
   return (
-    <main className="bg-[#0A0A0A] text-[#F0EAD6] h-screen overflow-hidden flex flex-col font-mono">
+    <main className="bg-[#0A0A0A] text-[#F0EAD6] h-[100dvh] overflow-hidden flex flex-col font-mono">
 
       {/* Header */}
       <header className="flex flex-col md:flex-row justify-between items-center px-4 md:px-8 pr-6 py-4 gap-2 border-b border-[#F0EAD6]/8 shrink-0">
         <div className="flex items-baseline gap-6 border-b border-[#F0EAD6]/10 pb-2">
-          <span className="text-2xl md:text-3xl tracking-[0.4em] font-bold">XLB</span>
-          <span className="text-xs text-[#F0EAD6]/25 tracking-[0.2em] uppercase">
+          <span className="text-3xl md:text-4xl tracking-[0.5em] font-bold">XLB</span>
+          <span className="text-[10px] text-[#F0EAD6]/25 tracking-[0.1em] md:tracking-[0.2em] uppercase">
             Restaurant Design Studio
           </span>
         </div>
-        <div className="hidden md:flex flex-col gap-0.5 items-end">
-          <span className="text-[11px] text-[#F0EAD6]/20 tracking-widest">CONFIDENTIAL · FOR CEO REVIEW</span>
-          <span className="text-[#F0EAD6]/30 text-base" style={{ fontFamily: 'serif' }}>老板不在</span>
+        <div className="hidden md:flex flex-col gap-1.5 items-end">
+          <div className="border border-[#C0392B]/50 px-2 py-0.5 rotate-[-1.5deg] origin-right">
+            <span className="text-[9px] text-[#C0392B]/70 tracking-[0.25em] uppercase font-bold">Confidential · CEO Review</span>
+          </div>
+          <span className="text-[#F0EAD6]/25 text-base" style={{ fontFamily: 'serif' }}>老板不在</span>
         </div>
       </header>
 
@@ -106,10 +109,10 @@ export default function Home() {
                 navigate(s)
                 e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
               }}
-              className={`nav-tab px-3 md:px-8 py-3 min-h-[44px] md:min-h-0 flex items-center text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap ${
+              className={`nav-tab px-3 md:px-8 py-3 min-h-[44px] md:min-h-0 flex items-center text-[10px] tracking-[0.3em] uppercase border-r border-[#F0EAD6]/8 transition-colors whitespace-nowrap border-b-2 ${
                 active === s
-                  ? 'active bg-[#F0EAD6]/5 text-[#F0EAD6]'
-                  : 'text-[#F0EAD6] opacity-40 hover:opacity-60'
+                  ? 'active bg-[#F0EAD6]/5 text-[#F0EAD6] border-b-[#39FF85]'
+                  : 'text-[#F0EAD6] opacity-40 hover:opacity-60 border-b-transparent'
               }`}
             >
               {s}
@@ -176,7 +179,7 @@ export default function Home() {
                   <span className="text-xs text-[#F0EAD6]/30">Sham Shui Po, HK</span>
                 </div>
               </div>
-              <hr className="border-[#F0EAD6]/8" />
+              <div className="border-t border-dashed border-[#F0EAD6]/15" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Status</div>
                 <div className="flex items-center gap-2">
@@ -184,19 +187,20 @@ export default function Home() {
                   <span className="text-xs text-[#39FF85]/80">IN DESIGN</span>
                 </div>
               </div>
-              <hr className="border-[#F0EAD6]/8" />
+              <div className="border-t border-dashed border-[#F0EAD6]/15" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Variants</div>
                 <div className="space-y-1 text-[11px] text-[#F0EAD6]/50">
                   {planVariants.map((v) => (
                     <button key={v} onClick={() => setPlanVariant(v)}
-                      className={`w-full text-left py-1 transition-colors ${planVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'hover:text-[#F0EAD6]/70'}`}>
-                      {planVariant === v && '▸ '}{v === 'A' ? 'A — Linear · 6 covers' : v === 'B' ? 'B — Social · round tables' : 'C — Omakase bar · 12 seats'}
+                      className={`w-full text-left py-1 transition-colors flex items-center gap-1.5 ${planVariant === v ? 'text-[#39FF85]' : 'text-[#F0EAD6]/50 hover:text-[#F0EAD6]/70'}`}>
+                      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${planVariant === v ? 'bg-[#39FF85]' : 'bg-[#F0EAD6]/20'}`} />
+                      {v === 'A' ? 'A — Linear · 6 covers' : v === 'B' ? 'B — Social · round tables' : 'C — Omakase bar · 12 seats'}
                     </button>
                   ))}
                 </div>
               </div>
-              <hr className="border-[#F0EAD6]/8" />
+              <div className="border-t border-dashed border-[#F0EAD6]/15" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-2 uppercase">Notes</div>
                 <div className="text-[10px] text-[#F0EAD6]/50 leading-relaxed break-words">
@@ -213,19 +217,20 @@ export default function Home() {
             <div className="md:flex-1 flex items-center justify-center p-4 md:p-8 min-w-0">
               <MenuDesign variant={menuVariant} />
             </div>
-            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-y-auto">
+            <div className="w-full md:w-64 border-t md:border-t-0 md:border-l border-[#F0EAD6]/8 p-4 md:p-6 flex flex-col gap-6 shrink-0 min-w-0 overflow-y-auto max-h-[45vh] md:max-h-none">
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-2 uppercase">Variants</div>
                 <div className="flex gap-3 mb-4">
                   {menuVariants.map((v) => (
                     <button key={v} onClick={() => setMenuVariant(v)}
-                      className={`text-[11px] tracking-widest transition-colors ${menuVariant === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'text-[#F0EAD6]/35 hover:text-[#F0EAD6]/60'}`}>
-                      {menuVariant === v && '▸ '}VAR {v}
+                      className={`text-[11px] tracking-widest transition-colors flex items-center gap-1.5 ${menuVariant === v ? 'text-[#39FF85]' : 'text-[#F0EAD6]/35 hover:text-[#F0EAD6]/60'}`}>
+                      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${menuVariant === v ? 'bg-[#39FF85]' : 'bg-[#F0EAD6]/20'}`} />
+                      VAR {v}
                     </button>
                   ))}
                 </div>
               </div>
-              <hr className="border-[#F0EAD6]/8" />
+              <div className="border-t border-dashed border-[#F0EAD6]/15" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Format</div>
                 <div className="text-[11px] text-[#F0EAD6]/50 leading-relaxed">
@@ -234,18 +239,18 @@ export default function Home() {
                     : 'Single item per card. Omakase style. Thermal print.'}
                 </div>
               </div>
-              <hr className="border-[#F0EAD6]/8" />
+              <div className="border-t border-dashed border-[#F0EAD6]/15" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Language</div>
                 <div className="text-[11px] text-[#F0EAD6]/50">繁體中文 + EN</div>
                 <div className="text-[10px] text-[#F0EAD6]/20 mt-1">Traditional characters only</div>
               </div>
-              <hr className="border-[#F0EAD6]/8" />
+              <div className="border-t border-dashed border-[#F0EAD6]/15" />
               <div>
                 <div className="text-xs text-[#F0EAD6]/30 tracking-[0.4em] mb-3 uppercase">Currency</div>
                 <div className="text-[11px] text-[#F0EAD6]/50">HKD · Cash preferred</div>
               </div>
-              <hr className="border-[#F0EAD6]/8" />
+              <div className="border-t border-dashed border-[#F0EAD6]/15" />
               <div className="text-[10px] text-[#F0EAD6]/35 leading-relaxed break-words">
                 Menu design in progress. Final items TBD.
               </div>
@@ -260,9 +265,10 @@ export default function Home() {
               <div className="flex gap-3 mb-2">
                 {(['front', 'back'] as const).map((v) => (
                   <button key={v} onClick={() => setView(v)}
-                    className={`text-[10px] tracking-[0.3em] uppercase font-mono transition-colors ${
-                      view === v ? 'text-[#39FF85] border-l-2 border-[#39FF85] pl-1.5' : 'text-[#F0EAD6]/30 hover:text-[#F0EAD6]/50'
+                    className={`text-[10px] tracking-[0.3em] uppercase font-mono transition-colors flex items-center gap-1.5 ${
+                      view === v ? 'text-[#39FF85]' : 'text-[#F0EAD6]/30 hover:text-[#F0EAD6]/50'
                     }`}>
+                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${view === v ? 'bg-[#39FF85]' : 'bg-[#F0EAD6]/15'}`} />
                     {v}
                   </button>
                 ))}
@@ -296,13 +302,31 @@ export default function Home() {
                   </button>
                 ))}
               </div>
+              {/* Quantity counter */}
+              <div className="flex items-center gap-0">
+                <button
+                  onClick={() => setQty(q => Math.max(1, q - 1))}
+                  className="w-8 h-8 border border-[#F0EAD6]/20 text-[#F0EAD6]/50 hover:text-[#F0EAD6] hover:border-[#F0EAD6]/40 transition-colors font-mono text-sm flex items-center justify-center"
+                  aria-label="decrease quantity"
+                >−</button>
+                <div className="w-10 h-8 border-t border-b border-[#F0EAD6]/20 flex items-center justify-center font-mono text-[11px] text-[#F0EAD6]/70 tracking-widest">
+                  {String(qty).padStart(2, '0')}
+                </div>
+                <button
+                  onClick={() => setQty(q => Math.min(9, q + 1))}
+                  className="w-8 h-8 border border-[#F0EAD6]/20 text-[#F0EAD6]/50 hover:text-[#F0EAD6] hover:border-[#F0EAD6]/40 transition-colors font-mono text-sm flex items-center justify-center"
+                  aria-label="increase quantity"
+                >+</button>
+                <span className="ml-3 text-[9px] text-[#F0EAD6]/20 tracking-widest font-mono uppercase">QTY</span>
+              </div>
               <div className="font-mono text-[9px] text-[#F0EAD6]/20 tracking-widest">SKU · XLB-TS-001</div>
               <div className="font-mono text-[#F0EAD6]/50 tracking-widest">
                 <span className="text-[10px]">HKD </span>
                 <span className="text-3xl font-bold text-[#F0EAD6]">380</span>
               </div>
               <div className="flex flex-col gap-2 shimmer-btn">
-                <p className="text-[10px] text-[#F0EAD6]/20 tracking-widest uppercase">
+                <p className="text-[10px] text-[#F0EAD6]/20 tracking-widest uppercase flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C0392B] animate-pulse shrink-0" />
                   Drop 001 · Invite Only · 1000 pcs
                 </p>
                 <RunningBuyButton />

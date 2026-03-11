@@ -14,6 +14,18 @@ export default function Planimetry({ variant = 'A' }: { variant?: 'A' | 'B' | 'C
           <pattern id="floor-grid" width="20" height="20" patternUnits="userSpaceOnUse">
             <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1a2a1a" strokeWidth="0.4"/>
           </pattern>
+          {/* Cross-hatch pattern for kitchen zones */}
+          <pattern id="cross-hatch" width="8" height="8" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="0" x2="8" y2="8" stroke="#39FF85" strokeWidth="0.4" opacity="0.25"/>
+            <line x1="8" y1="0" x2="0" y2="8" stroke="#39FF85" strokeWidth="0.4" opacity="0.25"/>
+          </pattern>
+          {/* Wall section hatching */}
+          <pattern id="wall-hatch" width="6" height="6" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="6" x2="6" y2="0" stroke="#F0EAD6" strokeWidth="0.5" opacity="0.35"/>
+          </pattern>
+          <marker id="arrow-head" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L6,3 z" fill="#B8860B" opacity="0.7"/>
+          </marker>
         </defs>
 
         {/* Grid background */}
@@ -22,6 +34,12 @@ export default function Planimetry({ variant = 'A' }: { variant?: 'A' | 'B' | 'C
         {variant === 'A' && <VariantA />}
         {variant === 'B' && <VariantB />}
         {variant === 'C' && <VariantC />}
+
+        {/* North arrow — top-right, all variants */}
+        <NorthArrow x={460} y={45} />
+
+        {/* Scale bar — bottom-right, adapts to variant height */}
+        <ScaleBar x={390} y={vbH - 18} />
       </svg>
     </div>
   )
@@ -30,17 +48,31 @@ export default function Planimetry({ variant = 'A' }: { variant?: 'A' | 'B' | 'C
 function VariantA() {
   return (
     <>
-      {/* Outer walls */}
-      <rect x="40" y="30" width="320" height="220" fill="none" stroke="#F0EAD6" strokeWidth="2" opacity="0.7"/>
+      {/* Outer walls — cut section hatching (evenodd clips to wall zone only) */}
+      <defs>
+        <clipPath id="wall-clip-a">
+          <path clipRule="evenodd" d="M36,26h328v228h-328z M44,34h312v212h-312z"/>
+        </clipPath>
+      </defs>
+      <rect x="36" y="26" width="328" height="228" fill="url(#wall-hatch)" clipPath="url(#wall-clip-a)" opacity="0.6"/>
+      <rect x="40" y="30" width="320" height="220" fill="none" stroke="#F0EAD6" strokeWidth="2" opacity="0.8"/>
 
-      {/* Entry */}
-      <line x1="160" y1="250" x2="240" y2="250" stroke="#0A0A0A" strokeWidth="3"/>
-      <path d="M 160 250 Q 160 270 200 270 Q 240 270 240 250" fill="none" stroke="#F0EAD6" strokeWidth="0.8" strokeDasharray="3,2" opacity="0.5"/>
-      <line x1="240" y1="250" x2="200" y2="270" stroke="#F0EAD6" strokeWidth="0.8" opacity="0.5"/>
-      <text x="200" y="265" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.8" letterSpacing="2">ENTRY</text>
+      {/* Entry — bottom wall gap with proper door leaf + swing arc */}
+      {/* Wall gap eraser */}
+      <line x1="160" y1="250" x2="240" y2="250" stroke="#0A0A0A" strokeWidth="4"/>
+      {/* Jamb tick marks */}
+      <line x1="160" y1="245" x2="160" y2="255" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      <line x1="240" y1="245" x2="240" y2="255" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      {/* Door leaf — hinged at left jamb, open 90° inward */}
+      <line x1="160" y1="250" x2="160" y2="170" stroke="#F0EAD6" strokeWidth="1.3" opacity="0.75"/>
+      {/* Swing arc from free end (240,250) to leaf tip (160,170) */}
+      <path d="M 240 250 A 80 80 0 0 0 160 170" fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="4,3" opacity="0.45"/>
+      {/* ENTRY label — exterior side */}
+      <text x="200" y="268" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.8" letterSpacing="2">ENTRY</text>
 
       {/* Kitchen (back) */}
       <rect x="220" y="30" width="140" height="90" fill="#111" stroke="#F0EAD6" strokeWidth="1" opacity="0.8"/>
+      <rect x="220" y="30" width="140" height="90" fill="url(#cross-hatch)"/>
       <text x="290" y="72" textAnchor="middle" fontSize="8" fill="#F0EAD6" fontFamily="monospace" opacity="0.6" letterSpacing="2">KITCHEN</text>
       <text x="290" y="83" textAnchor="middle" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.3" letterSpacing="2">OPEN</text>
 
@@ -115,10 +147,18 @@ function VariantB() {
   return (
     <>
       {/* Outer walls */}
-      <rect x="40" y="30" width="400" height="280" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.7"/>
+      {/* Outer walls — cut section hatching (evenodd clips to wall zone only) */}
+      <defs>
+        <clipPath id="wall-clip-b">
+          <path clipRule="evenodd" d="M36,26h408v288h-408z M44,34h392v272h-392z"/>
+        </clipPath>
+      </defs>
+      <rect x="36" y="26" width="408" height="288" fill="url(#wall-hatch)" clipPath="url(#wall-clip-b)" opacity="0.6"/>
+      <rect x="40" y="30" width="400" height="280" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.8"/>
 
       {/* Kitchen — left 2/3 of back wall */}
       <rect x="40" y="30" width="268" height="60" fill="#111" stroke="#F0EAD6" strokeWidth="1" opacity="0.8"/>
+      <rect x="40" y="30" width="268" height="60" fill="url(#cross-hatch)"/>
       <text x="174" y="56" textAnchor="middle" fontSize="8" fill="#F0EAD6" fontFamily="monospace" opacity="0.6" letterSpacing="2">KITCHEN</text>
       <text x="174" y="68" textAnchor="middle" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.3" letterSpacing="2">OPEN</text>
 
@@ -160,11 +200,14 @@ function VariantB() {
         </g>
       ))}
 
-      {/* Entry — bottom wall center gap, well clear of table 06 */}
+      {/* Entry — bottom wall gap with proper door leaf + swing arc */}
       <line x1="195" y1="310" x2="285" y2="310" stroke="#0A0A0A" strokeWidth="4"/>
-      <path d="M 195 310 Q 195 336 240 336 Q 285 336 285 310"
-        fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="3,2" opacity="0.4"/>
-      <text x="240" y="330" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.7" letterSpacing="2">ENTRY</text>
+      <line x1="195" y1="305" x2="195" y2="315" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      <line x1="285" y1="305" x2="285" y2="315" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      {/* Door leaf hinged at left jamb, open 90° inward */}
+      <line x1="195" y1="310" x2="195" y2="220" stroke="#F0EAD6" strokeWidth="1.3" opacity="0.75"/>
+      <path d="M 285 310 A 90 90 0 0 0 195 220" fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="4,3" opacity="0.45"/>
+      <text x="240" y="328" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.7" letterSpacing="2">ENTRY</text>
 
       {/* Dimension: width */}
       <line x1="40" y1="350" x2="440" y2="350" stroke="#B8860B" strokeWidth="0.5" opacity="0.6"/>
@@ -197,10 +240,18 @@ function VariantC() {
   return (
     <>
       {/* Outer walls */}
-      <rect x="40" y="30" width="420" height="260" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.7"/>
+      {/* Outer walls — cut section hatching (evenodd clips to wall zone only) */}
+      <defs>
+        <clipPath id="wall-clip-c">
+          <path clipRule="evenodd" d="M36,26h428v268h-428z M44,34h412v252h-412z"/>
+        </clipPath>
+      </defs>
+      <rect x="36" y="26" width="428" height="268" fill="url(#wall-hatch)" clipPath="url(#wall-clip-c)" opacity="0.6"/>
+      <rect x="40" y="30" width="420" height="260" fill="none" stroke="#F0EAD6" strokeWidth="1.5" opacity="0.8"/>
 
       {/* Kitchen / back-of-house zone background */}
       <rect x="40" y="30" width="420" height="70" fill="#0d150d" stroke="none"/>
+      <rect x="40" y="30" width="420" height="70" fill="url(#cross-hatch)"/>
       <rect x="40" y="30" width="420" height="70" fill="none" stroke="#F0EAD6" strokeWidth="1" opacity="0.5"/>
 
       {/* ── Station 1: COLD STATION ── */}
@@ -257,10 +308,13 @@ function VariantC() {
       {/* Guest seating label */}
       <text x="235" y="218" textAnchor="middle" fontSize="5.5" fill="#F0EAD6" fontFamily="monospace" opacity="0.2" letterSpacing="3">GUEST SEATING · 12 COVERS</text>
 
-      {/* Entry — bottom wall center gap with door swing arc */}
-      <line x1="195" y1="290" x2="295" y2="290" stroke="#0A0A0A" strokeWidth="3"/>
-      <path d="M 195 290 Q 195 312 245 312 Q 295 312 295 290"
-        fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="3,2" opacity="0.4"/>
+      {/* Entry — bottom wall gap with proper door leaf + swing arc */}
+      <line x1="195" y1="290" x2="295" y2="290" stroke="#0A0A0A" strokeWidth="4"/>
+      <line x1="195" y1="285" x2="195" y2="295" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      <line x1="295" y1="285" x2="295" y2="295" stroke="#F0EAD6" strokeWidth="1.2" opacity="0.7"/>
+      {/* Door leaf hinged at left jamb, open 90° inward */}
+      <line x1="195" y1="290" x2="195" y2="190" stroke="#F0EAD6" strokeWidth="1.3" opacity="0.75"/>
+      <path d="M 295 290 A 100 100 0 0 0 195 190" fill="none" stroke="#F0EAD6" strokeWidth="0.7" strokeDasharray="4,3" opacity="0.4"/>
       <text x="245" y="308" textAnchor="middle" fontSize="7" fill="#39FF85" fontFamily="monospace" opacity="0.7" letterSpacing="2">ENTRY</text>
 
       {/* XLB cartouche / title block stamp — bottom-right of plan field */}
@@ -294,5 +348,45 @@ function VariantC() {
       <text x="40" y="366" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25" letterSpacing="2">SCALE 1:50 · 12 SEATS · COUNTER SERVICE · 42 SQM</text>
       <text x="40" y="376" fontSize="6" fill="#F0EAD6" fontFamily="monospace" opacity="0.25" letterSpacing="2">老板不在 · SHAM SHUI PO · HK</text>
     </>
+  )
+}
+
+// ─── Shared architectural overlays ───────────────────────────────────────────
+
+function NorthArrow({ x, y }: { x: number; y: number }) {
+  return (
+    <g transform={`translate(${x}, ${y})`} opacity="0.75">
+      {/* Circle */}
+      <circle cx="0" cy="0" r="13" fill="none" stroke="#F0EAD6" strokeWidth="0.8" opacity="0.4"/>
+      {/* N half (filled) */}
+      <path d="M0,-12 L5,6 L0,2 L-5,6 Z" fill="#F0EAD6" opacity="0.8"/>
+      {/* S half (outline) */}
+      <path d="M0,12 L5,-6 L0,-2 L-5,-6 Z" fill="none" stroke="#F0EAD6" strokeWidth="0.8" opacity="0.4"/>
+      {/* N label */}
+      <text x="0" y="-16" textAnchor="middle" fontSize="7" fill="#F0EAD6" fontFamily="monospace" opacity="0.7" letterSpacing="1">N</text>
+    </g>
+  )
+}
+
+function ScaleBar({ x, y }: { x: number; y: number }) {
+  // 1:50 scale → 40px = 2m, 80px = 4m
+  const unit = 40 // px = 2m
+  return (
+    <g transform={`translate(${x}, ${y})`} opacity="0.6">
+      {/* Outer bar */}
+      <rect x="0" y="-5" width={unit * 2} height="5" fill="none" stroke="#B8860B" strokeWidth="0.8"/>
+      {/* Left half filled */}
+      <rect x="0" y="-5" width={unit} height="5" fill="#B8860B" opacity="0.5"/>
+      {/* Tick marks */}
+      <line x1="0" y1="-8" x2="0" y2="0" stroke="#B8860B" strokeWidth="0.7"/>
+      <line x1={unit} y1="-8" x2={unit} y2="0" stroke="#B8860B" strokeWidth="0.7"/>
+      <line x1={unit * 2} y1="-8" x2={unit * 2} y2="0" stroke="#B8860B" strokeWidth="0.7"/>
+      {/* Labels */}
+      <text x="0" y="-10" textAnchor="middle" fontSize="5.5" fill="#B8860B" fontFamily="monospace" letterSpacing="0">0</text>
+      <text x={unit} y="-10" textAnchor="middle" fontSize="5.5" fill="#B8860B" fontFamily="monospace" letterSpacing="0">2m</text>
+      <text x={unit * 2} y="-10" textAnchor="middle" fontSize="5.5" fill="#B8860B" fontFamily="monospace" letterSpacing="0">4m</text>
+      {/* Scale note */}
+      <text x={unit} y="8" textAnchor="middle" fontSize="5" fill="#B8860B" fontFamily="monospace" opacity="0.7" letterSpacing="1">1:50</text>
+    </g>
   )
 }

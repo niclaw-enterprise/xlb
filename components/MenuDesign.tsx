@@ -45,7 +45,7 @@ function MenuA() {
 
       {/* Menu card */}
       <div
-        className="w-80 border border-[#F0EAD6]/20 p-7 relative"
+        className="w-full max-w-[320px] border border-[#F0EAD6]/20 p-5 sm:p-7 relative"
         style={{ background: '#0d0d0d', filter: 'url(#paper-grain)' }}
       >
         {/* Corner registration marks */}
@@ -79,7 +79,7 @@ function MenuA() {
             className="mb-1 leading-none"
             style={{
               fontFamily: 'serif',
-              fontSize: '3.25rem',
+              fontSize: '4rem',
               color: '#F0EAD6',
               letterSpacing: '0.05em',
             }}
@@ -184,7 +184,7 @@ function MenuB() {
 
       {/* Neon card — pure black bg for max contrast */}
       <div
-        className="w-80 p-7 relative"
+        className="w-full max-w-[320px] p-5 sm:p-7 relative"
         style={{
           background: '#000000',
           border: '2px solid #39FF85',
