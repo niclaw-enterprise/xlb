@@ -175,6 +175,17 @@ export default function RunningBuyButton() {
       <button
         ref={btnRef}
         onMouseEnter={handleMouseEnter}
+        onTouchStart={(e) => {
+          // On touch: each tap counts as a "chase" — button jumps on touch too
+          if (surrendered || showForm) return
+          e.preventDefault() // prevent ghost click
+          if (escapeCount >= MAX_ESCAPES) {
+            setShowForm(true)
+            setPos(null)
+          } else {
+            handleMouseEnter()
+          }
+        }}
         onClick={handleClick}
         style={buttonStyle}
         className={`buy-btn-glow font-mono text-xs tracking-[0.3em] uppercase px-8 py-4 border transition-colors cursor-pointer ${
